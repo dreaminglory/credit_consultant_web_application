@@ -39,6 +39,18 @@ Reviewed 2026-10-15. Comparison by area (full table in BUSINESS_CONTEXT §9):
 
 - **BM-11** At project kickoff, record creditmall.bg's Lighthouse mobile scores as the baseline;
   before launch, ours must be higher on every category.
+- **BM-11 baseline (recorded 2026-10-15, Lighthouse 13.5.0, mobile emulation, simulated slow 4G, 3 runs each,
+  Performance / Accessibility / Best Practices / SEO):**
+
+  | Site | Score | LCP | TBT | CLS |
+  |---|---|---|---|---|
+  | creditmall.bg (live) | 69–71 / 95 / 100 / 100 | 5.3 s | 120–150 ms | 0 |
+  | ExtraConsult Home, M3 build (`next start`, localhost) | 91–92 / 100 / 96 / 100 | 3.4 s | 30 ms | 0 |
+
+  Open gap: Best Practices 96 < 100 because of two console errors that disappear as the build
+  completes (no favicon until the logo, O-13; `/konsultacia` link prefetch 404 until M6).
+  Performance is above the 90 target and ~20 points over creditmall.bg; re-measure per template
+  in M9 against the live site on Cloudflare.
 - **BM-12** Never name or criticise CreditMall on the site; compete through quality.
 
 ## 2. Audience
