@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/config/site";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Button, ButtonArrow, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -32,12 +33,16 @@ const tones: SectionTone[] = ["paper", "white", "sand", "ink", "petrol"];
 
 export default function KitPage() {
   return (
-    <main>
-      <Section className="pt-24">
+    <>
+      <Section className="pt-8">
         <Mesh />
         <Container>
+          <Breadcrumbs
+            items={[{ label: "Кредити", href: "/krediti" }, { label: "Design kit" }]}
+            className="mb-6"
+          />
           <GlassCard className="p-6 md:p-10">
-            <Label>Design kit · M1</Label>
+            <Label>Design kit · M1 + M2 layout shell</Label>
             <h1 className="mt-4">Аз намирам кредита. Вие получавате ключовете.</h1>
             <p className="mt-6 max-w-[58ch] text-lg text-muted">
               Вътрешна страница за преглед на токените и базовите компоненти. Не е част от сайта.
@@ -184,6 +189,6 @@ export default function KitPage() {
           <PlaceholderBox item="O-1">Снимка с клиент и отзив — предстои</PlaceholderBox>
         </Container>
       </Section>
-    </main>
+    </>
   );
 }
