@@ -415,9 +415,9 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | **O-1** | **~8 photos (you + you with clients) and each client's feedback, with written consent — REQUIRED** | Open |
 | **O-2** | **Reference websites — REQUIRED** | Partly done: habito.com (style), creditmall.bg & creditcenter.bg (structure). More welcome. |
 | O-3 | Legal entity name, registered address; **confirm exact wording** of the CreditMall/BNB relationship; verify ЕИК 207809106 and BNB № BCI000104 in the official registers | Numbers received 2026-10-14 (not yet verified publicly) |
-| O-4 | **SVG logo files** of the 10 banks + permission to use them | List received |
+| O-4 | **SVG logo files** of the 10 banks + permission to use them | 10 files received 2026-10-15. Still needed: proper **ОББ** logo (file is the KBC mark only), vector **Тексим** logo (file is a PNG inside SVG), **ЦКБ** in brand colours (only white supplied; recoloured to ink for now). Permission still open. |
 | O-5 | Phone, Viber, WhatsApp, request-receiving email | Open |
-| O-6 | Professional portrait photos | Open |
+| O-6 | Professional portrait photos | 3 photos received (teal suit ×2, phone call). Hero choice and more shots (with clients, office) open |
 | O-7 | Years of experience, clients helped, personal story | Name received 2026-10-15 (Desislava Arabadzhieva); rest open |
 | O-8 | Request data retention period (suggestion: 12 months if no contract) | Open |
 | O-9 | **Confirm step durations** (drafts in CONTENT.md §2) and the total time | Draft ready |

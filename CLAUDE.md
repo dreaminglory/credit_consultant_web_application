@@ -30,12 +30,16 @@ Read before non-trivial work:
 - Spam: honeypot + Cloudflare Turnstile. Validation: Zod (client and server)
 
 ## Commands
-> Fill in after scaffolding.
-- `npm run dev` — local dev server
+- `npm run dev` — local dev server on http://localhost:3000 (`/dev/kit` shows the design system)
 - `npm run build` — production build (must pass before a task is done)
-- `npm run lint` / `npm run typecheck`
-- `npm test` — unit tests (calculators, form validation, email formatting)
-- `npm run preview` — build and run in the local Cloudflare runtime (check before deploying)
+- `npm run lint` / `npm run typecheck` (typecheck runs `next typegen` first)
+- `npm test` — Vitest unit tests (`src/**/*.test.ts`)
+- `npm run preview` — OpenNext build + local Workers runtime on http://localhost:8787 (check before deploying)
+- `npm run images` — regenerate `public/img` and `public/banks` from `raw_contents/`
+- `npm run check:content` — list open owner items (`pending("O-…")`) still used; must be empty at launch
+- Next.js 16 differs from older versions: read `node_modules/next/dist/docs/` before using an API (see AGENTS.md).
+- Dependencies are pinned exactly; new ones must be ≥ 14 days old (`npm view <pkg> time`).
+  npm 11 blocks install scripts — approve only known ones with `npm approve-scripts <pkg>`.
 
 ## Structure (target)
 ```
@@ -46,7 +50,9 @@ src/components/blocks/    reusable page blocks B-03 … B-24 (ProcessTimeline, B
 src/components/templates/ page templates T1–T6
 src/lib/            calculators, validation schemas, email + sheet clients
 src/config/site.ts  phone, Viber, email, banks, calculator defaults, company data
+src/config/pending.ts  typed placeholders for open owner items (A-6)
 src/content/        Bulgarian page copy that is not inline
+scripts/            image pipeline, content check
 docs/               business context and requirements
 design/             mockups
 ```

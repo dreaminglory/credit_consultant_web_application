@@ -1,0 +1,9 @@
+.next
+.open-next
+.wrangler
+node_modules
+docs
+design
+raw_contents
+.claude
+public

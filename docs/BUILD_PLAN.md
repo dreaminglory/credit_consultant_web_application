@@ -50,7 +50,7 @@ scripts/optimize-images.mjs   scripts/check-content.mjs
 
 ## 3. Milestones
 
-### M1 — Foundation  `feat/foundation`  (next session)
+### M1 — Foundation  `feat/foundation`  — done 2026-10-15 (Lighthouse baseline moved to M3)
 1. `git init`, `.gitignore`, `.env.example` (RESEND_API_KEY, LEAD_TO_EMAIL, SHEET_WEBHOOK_URL,
    SHEET_SECRET, TURNSTILE_SITE_KEY/SECRET), first commit of docs.
 2. Scaffold Next.js + TS strict + Tailwind v4 + ESLint; add Prettier, Vitest; add OpenNext +

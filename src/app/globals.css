@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens (DR-2, DR-3, DR-4) — ported from design/mockup-home.html (v2).
+ * Use these via Tailwind utilities (bg-ink, text-sea, font-head, rounded-card, ease-out-soft…);
+ * never write raw hex values in components.
+ */
+@theme {
+  --color-*: initial;
+  --color-ink: #0e1615;
+  --color-petrol: #0f3b3e;
+  --color-sea: #2e6b66;
+  --color-sand: #e9e2d4;
+  --color-paper: #f5f3ee;
+  --color-gold: #c59a3d;
+  --color-gold-deep: #8a6a28;
+  --color-white: #ffffff;
+  --color-muted: #4e5b59;
+  /* Muted text on dark surfaces (contrast ≥ 7:1 on ink). */
+  --color-mist: #cfdad7;
+  --color-haze: #afc0bc;
+  --color-sage: #9db7b0;
+  --color-line: rgb(14 22 21 / 0.12);
+  --color-line-dark: rgb(255 255 255 / 0.14);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-head: var(--font-inter-tight), "Arial Narrow", sans-serif;
+  --font-body: var(--font-onest), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --radius-field: 14px;
+  --radius-tile: 20px;
+  --radius-card: 28px;
+
+  --shadow-float: 0 6px 20px -8px rgb(0 0 0 / 0.3);
+  --shadow-bar: 0 10px 30px -10px rgb(0 0 0 / 0.35);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --container-site: 1240px;
+
+  --animate-drift: drift 24s ease-in-out infinite alternate;
+
+  @keyframes drift {
+    to {
+      transform: translate3d(3%, -2%, 0) scale(1.05);
+    }
+  }
+}
+
+/* Motion durations used by blocks (DR-4: 150–600 ms). */
+:root {
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 600ms;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header offset for anchor jumps (NAV-8). */
+    scroll-padding-top: 96px;
+  }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-head font-extrabold;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+  h1 {
+    font-size: clamp(48px, 8.4vw, 120px);
+  }
+  h2 {
+    font-size: clamp(38px, 6vw, 76px);
+  }
+  h3 {
+    font-size: clamp(22px, 2.4vw, 30px);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Frosted glass with a solid fallback (CLAUDE.md design rules). */
+  .glass {
+    background: rgb(255 255 255 / 0.62);
+    border: 1px solid rgb(255 255 255 / 0.7);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    backdrop-filter: blur(18px) saturate(1.2);
+  }
+  .glass-dark {
+    background: rgb(14 22 21 / 0.38);
+    border: 1px solid var(--color-line-dark);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass {
+      background: rgb(255 255 255 / 0.94);
+    }
+    .glass-dark {
+      background: rgb(14 22 21 / 0.92);
+    }
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .glass {
+      background: var(--color-white);
+      backdrop-filter: none;
+    }
+    .glass-dark {
+      background: var(--color-ink);
+      backdrop-filter: none;
+    }
+  }
+
+  /* Scroll reveal (DR-4). The Reveal component toggles data-visible; without JS nothing hides. */
+  @media (scripting: enabled) {
+    [data-reveal] {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition:
+        opacity var(--dur-slow) var(--ease-out-soft),
+        transform var(--dur-slow) var(--ease-out-soft);
+    }
+    [data-reveal][data-visible="true"] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
