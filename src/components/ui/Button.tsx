@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /** Visual variants from mockup v2. */
-export type ButtonVariant = "dark" | "line" | "gold" | "light" | "pending";
+export type ButtonVariant = "dark" | "line" | "line-light" | "gold" | "light" | "pending";
 
 /**
  * Sizes are mutually exclusive. `cn` does not merge conflicting utilities, so never override
@@ -25,6 +25,9 @@ const base =
 const variants: Record<ButtonVariant, string> = {
   dark: "bg-ink text-white hover:bg-petrol",
   line: "bg-transparent text-ink shadow-[inset_0_0_0_2px_var(--color-ink)] hover:bg-ink hover:text-white",
+  /** Outline button for dark sections. */
+  "line-light":
+    "bg-transparent text-white shadow-[inset_0_0_0_2px_rgb(255_255_255/0.6)] hover:bg-white hover:text-ink",
   gold: "bg-gold text-ink hover:bg-[color-mix(in_oklab,var(--color-gold),white_12%)]",
   light: "bg-white text-ink hover:bg-sand",
   /** Marks a button whose target is an open owner item (A-6); never ships (check:content). */

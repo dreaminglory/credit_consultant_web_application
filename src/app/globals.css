@@ -231,4 +231,74 @@
       transform: none;
     }
   }
+
+  /*
+   * Hero entrance (DR-4): one orchestrated sequence on load, CSS-only so the hero stays static
+   * HTML (HP-1). `--enter-delay` staggers the pieces; reduced motion collapses the duration.
+   */
+  .enter {
+    animation: enter 700ms var(--ease-out-soft) both;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0);
+    }
+  }
+
+  /*
+   * Self-drawing lines (coverage map). Paths use pathLength="1"; they draw once the parent
+   * Reveal sets data-visible. Without scripting or with reduced motion they are fully drawn.
+   */
+  .draw-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+    [data-reveal] .draw-line {
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset 1400ms var(--ease-in-out-soft);
+      transition-delay: var(--draw-delay, 0ms);
+    }
+    [data-reveal][data-visible="true"] .draw-line {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Soft ring that pulses behind the Plovdiv pin. */
+  .pin-pulse {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .pin-pulse {
+      animation: pin-pulse 2600ms var(--ease-out-soft) infinite;
+    }
+  }
+  @keyframes pin-pulse {
+    from {
+      opacity: 0.6;
+      transform: scale(0.6);
+    }
+    to {
+      opacity: 0;
+      transform: scale(2.4);
+    }
+  }
+
+  /* Bank logo tiles (BL-1): greyscale at rest, colour on hover and keyboard focus. */
+  .bank-logo {
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition:
+      filter var(--dur-base) var(--ease-out-soft),
+      opacity var(--dur-base) var(--ease-out-soft);
+  }
+  .bank-tile:hover .bank-logo,
+  .bank-tile:focus-within .bank-logo {
+    filter: none;
+    opacity: 1;
+  }
 }

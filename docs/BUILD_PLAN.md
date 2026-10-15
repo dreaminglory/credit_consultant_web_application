@@ -77,7 +77,7 @@ close, arrow keys, `aria-expanded`), anchor links with scroll-spy and header off
 slide-in panel with accordions + call/Viber/WhatsApp, footer with disclosure line, breadcrumbs,
 mobile action bar, skip link. Wordmark placeholder until a logo is chosen (O-13).
 
-### M3 — Home, static blocks  `feat/home-static`  — B-04, B-05, B-06, B-08, B-09, B-11, B-14, B-19, B-20, B-24
+### M3 — Home, static blocks  `feat/home-static`  — B-04, B-05, B-06, B-08, B-09, B-11, B-14, B-19, B-20, B-24  — built 2026-10-16 (creditmall.bg Lighthouse baseline and own Lighthouse run still open)
 Hero with Desislava's portrait, promise strip, loan cards, about me, why-me split, bank
 logos (grid / marquee), coverage map (SVG Bulgaria, Plovdiv pin, animated lines), CTA band,
 contact strip. Home assembled in final order with stubs for the interactive sections.
