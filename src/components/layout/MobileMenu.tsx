@@ -200,7 +200,7 @@ export function MobileMenu({ open, onClose, links }: MobileMenuProps) {
             <ContactButton href={links.viber} size="bar">
               Viber
             </ContactButton>
-            <ContactButton href={links.whatsapp} external size="bar">
+            <ContactButton href={links.whatsapp} size="bar">
               WhatsApp
             </ContactButton>
           </div>

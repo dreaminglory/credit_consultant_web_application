@@ -7,7 +7,6 @@ type ContactButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
-  external?: boolean;
   children: ReactNode;
 };
 
@@ -20,7 +19,6 @@ export function ContactButton({
   variant = "line",
   size,
   className,
-  external,
   children,
 }: ContactButtonProps) {
   if (!href) {
@@ -37,7 +35,7 @@ export function ContactButton({
     <a
       href={href}
       className={buttonClasses(variant, className, size)}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(/^https?:/.test(href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
     </a>
