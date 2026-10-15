@@ -85,18 +85,19 @@ export const site = {
   },
 
   contact: {
-    phone: pending("O-5", "Phone number (display format)") as MaybePending,
+    phone: "0898 354 495" as MaybePending,
     /** E.164 without spaces, used for tel:, Viber and WhatsApp links. */
-    phoneE164: pending("O-5", "Phone number in +359… format") as MaybePending,
-    email: pending("O-5", "Email address shown on the site") as MaybePending,
+    phoneE164: "+359898354495" as MaybePending,
+    email: "desi.arabadzhieva@gmail.com" as MaybePending,
     viber: true,
     whatsapp: true,
   },
 
   office: {
     city: "Пловдив",
-    address: pending("O-11", "Office street address in Plovdiv") as MaybePending,
-    hours: pending("O-10", "Working hours") as MaybePending,
+    address: "бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
+    /** Days of the week not supplied yet — confirm with the owner before adding them. */
+    hours: "09:00 – 19:00 ч." as MaybePending,
   },
 
   loans: [
