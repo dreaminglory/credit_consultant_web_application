@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Inter_Tight, Onest } from "next/font/google";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { CalculatorsPanel, LoansPanel } from "@/components/layout/MenuPanels";
+import { MobileBar } from "@/components/layout/MobileBar";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { site } from "@/config/site";
 import "./globals.css";
 
@@ -35,12 +40,22 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#f5f3ee",
+  // Lets the fixed phone action bar respect the home-indicator safe area.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="bg" className={`${interTight.variable} ${onest.variable} ${plexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SkipLink />
+        <Header panels={{ loans: <LoansPanel />, calculators: <CalculatorsPanel /> }} />
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
+        <Footer />
+        <MobileBar />
+      </body>
     </html>
   );
 }

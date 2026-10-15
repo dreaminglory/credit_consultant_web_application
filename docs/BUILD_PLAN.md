@@ -71,7 +71,7 @@ scripts/optimize-images.mjs   scripts/check-content.mjs
 9. **Baseline**: record creditmall.bg Lighthouse mobile scores in REQUIREMENTS §1.1 (BM-11).
 - Done when: `npm run build` and `npm run preview` serve the kit page in the Workers runtime.
 
-### M2 — Layout shell  `feat/layout`  — NAV-1…8, FT-1…2, B-01, B-02, B-21
+### M2 — Layout shell  `feat/layout`  — NAV-1…8, FT-1…2, B-01, B-02, B-21  — built 2026-10-16 (Workers-preview check pending)
 Sticky glass header, Кредити mega-menu, Калкулатори dropdown (hover + click, Esc/outside
 close, arrow keys, `aria-expanded`), anchor links with scroll-spy and header offset, mobile
 slide-in panel with accordions + call/Viber/WhatsApp, footer with disclosure line, breadcrumbs,

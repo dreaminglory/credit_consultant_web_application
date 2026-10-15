@@ -15,6 +15,28 @@ export type Loan = {
   summary: string;
 };
 
+export type CalculatorSlug =
+  | "mesechna-vnoska"
+  | "refinansirane"
+  | "kolko-moga-da-iztegla"
+  | "spored-vnoskata"
+  | "tekushta-lihva"
+  | "cena-na-kredita"
+  | "taksi-pri-pokupka"
+  | "notarialni-taksi-ipoteka"
+  | "cena-na-imota";
+
+export type Calculator = {
+  slug: CalculatorSlug;
+  name: string;
+  /** One-line hint for the dropdown (NAV-4). */
+  hint: string;
+  /** Fee calculators stay hidden from menus until verified tariffs exist (O-12). */
+  available: boolean;
+};
+
+export type FooterLink = { label: string; href: string };
+
 export type Bank = {
   id: string;
   name: string;
@@ -63,18 +85,18 @@ export const site = {
   },
 
   contact: {
-    phone: pending("O-5", "Phone number (display format)") as MaybePending,
+    phone: "0898 354 495" as MaybePending,
     /** E.164 without spaces, used for tel:, Viber and WhatsApp links. */
-    phoneE164: pending("O-5", "Phone number in +359… format") as MaybePending,
-    email: pending("O-5", "Email address shown on the site") as MaybePending,
+    phoneE164: "+359898354495" as MaybePending,
+    email: "desi.arabadzhieva@gmail.com" as MaybePending,
     viber: true,
     whatsapp: true,
   },
 
   office: {
     city: "Пловдив",
-    address: pending("O-11", "Office street address in Plovdiv") as MaybePending,
-    hours: pending("O-10", "Working hours") as MaybePending,
+    address: "бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
+    hours: "Пон – Пет, 09:00 – 19:00 ч." as MaybePending,
   },
 
   loans: [
@@ -132,6 +154,97 @@ export const site = {
     },
     { id: "postbank", name: "Пощенска банка", logo: "/banks/postbank.svg" },
   ] satisfies Bank[],
+
+  /** Calculators in menu order (FR-12…20). Draft hints — owner to review wording. */
+  calculators: [
+    {
+      slug: "mesechna-vnoska",
+      name: "Месечна вноска",
+      hint: "Каква ще е вноската при вашата сума и срок",
+      available: true,
+    },
+    {
+      slug: "refinansirane",
+      name: "Спестяване при рефинансиране",
+      hint: "Колко печелите, ако смените кредита си",
+      available: true,
+    },
+    {
+      slug: "kolko-moga-da-iztegla",
+      name: "Колко мога да изтегля",
+      hint: "Максимален кредит според дохода ви",
+      available: true,
+    },
+    {
+      slug: "spored-vnoskata",
+      name: "Кредит според вноската",
+      hint: "Какъв кредит носи вноската, която искате да плащате",
+      available: true,
+    },
+    {
+      slug: "tekushta-lihva",
+      name: "Каква лихва плащам",
+      hint: "Реалната лихва по вашия текущ кредит",
+      available: true,
+    },
+    {
+      slug: "cena-na-kredita",
+      name: "Цена на кредита",
+      hint: "Общата сума, която ще върнете, и ГПР",
+      available: true,
+    },
+    {
+      slug: "taksi-pri-pokupka",
+      name: "Такси при покупка на имот",
+      hint: "Нотариални такси и местен данък",
+      available: false,
+    },
+    {
+      slug: "notarialni-taksi-ipoteka",
+      name: "Нотариални такси при ипотека",
+      hint: "Нотариус и вписване при кредит",
+      available: false,
+    },
+    {
+      slug: "cena-na-imota",
+      name: "Колко ще ми струва имотът",
+      hint: "Парите, от които се нуждаете в началото",
+      available: false,
+    },
+  ] satisfies Calculator[],
+
+  /** Primary call to action, used by header, mobile bar, footer (NAV-2). */
+  consultation: {
+    label: "Безплатна консултация",
+    href: "/konsultacia",
+  },
+
+  /** Mega-menu side panel (NAV-3, CONTENT.md §1). */
+  loansMenuAside: {
+    title: "Не знаете кой кредит ви трябва?",
+    text: "Разкажете ми целта си и ще ви предложа най-подходящото решение.",
+  },
+
+  /** Footer link columns (FT-1). Home anchors work from every page (NAV-8). */
+  footerInfo: [
+    { label: "За мен", href: "/#za-men" },
+    { label: "Процесът", href: "/#proces" },
+    { label: "Отзиви", href: "/#otzivi" },
+    { label: "Въпроси", href: "/#vaprosi" },
+    { label: "Безплатна консултация", href: "/konsultacia" },
+    { label: "Контакти", href: "/kontakti" },
+  ] satisfies FooterLink[],
+
+  legalLinks: [
+    { label: "Поверителност", href: "/poveritelnost" },
+    { label: "Бисквитки", href: "/biskvitki" },
+    { label: "Общи условия", href: "/obshti-usloviya" },
+    // Becomes a banner trigger in M8; the policy page until then.
+    { label: "Настройки на бисквитките", href: "/biskvitki" },
+  ] satisfies FooterLink[],
+
+  /** Home sections the header scroll-spy follows (NAV-8). */
+  spySections: ["za-men", "otzivi", "vaprosi"],
 
   /** Header navigation, in order (NAV-2). */
   nav: [

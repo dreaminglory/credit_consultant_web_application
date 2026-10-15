@@ -10,8 +10,8 @@ import { Section } from "@/components/ui/Section";
 // Temporary Home until M3 builds the flagship page (REQUIREMENTS §4.3).
 export default function HomePage() {
   return (
-    <main>
-      <Section className="flex min-h-svh items-center">
+    <>
+      <Section className="flex min-h-[calc(100svh-5rem)] items-center">
         <Mesh />
         <Container className="grid items-end gap-12 md:grid-cols-[1.25fr_0.75fr]">
           <div>
@@ -47,6 +47,6 @@ export default function HomePage() {
           </GlassCard>
         </Container>
       </Section>
-    </main>
+    </>
   );
 }
