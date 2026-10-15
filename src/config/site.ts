@@ -96,8 +96,7 @@ export const site = {
   office: {
     city: "Пловдив",
     address: "бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
-    /** Days of the week not supplied yet — confirm with the owner before adding them. */
-    hours: "09:00 – 19:00 ч." as MaybePending,
+    hours: "Пон – Пет, 09:00 – 19:00 ч." as MaybePending,
   },
 
   loans: [
