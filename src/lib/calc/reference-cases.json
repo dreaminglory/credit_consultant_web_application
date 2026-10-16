@@ -1,0 +1,378 @@
+{
+  "monthlyPayment": [
+    {
+      "input": {
+        "amount": 120000,
+        "years": 30,
+        "ratePct": 2.9
+      },
+      "expected": {
+        "payment": 499.48,
+        "totalInterest": 59812.8,
+        "totalPaid": 179812.8
+      }
+    },
+    {
+      "input": {
+        "amount": 100000,
+        "years": 30,
+        "ratePct": 5
+      },
+      "expected": {
+        "payment": 536.82,
+        "totalInterest": 93255.2,
+        "totalPaid": 193255.2
+      }
+    },
+    {
+      "input": {
+        "amount": 20000,
+        "years": 5,
+        "ratePct": 6
+      },
+      "expected": {
+        "payment": 386.66,
+        "totalInterest": 3199.6,
+        "totalPaid": 23199.6
+      }
+    },
+    {
+      "input": {
+        "amount": 250000,
+        "years": 25,
+        "ratePct": 3.45
+      },
+      "expected": {
+        "payment": 1244.87,
+        "totalInterest": 123461,
+        "totalPaid": 373461
+      }
+    },
+    {
+      "input": {
+        "amount": 15000,
+        "years": 7,
+        "ratePct": 8.9
+      },
+      "expected": {
+        "payment": 240.58,
+        "totalInterest": 5208.72,
+        "totalPaid": 20208.72
+      }
+    },
+    {
+      "input": {
+        "amount": 5000,
+        "years": 1,
+        "ratePct": 12.5
+      },
+      "expected": {
+        "payment": 445.41,
+        "totalInterest": 344.92,
+        "totalPaid": 5344.92
+      }
+    },
+    {
+      "input": {
+        "amount": 60000,
+        "years": 10,
+        "ratePct": 0
+      },
+      "expected": {
+        "payment": 500,
+        "totalInterest": 0,
+        "totalPaid": 60000
+      }
+    }
+  ],
+  "refinance": [
+    {
+      "input": {
+        "balance": 90000,
+        "years": 22,
+        "currentRatePct": 4.2,
+        "newRatePct": 2.9,
+        "switchingCosts": 600
+      },
+      "expected": {
+        "currentPayment": 522.88,
+        "newPayment": 461.54,
+        "monthlySaving": 61.34,
+        "netSaving": 15593.76,
+        "breakEvenMonth": 10
+      }
+    },
+    {
+      "input": {
+        "balance": 150000,
+        "years": 25,
+        "currentRatePct": 3.6,
+        "newRatePct": 2.75,
+        "switchingCosts": 1500
+      },
+      "expected": {
+        "currentPayment": 759,
+        "newPayment": 691.97,
+        "monthlySaving": 67.03,
+        "netSaving": 18609,
+        "breakEvenMonth": 23
+      }
+    },
+    {
+      "input": {
+        "balance": 40000,
+        "years": 8,
+        "currentRatePct": 7.5,
+        "newRatePct": 5.9,
+        "switchingCosts": 900
+      },
+      "expected": {
+        "currentPayment": 555.35,
+        "newPayment": 523.71,
+        "monthlySaving": 31.64,
+        "netSaving": 2137.44,
+        "breakEvenMonth": 29
+      }
+    },
+    {
+      "input": {
+        "balance": 30000,
+        "years": 3,
+        "currentRatePct": 3.1,
+        "newRatePct": 2.9,
+        "switchingCosts": 800
+      },
+      "expected": {
+        "currentPayment": 873.76,
+        "newPayment": 871.11,
+        "monthlySaving": 2.65,
+        "netSaving": -704.6,
+        "breakEvenMonth": null
+      }
+    }
+  ],
+  "maxLoanByIncome": [
+    {
+      "input": {
+        "netIncome": 2600,
+        "otherPayments": 200,
+        "years": 30,
+        "ratePct": 2.9,
+        "dstiMax": 0.5,
+        "maxYears": 30
+      },
+      "expected": {
+        "maxPayment": 1100,
+        "maxLoan": 264276.97,
+        "years": 30
+      }
+    },
+    {
+      "input": {
+        "netIncome": 1800,
+        "otherPayments": 0,
+        "years": 25,
+        "ratePct": 3.2,
+        "dstiMax": 0.5,
+        "maxYears": 30
+      },
+      "expected": {
+        "maxPayment": 900,
+        "maxLoan": 185689.92,
+        "years": 25
+      }
+    },
+    {
+      "input": {
+        "netIncome": 4200,
+        "otherPayments": 650,
+        "years": 20,
+        "ratePct": 2.65,
+        "dstiMax": 0.5,
+        "maxYears": 30
+      },
+      "expected": {
+        "maxPayment": 1450,
+        "maxLoan": 269897.62,
+        "years": 20
+      }
+    },
+    {
+      "input": {
+        "netIncome": 3000,
+        "otherPayments": 300,
+        "years": 35,
+        "ratePct": 3,
+        "dstiMax": 0.5,
+        "maxYears": 30
+      },
+      "expected": {
+        "maxPayment": 1200,
+        "maxLoan": 284627.26,
+        "years": 30
+      }
+    }
+  ],
+  "maxLoanByPayment": [
+    {
+      "input": {
+        "payment": 700,
+        "years": 30,
+        "ratePct": 2.9
+      },
+      "expected": {
+        "maxLoan": 168176.26
+      }
+    },
+    {
+      "input": {
+        "payment": 450,
+        "years": 20,
+        "ratePct": 3.5
+      },
+      "expected": {
+        "maxLoan": 77591.6
+      }
+    },
+    {
+      "input": {
+        "payment": 1200,
+        "years": 15,
+        "ratePct": 4.1
+      },
+      "expected": {
+        "maxLoan": 161136.73
+      }
+    },
+    {
+      "input": {
+        "payment": 300,
+        "years": 6,
+        "ratePct": 9.5
+      },
+      "expected": {
+        "maxLoan": 16416.15
+      }
+    }
+  ],
+  "currentRate": [
+    {
+      "input": {
+        "balance": 90000,
+        "payment": 523,
+        "years": 22
+      },
+      "expected": {
+        "ratePct": 4.202426665525333
+      }
+    },
+    {
+      "input": {
+        "balance": 100000,
+        "payment": 536.82,
+        "years": 30
+      },
+      "expected": {
+        "ratePct": 4.999973443614639
+      }
+    },
+    {
+      "input": {
+        "balance": 20000,
+        "payment": 386.66,
+        "years": 5
+      },
+      "expected": {
+        "ratePct": 6.000426828802918
+      }
+    },
+    {
+      "input": {
+        "balance": 175000,
+        "payment": 980,
+        "years": 24
+      },
+      "expected": {
+        "ratePct": 4.349530060905656
+      }
+    }
+  ],
+  "loanCost": [
+    {
+      "input": {
+        "amount": 120000,
+        "years": 30,
+        "ratePct": 2.9,
+        "upfrontFeePct": 1,
+        "monthlyFee": 3,
+        "annualInsurance": 240
+      },
+      "expected": {
+        "payment": 499.48,
+        "monthlyOutflow": 522.48,
+        "totalInterest": 59812.8,
+        "totalFees": 2280,
+        "totalInsurance": 7200,
+        "totalCost": 189292.8,
+        "aprPct": 3.3848258642085183
+      }
+    },
+    {
+      "input": {
+        "amount": 20000,
+        "years": 5,
+        "ratePct": 7.9,
+        "upfrontFeePct": 2,
+        "monthlyFee": 2.5,
+        "annualInsurance": 0
+      },
+      "expected": {
+        "payment": 404.57,
+        "monthlyOutflow": 407.07,
+        "totalInterest": 4274.2,
+        "totalFees": 550,
+        "totalInsurance": 0,
+        "totalCost": 24824.2,
+        "aprPct": 9.40422650816024
+      }
+    },
+    {
+      "input": {
+        "amount": 80000,
+        "years": 20,
+        "ratePct": 3.4,
+        "upfrontFeePct": 0.5,
+        "monthlyFee": 0,
+        "annualInsurance": 180
+      },
+      "expected": {
+        "payment": 459.87,
+        "monthlyOutflow": 474.87,
+        "totalInterest": 30368.8,
+        "totalFees": 400,
+        "totalInsurance": 3600,
+        "totalCost": 114368.8,
+        "aprPct": 3.8882448610033205
+      }
+    },
+    {
+      "input": {
+        "amount": 10000,
+        "years": 3,
+        "ratePct": 10,
+        "upfrontFeePct": 0,
+        "monthlyFee": 0,
+        "annualInsurance": 0
+      },
+      "expected": {
+        "payment": 322.67,
+        "monthlyOutflow": 322.67,
+        "totalInterest": 1616.12,
+        "totalFees": 0,
+        "totalInsurance": 0,
+        "totalCost": 11616.12,
+        "aprPct": 10.47086992004469
+      }
+    }
+  ]
+}
