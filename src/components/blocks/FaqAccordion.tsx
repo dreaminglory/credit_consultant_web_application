@@ -37,12 +37,21 @@ export function FaqAccordion({ categories }: { categories: FaqCategory[] }) {
   }, [categories]);
 
   // Scroll once the targeted panel is visible; the header offset comes from scroll-padding.
+  // On first load the web fonts can still swap in and reflow the text above, which leaves a smooth
+  // scroll short of the question, so wait for them. Stay smooth: a new smooth scroll replaces the
+  // browser's own (smooth, compositor-driven) fragment scroll, while an instant one does not stop
+  // it. A hidden tab (opened in the background) draws no frames, so there jump instead.
   useEffect(() => {
     const id = scrollTarget.current;
     if (!id) return;
-    scrollTarget.current = null;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    document.getElementById(id)?.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+    void document.fonts.ready.then(() => {
+      // A newer hash, or the Strict Mode re-run, has already taken over.
+      if (scrollTarget.current !== id) return;
+      scrollTarget.current = null;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const smooth = !reduced && document.visibilityState === "visible";
+      document.getElementById(id)?.scrollIntoView({ behavior: smooth ? "smooth" : "instant" });
+    });
   }, [hashTick]);
 
   const select = (id: FaqCategoryId) => {
