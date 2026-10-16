@@ -224,8 +224,8 @@ Not on Home: live map (only on `/kontakti`), legal text.
 - **BL-1** Grid of partner-bank logos, **greyscale, colour on hover/focus**, equal optical size,
   subtle borders like a ledger; on phones a 2-column grid or slow auto-scrolling marquee
   (paused with reduced motion / on hover).
-- **BL-2** v1 banks (from owner, 2026-10-14): **Allianz Bank Bulgaria, BACB (БАКБ),
-  D Commerce Bank, DSK Bank, UBB (ОББ), Fibank, ProCredit Bank, UniCredit Bulbank, Central
+- **BL-2** v1 banks (from owner, 2026-10-14): **Allianz Bank Bulgaria, Investbank,
+  Bulgarian Development Bank (ББР), DSK Bank, UBB (ОББ), Fibank, ProCredit Bank, UniCredit Bulbank, Central
   Cooperative Bank (ЦКБ), Postbank.**
 - **BL-3** Logos as SVG files supplied by the owner/CreditMall, with permission to use [O-4].
   Each logo has alt text with the bank's name. List lives in site config.

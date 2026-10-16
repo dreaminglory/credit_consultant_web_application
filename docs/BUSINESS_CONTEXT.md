@@ -77,7 +77,7 @@ clients, their feedback) and ask for a free consultation.
 ## 8. Realities that shape the website
 - **Trust is the product, and trust attaches to a person.** Real photos of me and of me with
   clients, real feedback, a real office address and map, visible BNB registration.
-- **Partner banks (v1):** Allianz Bank Bulgaria, BACB, D Commerce Bank, DSK Bank, UBB, Fibank,
+- **Partner banks (v1):** Allianz Bank Bulgaria, Investbank, Bulgarian Development Bank (ББР), DSK Bank, UBB, Fibank,
   ProCredit Bank, UniCredit Bulbank, Central Cooperative Bank, Postbank.
 - **Location is not a limit.** The Plovdiv office is a base, not a boundary.
 - **Regulated activity.** Credit intermediation (consumer-credit and real-estate-credit law) and

@@ -131,8 +131,8 @@ export const site = {
   /** Partner banks, v1 list from the owner (BL-2, 2026-10-14). Permission to use logos: O-4. */
   banks: [
     { id: "allianz", name: "Алианц Банк България", logo: "/banks/allianz.svg" },
-    { id: "bacb", name: "БАКБ", logo: "/banks/bacb.svg" },
-    { id: "dcommerce", name: "Д Комерс Банк", logo: "/banks/dcommerce.svg" },
+    { id: "investbank", name: "Инвестбанк", logo: "/banks/investbank.svg", tall: true },
+    { id: "bbr", name: "Българска банка за развитие", logo: "/banks/bbr.svg" },
     { id: "dsk", name: "Банка ДСК", logo: "/banks/dsk.svg", tall: true },
     {
       id: "ubb",
