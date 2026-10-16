@@ -22,7 +22,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <PromiseStrip />
-      <LoanCards />
+      <LoanCards id="krediti" />
       <AboutMe />
       <WhySplit />
       <ProcessTimeline />

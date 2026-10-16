@@ -27,6 +27,8 @@ export function ProcessJourney({ variants }: { variants: ProcessVariant[] }) {
   const variant = variants.find((v) => v.id === variantId) ?? variants[0]!;
   const listRef = useRef<HTMLOListElement>(null);
   const count = variant.steps.length;
+  // A loan page shows only its own variant: no tabs, so no tab panel either (PR-3).
+  const tabbed = variants.length > 1;
 
   useEffect(() => {
     const list = listRef.current;
@@ -76,22 +78,24 @@ export function ProcessJourney({ variants }: { variants: ProcessVariant[] }) {
 
   return (
     <div>
-      <PillTabs
-        tone="dark"
-        tabs={variants.map(({ id, label }) => ({ id, label }))}
-        value={variantId}
-        onChange={setVariantId}
-        label={processSection.variantsLabel}
-        idPrefix={PREFIX}
-        controls={() => PANEL_ID}
-        className="mt-10"
-      />
+      {tabbed && (
+        <PillTabs
+          tone="dark"
+          tabs={variants.map(({ id, label }) => ({ id, label }))}
+          value={variantId}
+          onChange={setVariantId}
+          label={processSection.variantsLabel}
+          idPrefix={PREFIX}
+          controls={() => PANEL_ID}
+          className="mt-10"
+        />
+      )}
 
       <div
-        id={PANEL_ID}
-        role="tabpanel"
-        aria-labelledby={pillTabId(PREFIX, variantId)}
-        className="mt-12 xl:mt-16"
+        id={tabbed ? PANEL_ID : undefined}
+        role={tabbed ? "tabpanel" : undefined}
+        aria-labelledby={tabbed ? pillTabId(PREFIX, variantId) : undefined}
+        className={tabbed ? "mt-12 xl:mt-16" : "mt-10 xl:mt-14"}
       >
         <ol
           key={variantId}

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { site } from "@/config/site";
 import { faqCategories } from "@/content/faq";
 import { categoryHash, questionHash, resolveFaqHash } from "./faqHash";
 
@@ -39,9 +40,15 @@ describe("resolveFaqHash", () => {
 });
 
 describe("faq content", () => {
-  it("has 5 categories and at least 15 questions (FAQ-2)", () => {
-    expect(faqCategories).toHaveLength(5);
+  it("has at least 5 categories and 15 questions (FAQ-2)", () => {
+    expect(faqCategories.length).toBeGreaterThanOrEqual(5);
     expect(faqCategories.flatMap((c) => c.items).length).toBeGreaterThanOrEqual(15);
+  });
+
+  it("gives every loan page its own category (FAQ-3, FAQ-4)", () => {
+    for (const loan of site.loans) {
+      expect(faqCategories.filter((c) => c.loan === loan.slug)).toHaveLength(1);
+    }
   });
 
   it("uses unique ids so hashes never collide", () => {

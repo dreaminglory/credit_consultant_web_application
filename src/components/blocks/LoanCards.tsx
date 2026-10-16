@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site } from "@/config/site";
+import { site, type LoanSlug } from "@/config/site";
 import { loanSection, loanTags } from "@/content/home";
 import { loanIcons } from "@/components/layout/menuIcons";
 import { Container } from "@/components/ui/Container";
@@ -7,17 +7,39 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { Icon } from "@/components/ui/Icon";
 import { Label } from "@/components/ui/Label";
 import { Reveal } from "@/components/ui/Reveal";
-import { Section } from "@/components/ui/Section";
+import { Section, type SectionTone } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
-/** Loan cards (B-06): one frosted card per product, linking to its loan page (M7). */
-export function LoanCards() {
+type LoanCardsProps = {
+  /** Loans to show, in order; all of them by default. */
+  slugs?: readonly LoanSlug[];
+  label?: string;
+  title?: string;
+  /** Home anchor `#krediti`; omitted where the cards are a supporting block. */
+  id?: string;
+  tone?: SectionTone;
+};
+
+/**
+ * Loan cards (B-06): one frosted card per product, linking to its loan page. With `slugs` it is
+ * the related-loans block on a loan page (B-15).
+ */
+export function LoanCards({
+  slugs,
+  label = loanSection.label,
+  title = loanSection.title,
+  id,
+  tone,
+}: LoanCardsProps) {
+  const loans = slugs
+    ? slugs.map((slug) => site.loans.find((loan) => loan.slug === slug)!)
+    : site.loans;
   return (
-    <Section id="krediti">
+    <Section id={id} tone={tone}>
       <Container>
-        <SectionHeader label={loanSection.label} title={loanSection.title} />
+        <SectionHeader label={label} title={title} />
         <ul className="mt-12 grid gap-4 md:grid-cols-2">
-          {site.loans.map((loan, index) => (
+          {loans.map((loan, index) => (
             <li key={loan.slug}>
               <Reveal delay={(index % 2) * 100} className="h-full">
                 <GlassCard className="group relative flex h-full min-h-[250px] flex-col gap-3.5 bg-white/85 p-7 transition-[translate,box-shadow] duration-250 ease-out-soft focus-within:-translate-y-1 hover:-translate-y-1 hover:shadow-float md:p-8">

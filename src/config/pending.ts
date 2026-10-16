@@ -19,6 +19,7 @@ export type OpenItem =
   | "O-13"
   | "O-14"
   | "O-15"
+  | "O-16"
   | "D-2";
 
 export type Pending = {

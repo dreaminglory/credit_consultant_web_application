@@ -78,7 +78,7 @@ export function Footer() {
                     WhatsApp
                   </a>
                 )}
-                <Link className={linkClass} href="/kontakti">
+                <Link className={linkClass} href="/kontakti#karta">
                   Виж на картата
                 </Link>
               </p>

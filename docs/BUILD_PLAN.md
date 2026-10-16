@@ -98,7 +98,7 @@ capture, product pre-select, Turnstile, honeypot, `/api/lead`, owner email (HTML
 Apps Script for the Sheet (script file committed in `scripts/`), auto-reply, `/blagodarim`.
 Tested end-to-end with test keys in `npm run preview`.
 
-### M7 — Remaining pages  `feat/pages`  — T2, T4, B-03, B-15, B-18, FR-26…27
+### M7 — Remaining pages  `feat/pages`  — T2, T4, B-03, B-15, B-18, FR-26…27  — built 2026-10-17 (loan copy and 2 new FAQ categories are drafts, O-16; Workers-preview check pending)
 `/krediti` + 4 loan pages (product-specific process, embedded calculator, filtered reviews
 and FAQ, pre-selected form), `/kontakti` with click-to-load map, 404.
 
