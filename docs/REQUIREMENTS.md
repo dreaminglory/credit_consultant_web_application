@@ -433,7 +433,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | O-7 | Years of experience, clients helped, personal story | Name received 2026-10-15 (Desislava Arabadzhieva); rest open |
 | O-8 | Request data retention period (suggestion: 12 months if no contract) | Open |
 | O-9 | **Confirm step durations** (drafts in CONTENT.md §2) and the total time | Draft ready |
-| O-10 | Working hours | Open |
+| O-10 | Working hours | Done 2026-10-17: Mon–Fri 09:00–19:00; call-back slots Всяко време · 9–12 · 12–14 · 14–19 ч. |
 | O-11 | **Plovdiv office address** | City known |
 | O-12 | Verified notary tariff, registry fees, municipal tax rates | Open |
 | O-13 | Choose a logo concept (§7.1) | Open |

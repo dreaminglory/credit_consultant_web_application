@@ -98,6 +98,7 @@ export const site = {
   office: {
     city: "Пловдив",
     address: "бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
+    /** Confirmed by the owner 2026-10-17 (O-10). */
     hours: "Пон – Пет, 09:00 – 19:00 ч." as MaybePending,
   },
 
@@ -282,8 +283,7 @@ export const site = {
       { value: "ofis", label: "Среща в офиса" },
       { value: "video", label: "Видео разговор" },
     ],
-    /** Follow the working hours (O-10): change both together. */
-    timeSlotsStatus: pending("O-10", "Confirm the call-back time slots with the working hours"),
+    /** Follow the working hours (office.hours, confirmed 2026-10-17): change both together. */
     timeSlots: [
       { value: "vsyako", label: "Всяко време" },
       { value: "9-12", label: "9–12 ч." },
