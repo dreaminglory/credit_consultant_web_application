@@ -182,13 +182,3 @@ export const contactStrip = {
   title: "Елате на кафе. Или просто звъннете.",
   link: { label: "Всички контакти и карта", href: "/kontakti" },
 };
-
-/** Home sections built in a later milestone (M6); the stub keeps anchors and order intact. */
-export const stubs = {
-  form: {
-    id: "konsultacia",
-    label: "Безплатна консултация",
-    title: "Разкажете ми какво ви трябва — ще ви се обадя",
-    milestone: "M6 · B-17",
-  },
-};

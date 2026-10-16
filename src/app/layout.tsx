@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Inter_Tight, Onest } from "next/font/google";
+import { Attribution } from "@/components/blocks/lead/Attribution";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { CalculatorsPanel, LoansPanel } from "@/components/layout/MenuPanels";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <MobileBar />
+        <Attribution />
       </body>
     </html>
   );

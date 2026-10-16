@@ -92,7 +92,7 @@ Pure functions + Vitest against a reference spreadsheet (to the cent), embeddabl
 calculator component, hub with tabs on Home, `/kalkulatori` overview and 6 T3 pages,
 disclaimer everywhere. FR-18…20 stay hidden until O-12.
 
-### M6 — Consultation pipeline  `feat/lead`  — FR-1…11, B-17, T5
+### M6 — Consultation pipeline  `feat/lead`  — FR-1…11, B-17, T5  — built 2026-10-16 (tested with Turnstile test keys + dry run under `next start`; live Resend/Sheet test and Workers-preview check pending owner accounts)
 Shared Zod schema, compact (Home, loan pages) and full (`/konsultacia`) forms, UTM/gclid/fbclid
 capture, product pre-select, Turnstile, honeypot, `/api/lead`, owner email (HTML + text),
 Apps Script for the Sheet (script file committed in `scripts/`), auto-reply, `/blagodarim`.

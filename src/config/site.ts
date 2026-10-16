@@ -265,6 +265,36 @@ export const site = {
     },
   },
 
+  /** Consultation form options (FR-1). Values are stable ids sent to the API and the Sheet. */
+  lead: {
+    /** Loan products plus „Друго“; loan pages pre-select their own slug (FR-7). */
+    products: [
+      { value: "ipotechni", label: "Ипотечен" },
+      { value: "refinansirane", label: "Рефинансиране" },
+      { value: "biznes", label: "Бизнес" },
+      { value: "potrebitelski", label: "Потребителски" },
+      { value: "drugo", label: "Друго" },
+    ],
+    methods: [
+      { value: "telefon", label: "Телефон" },
+      { value: "viber", label: "Viber" },
+      { value: "whatsapp", label: "WhatsApp" },
+      { value: "ofis", label: "Среща в офиса" },
+      { value: "video", label: "Видео разговор" },
+    ],
+    /** Follow the working hours (O-10): change both together. */
+    timeSlotsStatus: pending("O-10", "Confirm the call-back time slots with the working hours"),
+    timeSlots: [
+      { value: "vsyako", label: "Всяко време" },
+      { value: "9-12", label: "9–12 ч." },
+      { value: "12-14", label: "12–14 ч." },
+      { value: "14-19", label: "14–19 ч." },
+    ],
+    maxAmount: 10_000_000,
+    privacyHref: "/poveritelnost",
+    thanksHref: "/blagodarim",
+  },
+
   /** Primary call to action, used by header, mobile bar, footer (NAV-2). */
   consultation: {
     label: "Безплатна консултация",

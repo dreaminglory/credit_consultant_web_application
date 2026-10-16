@@ -29,7 +29,7 @@ export function CalculatorTemplate({ slug }: { slug: LiveCalculatorSlug }) {
 
       <Section tone="white" className="pt-10 md:pt-14">
         <Container>
-          <Calculator slug={slug} ctaHref={site.consultation.href} />
+          <Calculator slug={slug} ctaHref={`${site.consultation.href}?produkt=${loan.slug}`} />
         </Container>
       </Section>
 
