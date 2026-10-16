@@ -1,7 +1,9 @@
 "use client";
 
-import { useRef, type KeyboardEvent } from "react";
 import { cn } from "@/lib/cn";
+import { pillTabId, useRovingTabs } from "./useRovingTabs";
+
+export { pillTabId };
 
 export type PillTab<T extends string> = { id: T; label: string };
 
@@ -19,8 +21,6 @@ type PillTabsProps<T extends string> = {
   className?: string;
 };
 
-export const pillTabId = (prefix: string, id: string) => `${prefix}-tab-${id}`;
-
 /**
  * Pill-shaped tab list (FAQ categories, process variants, calculator hub). Automatic activation
  * with roving tabindex: arrow keys, Home and End move and select. The row scrolls sideways on
@@ -36,24 +36,12 @@ export function PillTabs<T extends string>({
   tone = "light",
   className,
 }: PillTabsProps<T>) {
-  const listRef = useRef<HTMLDivElement>(null);
-
-  function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
-    const index = tabs.findIndex((tab) => tab.id === value);
-    let next = index;
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") next = index + 1;
-    else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = index - 1;
-    else if (event.key === "Home") next = 0;
-    else if (event.key === "End") next = tabs.length - 1;
-    else return;
-    event.preventDefault();
-    const target = tabs[(next + tabs.length) % tabs.length];
-    if (!target) return;
-    onChange(target.id);
-    listRef.current
-      ?.querySelector<HTMLElement>(`#${CSS.escape(pillTabId(idPrefix, target.id))}`)
-      ?.focus();
-  }
+  const { listRef, onKeyDown } = useRovingTabs(
+    tabs.map((tab) => tab.id),
+    value,
+    onChange,
+    idPrefix,
+  );
 
   return (
     <div

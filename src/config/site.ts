@@ -216,6 +216,55 @@ export const site = {
     },
   ] satisfies Calculator[],
 
+  /**
+   * BNB borrower-based limits for loans to households secured on Bulgarian residential property
+   * (FR-14, FR-21). Never write these numbers in components; re-check before launch.
+   */
+  limits: {
+    bnb: {
+      /** DSTI-O: all debt payments ≤ this share of net monthly income. */
+      dstiMax: 0.5,
+      /** LTV-O: loan ≤ this share of the collateral value. */
+      ltvMax: 0.85,
+      /** Maximum contract term in years. */
+      maxTermYears: 30,
+      effective: "2024-10-01",
+      source:
+        "БНБ, прессъобщение от 11.09.2024 г. за изискванията към кредитите, обезпечени с жилищни имоти (bnb.bg)",
+      checked: "2026-10-16",
+    },
+  },
+
+  /**
+   * Example starting values of the calculators (FR-12…17). Rates are neutral examples shown as
+   * „примерна“, not offers; fees default to 0 so nothing is invented. Owner confirms: O-15.
+   */
+  calculatorDefaultsStatus: pending(
+    "O-15",
+    "Confirm the calculators' example starting values (amounts, terms, example rates)",
+  ),
+  calculatorDefaults: {
+    "mesechna-vnoska": { amount: 120000, years: 30, ratePct: 2.9 },
+    refinansirane: {
+      balance: 90000,
+      years: 22,
+      currentRatePct: 4.2,
+      newRatePct: 2.9,
+      switchingCosts: 600,
+    },
+    "kolko-moga-da-iztegla": { netIncome: 2600, otherPayments: 200, years: 30, ratePct: 2.9 },
+    "spored-vnoskata": { payment: 700, years: 30, ratePct: 2.9 },
+    "tekushta-lihva": { balance: 90000, payment: 523, years: 22 },
+    "cena-na-kredita": {
+      amount: 120000,
+      years: 30,
+      ratePct: 2.9,
+      upfrontFeePct: 0,
+      monthlyFee: 0,
+      annualInsurance: 0,
+    },
+  },
+
   /** Primary call to action, used by header, mobile bar, footer (NAV-2). */
   consultation: {
     label: "Безплатна консултация",

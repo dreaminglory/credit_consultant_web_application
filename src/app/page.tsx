@@ -1,6 +1,7 @@
 import { stubs } from "@/content/home";
 import { AboutMe } from "@/components/blocks/AboutMe";
 import { BankLogos } from "@/components/blocks/BankLogos";
+import { CalculatorHub } from "@/components/blocks/CalculatorHub";
 import { ContactActions } from "@/components/blocks/ContactActions";
 import { ContactStrip } from "@/components/blocks/ContactStrip";
 import { Coverage } from "@/components/blocks/Coverage";
@@ -16,7 +17,7 @@ import { WhySplit } from "@/components/blocks/WhySplit";
 
 /**
  * Home (T1), sections in the order of REQUIREMENTS §4.3. Static blocks (M3) and the process,
- * reviews and FAQ (M4) are final; calculators (M5) and the form (M6) are stubs until then.
+ * reviews and FAQ (M4) and the calculator hub (M5) are final; the form (M6) is a stub until then.
  */
 export default function HomePage() {
   return (
@@ -31,7 +32,7 @@ export default function HomePage() {
       <Testimonials />
       <Coverage />
       <CtaBand />
-      <SectionStub {...stubs.calculators} tone="white" />
+      <CalculatorHub />
       <Faq />
       <SectionStub {...stubs.form} tone="ink">
         <ContactActions variant="line-light" className="mt-8 flex flex-wrap gap-3" />

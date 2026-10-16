@@ -117,5 +117,5 @@ design/             mockups
 ## Definition of done
 - `build`, `lint`, `typecheck` and tests pass.
 - Checked in the browser at mobile and desktop widths.
-- No placeholder text left unless it is a tracked open item (O-1 … O-14 in REQUIREMENTS.md).
+- No placeholder text left unless it is a tracked open item (O-1 … O-15 in REQUIREMENTS.md).
 - Summary states what changed, what was tested, and what still needs the owner.

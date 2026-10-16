@@ -87,7 +87,7 @@ Process journey line (self-drawing, active step, durations, total time, Вие/�
 variants), testimonial carousel (swipe, keyboard, pause, filter by product), FAQ with
 category pills + one-open accordion + hash links + FAQPage JSON-LD. Lazy hydration (HP-1).
 
-### M5 — Calculators  `feat/calculators`  — FR-12…17, FR-21…22, B-12, B-16, B-23, T3
+### M5 — Calculators  `feat/calculators`  — FR-12…17, FR-21…22, B-12, B-16, B-23, T3  — built 2026-10-16 (Excel reference `docs/calculators-reference.xml` matches all 89 checks; example values are O-15; BNB limits checked 2026-10-16; Lighthouse and Workers-preview check pending)
 Pure functions + Vitest against a reference spreadsheet (to the cent), embeddable
 calculator component, hub with tabs on Home, `/kalkulatori` overview and 6 T3 pages,
 disclaimer everywhere. FR-18…20 stay hidden until O-12.

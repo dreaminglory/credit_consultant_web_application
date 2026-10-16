@@ -438,6 +438,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | O-12 | Verified notary tariff, registry fees, municipal tax rates | Open |
 | O-13 | Choose a logo concept (§7.1) | Open |
 | O-14 | Legal texts: CreditMall templates and/or lawyer review | Open |
+| O-15 | Confirm the calculators' example starting values (amounts, terms, example rates; fees default to 0) — in `site.calculatorDefaults` | Draft from mockup v2 (2026-10-16) |
 
 ## 14. Milestones
 1. **Setup** — git, Next.js scaffold, Cloudflare adapter, skills, CLAUDE.md commands.

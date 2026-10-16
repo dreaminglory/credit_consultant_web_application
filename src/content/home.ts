@@ -183,14 +183,8 @@ export const contactStrip = {
   link: { label: "Всички контакти и карта", href: "/kontakti" },
 };
 
-/** Home sections built in later milestones (M5, M6); the stub keeps anchors and order intact. */
+/** Home sections built in a later milestone (M6); the stub keeps anchors and order intact. */
 export const stubs = {
-  calculators: {
-    id: "kalkulatori",
-    label: "Калкулатори",
-    title: "Сметнете сами — после ще го направим заедно",
-    milestone: "M5 · B-23",
-  },
   form: {
     id: "konsultacia",
     label: "Безплатна консултация",
