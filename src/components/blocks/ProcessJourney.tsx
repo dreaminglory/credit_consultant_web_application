@@ -126,9 +126,9 @@ export function ProcessJourney({ variants }: { variants: ProcessVariant[] }) {
                     "glass-dark relative rounded-card p-6 transition-[background-color,box-shadow] duration-250 ease-out-soft",
                     "group-data-[active=true]:bg-white/10 group-data-[active=true]:shadow-[inset_0_0_0_1px_var(--color-gold)]",
                     "xl:w-[calc(200%-1rem)]",
-                    top
-                      ? "xl:self-end xl:justify-self-start xl:[grid-row:1]"
-                      : "xl:self-start xl:justify-self-end xl:[grid-row:3]",
+                    // Pairs of cards (1+2, 3+4 …) share the same left edge and every card in a row
+                    // has the same height, so the zigzag stays tidy for any copy length.
+                    top ? "xl:[grid-row:1]" : "xl:-ml-[100%] xl:[grid-row:3]",
                   )}
                 >
                   <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
