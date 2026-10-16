@@ -82,7 +82,7 @@ Hero with Desislava's portrait, promise strip, loan cards, about me, why-me spli
 logos (grid / marquee), coverage map (SVG Bulgaria, Plovdiv pin, animated lines), CTA band,
 contact strip. Home assembled in final order with stubs for the interactive sections.
 
-### M4 — Home, interactive blocks  `feat/home-interactive`  — B-07, B-10, B-13, PR-1…5, FR-24…25, FAQ-1…4
+### M4 — Home, interactive blocks  `feat/home-interactive`  — B-07, B-10, B-13, PR-1…5, FR-24…25, FAQ-1…4  — built 2026-10-16 (testimonials are marked placeholders until O-1; Lighthouse and Workers-preview check pending)
 Process journey line (self-drawing, active step, durations, total time, Вие/Аз, product
 variants), testimonial carousel (swipe, keyboard, pause, filter by product), FAQ with
 category pills + one-open accordion + hash links + FAQPage JSON-LD. Lazy hydration (HP-1).
