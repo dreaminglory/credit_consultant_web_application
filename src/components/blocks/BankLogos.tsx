@@ -1,5 +1,6 @@
 import { site } from "@/config/site";
 import { banksSection } from "@/content/home";
+import { cn } from "@/lib/cn";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
@@ -28,7 +29,12 @@ export function BankLogos() {
                   alt={bank.name}
                   loading="lazy"
                   decoding="async"
-                  className="bank-logo max-h-11 max-w-[min(100%,150px)] object-contain"
+                  className={cn(
+                    "bank-logo object-contain",
+                    bank.tall
+                      ? "h-[72px] w-auto max-w-[min(100%,120px)]"
+                      : "max-h-11 max-w-[min(100%,150px)]",
+                  )}
                 />
               </li>
             ))}

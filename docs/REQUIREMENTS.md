@@ -225,7 +225,7 @@ Not on Home: live map (only on `/kontakti`), legal text.
   subtle borders like a ledger; on phones a 2-column grid or slow auto-scrolling marquee
   (paused with reduced motion / on hover).
 - **BL-2** v1 banks (from owner, 2026-10-14): **Allianz Bank Bulgaria, BACB (БАКБ),
-  D Commerce Bank, DSK Bank, UBB (ОББ), Fibank, Texim Bank, UniCredit Bulbank, Central
+  D Commerce Bank, DSK Bank, UBB (ОББ), Fibank, ProCredit Bank, UniCredit Bulbank, Central
   Cooperative Bank (ЦКБ), Postbank.**
 - **BL-3** Logos as SVG files supplied by the owner/CreditMall, with permission to use [O-4].
   Each logo has alt text with the bank's name. List lives in site config.
@@ -427,7 +427,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | **O-1** | **~8 photos (you + you with clients) and each client's feedback, with written consent — REQUIRED** | Open |
 | **O-2** | **Reference websites — REQUIRED** | Partly done: habito.com (style), creditmall.bg & creditcenter.bg (structure). More welcome. |
 | O-3 | Legal entity name, registered address; **confirm exact wording** of the CreditMall/BNB relationship; verify ЕИК 207809106 and BNB № BCI000104 in the official registers | Numbers received 2026-10-14 (not yet verified publicly) |
-| O-4 | **SVG logo files** of the 10 banks + permission to use them | 10 files received 2026-10-15. Still needed: proper **ОББ** logo (file is the KBC mark only), vector **Тексим** logo (file is a PNG inside SVG), **ЦКБ** in brand colours (only white supplied; recoloured to ink for now). Permission still open. |
+| O-4 | **SVG logo files** of the 10 banks + permission to use them | 10 files received 2026-10-15. Still needed: proper **ОББ** logo (file is the KBC mark only), **ЦКБ** in brand colours (only white supplied; recoloured to ink for now). Permission still open. |
 | O-5 | Phone, Viber, WhatsApp, request-receiving email | Open |
 | O-6 | Professional portrait photos | 3 photos received (teal suit ×2, phone call). Hero choice and more shots (with clients, office) open |
 | O-7 | Years of experience, clients helped, personal story | Name received 2026-10-15 (Desislava Arabadzhieva); rest open |

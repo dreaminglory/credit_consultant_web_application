@@ -25,7 +25,7 @@ const banks = [
   { file: "dsk-commons.svg", id: "dsk" },
   { file: "bank-ubb.svg", id: "ubb" },
   { file: "bank-fibank.svg", id: "fibank" },
-  { file: "bank-texim.svg", id: "texim" },
+  { file: "bank-procredit.svg", id: "procredit" },
   { file: "bank-unicredit-bulbank.svg", id: "unicredit" },
   { file: "bank-ccb-white.svg", id: "ccb", recolor: true },
   { file: "bank-postbank.svg", id: "postbank" },

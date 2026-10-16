@@ -44,6 +44,8 @@ export type Bank = {
   logo: string;
   /** Logo quality notes for the owner (O-4); empty when the file is final. */
   note?: string;
+  /** Stacked (icon above wordmark) logos are drawn taller so they match the wide ones. */
+  tall?: boolean;
 };
 
 export type NavItem =
@@ -131,19 +133,20 @@ export const site = {
     { id: "allianz", name: "Алианц Банк България", logo: "/banks/allianz.svg" },
     { id: "bacb", name: "БАКБ", logo: "/banks/bacb.svg" },
     { id: "dcommerce", name: "Д Комерс Банк", logo: "/banks/dcommerce.svg" },
-    { id: "dsk", name: "Банка ДСК", logo: "/banks/dsk.svg" },
+    { id: "dsk", name: "Банка ДСК", logo: "/banks/dsk.svg", tall: true },
     {
       id: "ubb",
       name: "ОББ",
       logo: "/banks/ubb.svg",
+      tall: true,
       note: "Supplied file is the KBC group mark only, not the ОББ logo",
     },
     { id: "fibank", name: "Fibank", logo: "/banks/fibank.svg" },
     {
-      id: "texim",
-      name: "Тексим Банк",
-      logo: "/banks/texim.svg",
-      note: "Supplied file is a low-resolution PNG wrapped in SVG",
+      id: "procredit",
+      name: "Прокредит Банк",
+      logo: "/banks/procredit.svg",
+      note: "Taken from the bank's own website; confirm permission",
     },
     { id: "unicredit", name: "УниКредит Булбанк", logo: "/banks/unicredit.svg" },
     {
