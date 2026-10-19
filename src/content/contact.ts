@@ -1,6 +1,6 @@
 /**
  * Bulgarian copy for `/kontakti` (T4, B-18, FR-26…27) and the 404 page. First person, feminine
- * forms. Contact values themselves come only from `site` (TR-11). Draft wording: O-16.
+ * forms. Contact values themselves come only from `site` (TR-11). Approved 2026-10-19 (O-16).
  */
 
 export const contactPage = {

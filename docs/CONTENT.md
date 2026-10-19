@@ -101,7 +101,7 @@ Shown in full on Home (`#vaprosi`); loan pages show only their category.
 
 Existing answers for questions 1–3, 5, 7, 9, 11–13, 16 are in mockup v2; reuse and polish.
 
-## 5. Loan pages (T2) and `/krediti` — draft 2026-10-17 [потвърди] (O-16)
+## 5. Loan pages (T2) and `/krediti` — approved 2026-10-19 (O-16)
 
 Full copy lives in `src/content/loans.ts`; FAQ answers for the two new categories in
 `src/content/faq.ts`. Rules followed: first person, feminine forms, **no rates, fees, counts or
@@ -116,15 +116,15 @@ years, LTV ≤ 85 %, DSTI ≤ 50 %) and the bank count.
 | Потребителски | Потребителски кредит — за целта, която имате | Включително за автомобил · Оферти от 10 банки · Безплатно за вас |
 
 Each page also has „Какво е…“ (2 paragraphs), „За кого е“ (4 points) and „Какво обикновено
-искат банките“ (4–5 general requirements) — please read them on the pages and confirm.
+искат банките“ (4–5 general requirements).
 
-New FAQ categories [потвърди]:
+New FAQ categories:
 - **Бизнес кредити:** Какви документи са нужни за бизнес кредит? · Може ли нова фирма да получи
   кредит? · Каква е разликата между оборотен и инвестиционен кредит?
 - **Потребителски кредити:** Мога ли да купя автомобил с потребителски кредит вместо с лизинг? ·
   Нужен ли е поръчител или обезпечение? · Мога ли да обединя няколко кредита в един?
 
-## 6. Contacts and 404 — draft 2026-10-17 [потвърди] (O-16)
+## 6. Contacts and 404 — approved 2026-10-19 (O-16)
 
 - `/kontakti` h1: „Звъннете, пишете или елате в офиса.“ Intro: „Отговарям лично — по телефон,
   Viber, WhatsApp или имейл. За среща в офиса в Пловдив се уговорете предварително, за да ви

@@ -1,17 +1,11 @@
-import { pending } from "@/config/pending";
 import { site, type CalculatorSlug, type LoanSlug } from "@/config/site";
 import type { LiveCalculatorSlug } from "@/content/calculators";
 
 /**
  * Bulgarian copy for `/krediti` (T4) and the loan pages (T2, CR-4). First person, feminine
  * forms. No rates, fees or counts are invented: the only numbers are the BNB limits and the bank
- * count from config. The whole text is a draft until the owner approves it (O-16, CONTENT.md §5).
+ * count from config. Approved by the owner 2026-10-19 (O-16, CONTENT.md §5); may be revised later.
  */
-
-export const loanCopyStatus = pending(
-  "O-16",
-  "Approve the loan page copy: what it is, who it is for, requirements (CONTENT.md §5)",
-);
 
 export type LoanPageCopy = {
   /** h1 of the loan page. */

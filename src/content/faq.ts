@@ -133,7 +133,7 @@ export const faqCategories: FaqCategory[] = [
     ],
   },
   {
-    // Drafted for the loan pages (CONTENT.md §5, O-16); no figures on purpose.
+    // Loan-page categories (CONTENT.md §5, approved 2026-10-19, O-16); no figures on purpose.
     id: "biznes",
     label: "Бизнес кредити",
     loan: "biznes",
