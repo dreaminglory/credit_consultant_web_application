@@ -100,3 +100,34 @@ Shown in full on Home (`#vaprosi`); loan pages show only their category.
     при всички случаи."
 
 Existing answers for questions 1–3, 5, 7, 9, 11–13, 16 are in mockup v2; reuse and polish.
+
+## 5. Loan pages (T2) and `/krediti` — approved 2026-10-19 (O-16)
+
+Full copy lives in `src/content/loans.ts`; FAQ answers for the two new categories in
+`src/content/faq.ts`. Rules followed: first person, feminine forms, **no rates, fees, counts or
+timelines invented**. The only numbers come from config: BNB limits (`site.limits.bnb`: term ≤ 30
+years, LTV ≤ 85 %, DSTI ≤ 50 %) and the bank count.
+
+| Loan | h1 | Key facts (hero chips) |
+|---|---|---|
+| Ипотечни | Ипотечен кредит без обикаляне по банки | Срок до 30 години · До 85% от оценката по правилата на БНБ · Оферти от 10 банки · Безплатно за вас |
+| Рефинансиране | Рефинансиране — само когато наистина печелите | Сметка преди решение · Оферти от 10 банки · Безплатно за вас |
+| Бизнес | Бизнес кредит, съобразен с паричния поток | Оборотни и инвестиционни · Оферти от 10 банки · Безплатно за вас |
+| Потребителски | Потребителски кредит — за целта, която имате | Включително за автомобил · Оферти от 10 банки · Безплатно за вас |
+
+Each page also has „Какво е…“ (2 paragraphs), „За кого е“ (4 points) and „Какво обикновено
+искат банките“ (4–5 general requirements).
+
+New FAQ categories:
+- **Бизнес кредити:** Какви документи са нужни за бизнес кредит? · Може ли нова фирма да получи
+  кредит? · Каква е разликата между оборотен и инвестиционен кредит?
+- **Потребителски кредити:** Мога ли да купя автомобил с потребителски кредит вместо с лизинг? ·
+  Нужен ли е поръчител или обезпечение? · Мога ли да обединя няколко кредита в един?
+
+## 6. Contacts and 404 — approved 2026-10-19 (O-16)
+
+- `/kontakti` h1: „Звъннете, пишете или елате в офиса.“ Intro: „Отговарям лично — по телефон,
+  Viber, WhatsApp или имейл. За среща в офиса в Пловдив се уговорете предварително, за да ви
+  отделя нужното време.“ Map: „Покажи картата“ / „Отвори в Google Maps“; note „Картата се
+  зарежда от Google едва след като я отворите.“
+- 404 h1: „Тази страница не съществува.“ with links to Кредити, Калкулатори, Контакти.

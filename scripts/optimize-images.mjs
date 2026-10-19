@@ -20,12 +20,12 @@ const widths = [400, 640, 800];
 const INK = "#0E1615";
 const banks = [
   { file: "bank-allianz.svg", id: "allianz" },
-  { file: "bank-bacb.svg", id: "bacb" },
-  { file: "bank-dcommerce.svg", id: "dcommerce" },
+  { file: "bank-investbank.svg", id: "investbank" },
+  { file: "bank-bbr.svg", id: "bbr" },
   { file: "dsk-commons.svg", id: "dsk" },
   { file: "bank-ubb.svg", id: "ubb" },
   { file: "bank-fibank.svg", id: "fibank" },
-  { file: "bank-texim.svg", id: "texim" },
+  { file: "bank-procredit.svg", id: "procredit" },
   { file: "bank-unicredit-bulbank.svg", id: "unicredit" },
   { file: "bank-ccb-white.svg", id: "ccb", recolor: true },
   { file: "bank-postbank.svg", id: "postbank" },

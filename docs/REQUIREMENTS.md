@@ -39,6 +39,18 @@ Reviewed 2026-10-15. Comparison by area (full table in BUSINESS_CONTEXT §9):
 
 - **BM-11** At project kickoff, record creditmall.bg's Lighthouse mobile scores as the baseline;
   before launch, ours must be higher on every category.
+- **BM-11 baseline (recorded 2026-10-15, Lighthouse 13.5.0, mobile emulation, simulated slow 4G, 3 runs each,
+  Performance / Accessibility / Best Practices / SEO):**
+
+  | Site | Score | LCP | TBT | CLS |
+  |---|---|---|---|---|
+  | creditmall.bg (live) | 69–71 / 95 / 100 / 100 | 5.3 s | 120–150 ms | 0 |
+  | ExtraConsult Home, M3 build (`next start`, localhost) | 91–92 / 100 / 96 / 100 | 3.4 s | 30 ms | 0 |
+
+  Open gap: Best Practices 96 < 100 because of two console errors that disappear as the build
+  completes (no favicon until the logo, O-13; `/konsultacia` link prefetch 404 until M6).
+  Performance is above the 90 target and ~20 points over creditmall.bg; re-measure per template
+  in M9 against the live site on Cloudflare.
 - **BM-12** Never name or criticise CreditMall on the site; compete through quality.
 
 ## 2. Audience
@@ -212,8 +224,8 @@ Not on Home: live map (only on `/kontakti`), legal text.
 - **BL-1** Grid of partner-bank logos, **greyscale, colour on hover/focus**, equal optical size,
   subtle borders like a ledger; on phones a 2-column grid or slow auto-scrolling marquee
   (paused with reduced motion / on hover).
-- **BL-2** v1 banks (from owner, 2026-10-14): **Allianz Bank Bulgaria, BACB (БАКБ),
-  D Commerce Bank, DSK Bank, UBB (ОББ), Fibank, Texim Bank, UniCredit Bulbank, Central
+- **BL-2** v1 banks (from owner, 2026-10-14): **Allianz Bank Bulgaria, Investbank,
+  Bulgarian Development Bank (ББР), DSK Bank, UBB (ОББ), Fibank, ProCredit Bank, UniCredit Bulbank, Central
   Cooperative Bank (ЦКБ), Postbank.**
 - **BL-3** Logos as SVG files supplied by the owner/CreditMall, with permission to use [O-4].
   Each logo has alt text with the bank's name. List lives in site config.
@@ -415,17 +427,19 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | **O-1** | **~8 photos (you + you with clients) and each client's feedback, with written consent — REQUIRED** | Open |
 | **O-2** | **Reference websites — REQUIRED** | Partly done: habito.com (style), creditmall.bg & creditcenter.bg (structure). More welcome. |
 | O-3 | Legal entity name, registered address; **confirm exact wording** of the CreditMall/BNB relationship; verify ЕИК 207809106 and BNB № BCI000104 in the official registers | Numbers received 2026-10-14 (not yet verified publicly) |
-| O-4 | **SVG logo files** of the 10 banks + permission to use them | 10 files received 2026-10-15. Still needed: proper **ОББ** logo (file is the KBC mark only), vector **Тексим** logo (file is a PNG inside SVG), **ЦКБ** in brand colours (only white supplied; recoloured to ink for now). Permission still open. |
+| O-4 | **SVG logo files** of the 10 banks + permission to use them | 10 files received 2026-10-15. Still needed: proper **ОББ** logo (file is the KBC mark only), **ЦКБ** in brand colours (only white supplied; recoloured to ink for now). Permission still open. |
 | O-5 | Phone, Viber, WhatsApp, request-receiving email | Open |
 | O-6 | Professional portrait photos | 3 photos received (teal suit ×2, phone call). Hero choice and more shots (with clients, office) open |
 | O-7 | Years of experience, clients helped, personal story | Name received 2026-10-15 (Desislava Arabadzhieva); rest open |
 | O-8 | Request data retention period (suggestion: 12 months if no contract) | Open |
 | O-9 | **Confirm step durations** (drafts in CONTENT.md §2) and the total time | Draft ready |
-| O-10 | Working hours | Open |
+| O-10 | Working hours | Done 2026-10-17: Mon–Fri 09:00–19:00; call-back slots Всяко време · 9–12 · 12–14 · 14–19 ч. |
 | O-11 | **Plovdiv office address** | City known |
 | O-12 | Verified notary tariff, registry fees, municipal tax rates | Open |
 | O-13 | Choose a logo concept (§7.1) | Open |
 | O-14 | Legal texts: CreditMall templates and/or lawyer review | Open |
+| O-15 | Confirm the calculators' example starting values (amounts, terms, example rates; fees default to 0) — in `site.calculatorDefaults` | Draft from mockup v2 (2026-10-16) |
+| O-16 | Approve the loan page copy (what it is, who it is for, requirements) and the business/consumer FAQ answers — CONTENT.md §5–6 | Done 2026-10-19: approved as drafted; may be revised later |
 
 ## 14. Milestones
 1. **Setup** — git, Next.js scaffold, Cloudflare adapter, skills, CLAUDE.md commands.

@@ -17,7 +17,8 @@
     "images": "node scripts/optimize-images.mjs",
     "check:content": "node scripts/check-content.mjs",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "calc:reference": "node scripts/calc-reference.mjs"
   },
   "dependencies": {
     "next": "16.3.8",

@@ -71,34 +71,34 @@ scripts/optimize-images.mjs   scripts/check-content.mjs
 9. **Baseline**: record creditmall.bg Lighthouse mobile scores in REQUIREMENTS §1.1 (BM-11).
 - Done when: `npm run build` and `npm run preview` serve the kit page in the Workers runtime.
 
-### M2 — Layout shell  `feat/layout`  — NAV-1…8, FT-1…2, B-01, B-02, B-21
+### M2 — Layout shell  `feat/layout`  — NAV-1…8, FT-1…2, B-01, B-02, B-21  — built 2026-10-16 (Workers-preview check pending)
 Sticky glass header, Кредити mega-menu, Калкулатори dropdown (hover + click, Esc/outside
 close, arrow keys, `aria-expanded`), anchor links with scroll-spy and header offset, mobile
 slide-in panel with accordions + call/Viber/WhatsApp, footer with disclosure line, breadcrumbs,
 mobile action bar, skip link. Wordmark placeholder until a logo is chosen (O-13).
 
-### M3 — Home, static blocks  `feat/home-static`  — B-04, B-05, B-06, B-08, B-09, B-11, B-14, B-19, B-20, B-24
+### M3 — Home, static blocks  `feat/home-static`  — B-04, B-05, B-06, B-08, B-09, B-11, B-14, B-19, B-20, B-24  — built 2026-10-16 (Lighthouse baseline recorded in REQUIREMENTS §1.1)
 Hero with Desislava's portrait, promise strip, loan cards, about me, why-me split, bank
 logos (grid / marquee), coverage map (SVG Bulgaria, Plovdiv pin, animated lines), CTA band,
 contact strip. Home assembled in final order with stubs for the interactive sections.
 
-### M4 — Home, interactive blocks  `feat/home-interactive`  — B-07, B-10, B-13, PR-1…5, FR-24…25, FAQ-1…4
+### M4 — Home, interactive blocks  `feat/home-interactive`  — B-07, B-10, B-13, PR-1…5, FR-24…25, FAQ-1…4  — built 2026-10-16 (testimonials are marked placeholders until O-1; Lighthouse and Workers-preview check pending)
 Process journey line (self-drawing, active step, durations, total time, Вие/Аз, product
 variants), testimonial carousel (swipe, keyboard, pause, filter by product), FAQ with
 category pills + one-open accordion + hash links + FAQPage JSON-LD. Lazy hydration (HP-1).
 
-### M5 — Calculators  `feat/calculators`  — FR-12…17, FR-21…22, B-12, B-16, B-23, T3
+### M5 — Calculators  `feat/calculators`  — FR-12…17, FR-21…22, B-12, B-16, B-23, T3  — built 2026-10-16 (Excel reference `docs/calculators-reference.xml` matches all 89 checks; example values are O-15; BNB limits checked 2026-10-16; Lighthouse and Workers-preview check pending)
 Pure functions + Vitest against a reference spreadsheet (to the cent), embeddable
 calculator component, hub with tabs on Home, `/kalkulatori` overview and 6 T3 pages,
 disclaimer everywhere. FR-18…20 stay hidden until O-12.
 
-### M6 — Consultation pipeline  `feat/lead`  — FR-1…11, B-17, T5
+### M6 — Consultation pipeline  `feat/lead`  — FR-1…11, B-17, T5  — built 2026-10-16 (tested with Turnstile test keys + dry run under `next start`; live Resend/Sheet test and Workers-preview check pending owner accounts)
 Shared Zod schema, compact (Home, loan pages) and full (`/konsultacia`) forms, UTM/gclid/fbclid
 capture, product pre-select, Turnstile, honeypot, `/api/lead`, owner email (HTML + text),
 Apps Script for the Sheet (script file committed in `scripts/`), auto-reply, `/blagodarim`.
 Tested end-to-end with test keys in `npm run preview`.
 
-### M7 — Remaining pages  `feat/pages`  — T2, T4, B-03, B-15, B-18, FR-26…27
+### M7 — Remaining pages  `feat/pages`  — T2, T4, B-03, B-15, B-18, FR-26…27  — built 2026-10-17 (loan copy and new FAQ categories approved 2026-10-19, O-16; Workers-preview check pending)
 `/krediti` + 4 loan pages (product-specific process, embedded calculator, filtered reviews
 and FAQ, pre-selected form), `/kontakti` with click-to-load map, 404.
 
