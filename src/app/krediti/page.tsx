@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { site } from "@/config/site";
 import { CtaBand } from "@/components/blocks/CtaBand";
 import { LoanCards } from "@/components/blocks/LoanCards";
@@ -8,11 +9,11 @@ import { RelatedCalculators } from "@/components/blocks/RelatedCalculators";
 import { ButtonArrow, ButtonLink } from "@/components/ui/Button";
 import { loansPage } from "@/content/loans";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: loansPage.title,
   description: loansPage.intro,
-  alternates: { canonical: "/krediti" },
-};
+  path: "/krediti",
+});
 
 /** Loans overview (T4): hero → loan cards (B-06) → process for every product (B-07) → calculators (B-16) → CTA. */
 export default function LoansPage() {

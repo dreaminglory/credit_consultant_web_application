@@ -102,7 +102,7 @@ Tested end-to-end with test keys in `npm run preview`.
 `/krediti` + 4 loan pages (product-specific process, embedded calculator, filtered reviews
 and FAQ, pre-selected form), `/kontakti` with click-to-load map, 404.
 
-### M8 — Compliance, SEO, tracking  `feat/compliance`  — §8, LC-1…8, FR-28…29, TR-8, TR-10
+### M8 — Compliance, SEO, tracking  `feat/compliance`  — §8, LC-1…8, FR-28…29, TR-8, TR-10  — built 2026-10-19 (legal texts are original drafts pending lawyer review, O-14; tracking IDs set at M10; consent, CSP and conversion checked under `next start` and `npm run preview`)
 Consent banner + settings link, consent-gated pixels, Cloudflare Web Analytics, legal pages
 (T6) drafted from CreditMall templates and marked for lawyer review, JSON-LD, sitemap, robots,
 security headers, rate limiting.

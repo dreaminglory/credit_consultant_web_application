@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { site } from "@/config/site";
+import { JsonLd } from "@/components/ui/JsonLd";
 import { cn } from "@/lib/cn";
+import { breadcrumbJsonLd } from "@/lib/jsonLd";
 
 export type Crumb = { label: string; href?: string };
 
@@ -9,11 +12,15 @@ type BreadcrumbsProps = {
   className?: string;
 };
 
-/** Breadcrumb trail for inner pages (NAV-7): Начало › Кредити › Ипотечни. */
+/**
+ * Breadcrumb trail for inner pages (NAV-7): Начало › Кредити › Ипотечни. Emits the matching
+ * BreadcrumbList JSON-LD (TR-8), so every page with a trail gets it.
+ */
 export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   const trail: Crumb[] = [{ label: "Начало", href: "/" }, ...items];
   return (
     <nav aria-label="Път до страницата" className={className}>
+      <JsonLd data={breadcrumbJsonLd(site.url, trail)} />
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[13px] leading-6 font-medium">
         {trail.map((crumb, index) => {
           const last = index === trail.length - 1;

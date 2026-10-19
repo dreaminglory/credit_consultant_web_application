@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { site } from "@/config/site";
 import { CalculatorTabs } from "@/components/blocks/calculator/CalculatorTabs";
 import { CtaBand } from "@/components/blocks/CtaBand";
@@ -8,11 +9,11 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { calculatorsPage } from "@/content/calculators";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: calculatorsPage.title,
   description: calculatorsPage.intro,
-  alternates: { canonical: "/kalkulatori" },
-};
+  path: "/kalkulatori",
+});
 
 /** Calculators overview (T4): hero → the hub (B-23) → every calculator as a card (B-16) → CTA. */
 export default function CalculatorsPage() {

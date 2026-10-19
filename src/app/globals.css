@@ -364,6 +364,62 @@
     }
   }
 
+  /* Cookie banner (B-22): a short rise on first show; reduced motion removes it (base layer). */
+  .consent-in {
+    animation: consent-in 300ms var(--ease-out-soft) both;
+  }
+  @keyframes consent-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+    }
+  }
+  .consent-dialog::backdrop {
+    background: rgb(14 22 21 / 0.5);
+  }
+
+  /* On/off switch for consent categories: a styled checkbox with role="switch". */
+  .consent-switch {
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: 48px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--color-muted);
+    cursor: pointer;
+    transition: background-color var(--dur-fast) var(--ease-out-soft);
+  }
+  .consent-switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--color-white);
+    box-shadow: var(--shadow-float);
+    transition: translate var(--dur-fast) var(--ease-out-soft);
+  }
+  .consent-switch:checked {
+    background: var(--color-petrol);
+  }
+  .consent-switch:checked::after {
+    translate: 20px 0;
+  }
+  .consent-switch:focus-visible {
+    border-radius: 999px;
+  }
+  @media (forced-colors: active) {
+    .consent-switch {
+      border: 2px solid CanvasText;
+    }
+    .consent-switch:checked::after {
+      background: Highlight;
+    }
+  }
+
   /* Bank logo tiles (BL-1): greyscale at rest, colour on hover and keyboard focus. */
   .bank-logo {
     filter: grayscale(1);

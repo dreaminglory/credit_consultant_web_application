@@ -3,6 +3,7 @@ import { site } from "@/config/site";
 import { autoReply, thanksPage } from "@/content/lead";
 import { processVariants } from "@/content/process";
 import { ContactActions } from "@/components/blocks/ContactActions";
+import { Conversion } from "@/components/consent/Conversion";
 import { PageHero } from "@/components/blocks/PageHero";
 import { ButtonArrow, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -26,6 +27,7 @@ const firstSteps = processVariants[0]!.steps.slice(0, 3);
 export default function ThanksPage() {
   return (
     <>
+      <Conversion />
       <PageHero
         breadcrumbs={[{ label: thanksPage.label }]}
         label={thanksPage.label}

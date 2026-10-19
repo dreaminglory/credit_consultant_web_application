@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/config/site";
+import { ConsentSettingsButton } from "@/components/consent/ConsentSettingsButton";
 import { Container } from "@/components/ui/Container";
 import { Value } from "@/components/ui/Placeholder";
 import { Wordmark } from "@/components/ui/Wordmark";
@@ -122,9 +123,13 @@ export function Footer() {
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {site.legalLinks.map((link) => (
               <li key={link.label}>
-                <Link className={linkClass} href={link.href}>
-                  {link.label}
-                </Link>
+                {link.action === "consent" ? (
+                  <ConsentSettingsButton className={linkClass}>{link.label}</ConsentSettingsButton>
+                ) : (
+                  <Link className={linkClass} href={link.href}>
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

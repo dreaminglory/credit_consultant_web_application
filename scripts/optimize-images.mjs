@@ -77,5 +77,33 @@ async function banksTask() {
   }
 }
 
-await portraitsTask();
-await banksTask();
+// Default social share image (TR-8): 1200×630 JPEG, petrol panel with the name beside the hero
+// portrait. Text is drawn by librsvg with a system font, so check the output after regenerating.
+async function ogTask() {
+  await mkdir(out("og"), { recursive: true });
+  const [W, H] = [1200, 630];
+  const portrait = await sharp(src("of_myself", portraits[0].file))
+    .rotate()
+    .resize({ width: 520, height: H, fit: "cover", position: "top" })
+    .toBuffer();
+  const text = `<svg xmlns="http://www.w3.org/2000/svg" width="${W - 520}" height="${H}">
+    <rect width="100%" height="100%" fill="#0F3B3E"/>
+    <rect x="72" y="200" width="64" height="6" fill="#C59A3D"/>
+    <text x="72" y="300" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="60" fill="#FFFFFF" letter-spacing="-1.5">Десислава</text>
+    <text x="72" y="368" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="60" fill="#FFFFFF" letter-spacing="-1.5">Арабаджиева</text>
+    <text x="72" y="430" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#CFDAD7">Кредитен консултант · ExtraConsult</text>
+  </svg>`;
+  await sharp({ create: { width: W, height: H, channels: 3, background: "#0F3B3E" } })
+    .composite([
+      { input: Buffer.from(text), left: 0, top: 0 },
+      { input: portrait, left: W - 520, top: 0 },
+    ])
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile(out("og", "default.jpg"));
+  console.log("og default.jpg");
+}
+
+const only = process.argv[2];
+if (!only || only === "portraits") await portraitsTask();
+if (!only || only === "banks") await banksTask();
+if (!only || only === "og") await ogTask();

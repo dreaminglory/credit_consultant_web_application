@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { CalculatorTemplate } from "@/components/templates/CalculatorTemplate";
 import { calculatorCopy, isLiveCalculator, liveCalculatorSlugs } from "@/content/calculators";
@@ -16,11 +17,7 @@ export async function generateMetadata({
   const { slug } = await params;
   if (!isLiveCalculator(slug)) return {};
   const copy = calculatorCopy[slug];
-  return {
-    title: copy.title,
-    description: copy.intro,
-    alternates: { canonical: `/kalkulatori/${slug}` },
-  };
+  return pageMetadata({ title: copy.title, description: copy.intro, path: `/kalkulatori/${slug}` });
 }
 
 export default async function CalculatorPage({ params }: PageProps<"/kalkulatori/[slug]">) {

@@ -35,7 +35,12 @@ export type Calculator = {
   available: boolean;
 };
 
-export type FooterLink = { label: string; href: string };
+export type FooterLink = {
+  label: string;
+  href: string;
+  /** "consent" renders a button that reopens the cookie settings (LC-2); href is the policy. */
+  action?: "consent";
+};
 
 export type Bank = {
   id: string;
@@ -84,6 +89,46 @@ export const site = {
       "ExtraConsult · ЕИК 207809106 · кредитен посредник, вписан в регистъра на БНБ под № BCI000104 чрез CreditMall.",
     ) as MaybePending,
     registeredAddress: pending("O-3", "Registered address of the legal entity") as MaybePending,
+    /**
+     * How long request data is kept when no contract follows (LC-1). The owner chose 12 months
+     * on 2026-10-19 as a draft; the lawyer confirms it (O-8).
+     */
+    retention: pending(
+      "O-8",
+      "Confirm the request data retention period with the lawyer",
+      "12 месеца",
+    ) as MaybePending,
+    /** Legal pages are drafts until a lawyer has reviewed them (LC-8). */
+    review: pending("O-14", "Lawyer review of the privacy, cookie and terms pages"),
+    /** Public authorities named on the legal pages (LC-1, LC-3). Checked 2026-10-19. */
+    authorities: {
+      bnb: {
+        name: "Българска народна банка",
+        address: "пл. „Княз Александър I“ 1, 1000 София",
+        web: "https://www.bnb.bg",
+      },
+      kzp: {
+        name: "Комисия за защита на потребителите",
+        address: "ул. „Врабча“ 1, 1000 София",
+        web: "https://kzp.bg",
+      },
+      kzld: {
+        name: "Комисия за защита на личните данни",
+        address: "бул. „Проф. Цветан Лазаров“ 2, 1592 София",
+        web: "https://www.cpdp.bg",
+      },
+    },
+  },
+
+  /**
+   * Consent-gated ad tracking (FR-28) and cookieless analytics (FR-29). Public IDs per
+   * environment; nothing loads while a value is empty. The owner supplies them at launch (M10).
+   */
+  tracking: {
+    metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID || undefined,
+    googleAdsId: process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || undefined,
+    googleAdsConversionLabel: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || undefined,
+    cfBeaconToken: process.env.NEXT_PUBLIC_CF_BEACON_TOKEN || undefined,
   },
 
   contact: {
@@ -100,6 +145,12 @@ export const site = {
     address: "бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
     /** Confirmed by the owner 2026-10-17 (O-10). */
     hours: "Пон – Пет, 09:00 – 19:00 ч." as MaybePending,
+    /** The same hours for structured data (TR-8); change together with `hours`. */
+    openingHours: {
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "19:00",
+    },
   },
 
   loans: [
@@ -321,8 +372,7 @@ export const site = {
     { label: "Поверителност", href: "/poveritelnost" },
     { label: "Бисквитки", href: "/biskvitki" },
     { label: "Общи условия", href: "/obshti-usloviya" },
-    // Becomes a banner trigger in M8; the policy page until then.
-    { label: "Настройки на бисквитките", href: "/biskvitki" },
+    { label: "Настройки на бисквитките", href: "/biskvitki", action: "consent" },
   ] satisfies FooterLink[],
 
   /** Home sections the header scroll-spy follows (NAV-8). */

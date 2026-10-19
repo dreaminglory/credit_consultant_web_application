@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     ".open-next/**",
     ".wrangler/**",
     "cloudflare-env.d.ts",
+    // Claude Code worktrees hold their own checkouts and build output.
+    ".claude/**",
   ]),
 ]);
 

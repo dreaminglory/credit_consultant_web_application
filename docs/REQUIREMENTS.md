@@ -431,13 +431,13 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | O-5 | Phone, Viber, WhatsApp, request-receiving email | Open |
 | O-6 | Professional portrait photos | 3 photos received (teal suit ×2, phone call). Hero choice and more shots (with clients, office) open |
 | O-7 | Years of experience, clients helped, personal story | Name received 2026-10-15 (Desislava Arabadzhieva); rest open |
-| O-8 | Request data retention period (suggestion: 12 months if no contract) | Open |
+| O-8 | Request data retention period (suggestion: 12 months if no contract) | Draft 2026-10-19: owner chose 12 months; shown as a marked draft until the lawyer confirms (`site.legal.retention`) |
 | O-9 | **Confirm step durations** (drafts in CONTENT.md §2) and the total time | Draft ready |
 | O-10 | Working hours | Done 2026-10-17: Mon–Fri 09:00–19:00; call-back slots Всяко време · 9–12 · 12–14 · 14–19 ч. |
 | O-11 | **Plovdiv office address** | City known |
 | O-12 | Verified notary tariff, registry fees, municipal tax rates | Open |
 | O-13 | Choose a logo concept (§7.1) | Open |
-| O-14 | Legal texts: CreditMall templates and/or lawyer review | Open |
+| O-14 | Legal texts: CreditMall templates and/or lawyer review | Drafts written 2026-10-19 (`src/content/legal.ts`, not CreditMall texts); pages show a "draft" notice until reviewed. Lawyer to check: CreditMall as recipient, remuneration wording, `ec-source` storage as necessary |
 | O-15 | Confirm the calculators' example starting values (amounts, terms, example rates; fees default to 0) — in `site.calculatorDefaults` | Draft from mockup v2 (2026-10-16) |
 | O-16 | Approve the loan page copy (what it is, who it is for, requirements) and the business/consumer FAQ answers — CONTENT.md §5–6 | Done 2026-10-19: approved as drafted; may be revised later |
 

@@ -1,12 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Inter_Tight, Onest } from "next/font/google";
+import Script from "next/script";
 import { Attribution } from "@/components/blocks/lead/Attribution";
+import { ConsentBanner } from "@/components/consent/ConsentBanner";
+import { ConsentProvider } from "@/components/consent/ConsentProvider";
+import { MarketingScripts } from "@/components/consent/MarketingScripts";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { CalculatorsPanel, LoansPanel } from "@/components/layout/MenuPanels";
 import { MobileBar } from "@/components/layout/MobileBar";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { site } from "@/config/site";
+import { baseOpenGraph } from "@/lib/seo";
 import "./globals.css";
 
 // Fonts are self-hosted at build time (A-4); Cyrillic subset is required (DR-3).
@@ -37,6 +42,9 @@ export const metadata: Metadata = {
     template: `%s | ${site.person.name} · ${site.brand.name}`,
   },
   description: site.brand.description,
+  // Pages set their own title, description, canonical and Open Graph via pageMetadata (TR-8).
+  openGraph: baseOpenGraph,
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
@@ -45,18 +53,33 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+const { cfBeaconToken } = site.tracking;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="bg" className={`${interTight.variable} ${onest.variable} ${plexMono.variable}`}>
       <body>
-        <SkipLink />
-        <Header panels={{ loans: <LoansPanel />, calculators: <CalculatorsPanel /> }} />
-        <main id="main" tabIndex={-1} className="outline-none">
-          {children}
-        </main>
-        <Footer />
-        <MobileBar />
-        <Attribution />
+        <ConsentProvider>
+          <SkipLink />
+          {/* Early in the DOM so keyboard users reach the choice right after the skip link. */}
+          <ConsentBanner />
+          <Header panels={{ loans: <LoansPanel />, calculators: <CalculatorsPanel /> }} />
+          <main id="main" tabIndex={-1} className="outline-none">
+            {children}
+          </main>
+          <Footer />
+          <MobileBar />
+          <MarketingScripts />
+          <Attribution />
+        </ConsentProvider>
+        {cfBeaconToken && (
+          // Cookieless, no personal data: needs no consent (FR-29).
+          <Script
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            strategy="afterInteractive"
+            data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+          />
+        )}
       </body>
     </html>
   );

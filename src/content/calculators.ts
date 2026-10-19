@@ -1,4 +1,5 @@
 import { site, type CalculatorSlug, type LoanSlug } from "@/config/site";
+import { formatIsoDate } from "@/lib/date";
 
 /**
  * Bulgarian copy for the calculators (B-12, B-23, T3; FR-12…17). First person, feminine forms.
@@ -45,12 +46,7 @@ export type CalculatorCopy<S extends LiveCalculatorSlug = LiveCalculatorSlug> = 
 
 const { dstiMax, ltvMax, maxTermYears, effective } = site.limits.bnb;
 const pct = (share: number) => Math.round(share * 100);
-const effectiveDate = new Intl.DateTimeFormat("bg-BG", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  timeZone: "Europe/Sofia",
-}).format(new Date(`${effective}T12:00:00Z`));
+const effectiveDate = formatIsoDate(effective);
 
 const amount = (label: string, max = 1_000_000) =>
   ({ label, unit: "€", min: 0, max, step: 1000, slider: true }) as const;

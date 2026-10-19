@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { site, type LoanSlug } from "@/config/site";
 import { LoanTemplate } from "@/components/templates/LoanTemplate";
@@ -19,11 +20,7 @@ export async function generateMetadata({
   const { slug } = await params;
   if (!isLoan(slug)) return {};
   const copy = loanCopy[slug];
-  return {
-    title: copy.title,
-    description: copy.intro,
-    alternates: { canonical: `/krediti/${slug}` },
-  };
+  return pageMetadata({ title: copy.title, description: copy.intro, path: `/krediti/${slug}` });
 }
 
 export default async function LoanPage({ params }: PageProps<"/krediti/[slug]">) {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useConsent } from "@/components/consent/ConsentProvider";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { mapCopy } from "@/content/contact";
@@ -32,13 +33,16 @@ type MapEmbedProps = {
 };
 
 export function MapEmbed({ links, pinLabel, className }: MapEmbedProps) {
-  const [live, setLive] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const { consent } = useConsent();
+  // Consent to external content (B-22) loads the map at once; otherwise it waits for the click.
+  const live = clicked || consent?.media === true;
   const frameRef = useRef<HTMLIFrameElement>(null);
 
   // The button disappears with the click: hand keyboard focus to the map instead of the body.
   useEffect(() => {
-    if (live) frameRef.current?.focus();
-  }, [live]);
+    if (clicked) frameRef.current?.focus();
+  }, [clicked]);
 
   return (
     <div
@@ -96,7 +100,7 @@ export function MapEmbed({ links, pinLabel, className }: MapEmbedProps) {
           </p>
           <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 bg-linear-to-t from-ink/70 to-transparent p-5 pt-16 text-white sm:flex-row sm:items-end sm:justify-between md:p-7">
             <p className="max-w-[34ch] text-[15px] text-mist">{mapCopy.note}</p>
-            <Button variant="light" onClick={() => setLive(true)}>
+            <Button variant="light" onClick={() => setClicked(true)}>
               <Icon name="home" className="size-[18px]" />
               {mapCopy.show}
             </Button>

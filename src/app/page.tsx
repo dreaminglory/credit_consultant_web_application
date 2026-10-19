@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { AboutMe } from "@/components/blocks/AboutMe";
 import { BankLogos } from "@/components/blocks/BankLogos";
 import { CalculatorHub } from "@/components/blocks/CalculatorHub";
@@ -12,6 +13,16 @@ import { ProcessTimeline } from "@/components/blocks/ProcessTimeline";
 import { PromiseStrip } from "@/components/blocks/PromiseStrip";
 import { Testimonials } from "@/components/blocks/Testimonials";
 import { WhySplit } from "@/components/blocks/WhySplit";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { site } from "@/config/site";
+import { businessJsonLd } from "@/lib/jsonLd";
+import { baseOpenGraph } from "@/lib/seo";
+
+// Title and description are the layout defaults; only the canonical and OG URL are Home's.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { ...baseOpenGraph, url: "/" },
+};
 
 /**
  * Home (T1), sections in the order of REQUIREMENTS §4.3, ending with the compact consultation
@@ -20,6 +31,7 @@ import { WhySplit } from "@/components/blocks/WhySplit";
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={businessJsonLd(site, "/img/desislava-teal-suit-800.webp")} />
       <HomeHero />
       <PromiseStrip />
       <LoanCards id="krediti" />
