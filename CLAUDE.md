@@ -35,6 +35,9 @@ Read before non-trivial work:
 - `npm run lint` / `npm run typecheck` (typecheck runs `next typegen` first)
 - `npm test` — Vitest unit tests (`src/**/*.test.ts`)
 - `npm run preview` — OpenNext build + local Workers runtime on http://localhost:8787 (check before deploying)
+- `npm run deploy` — OpenNext build + deploy to Cloudflare (extraconsultbg.com). Public build values
+  come from `.env.production.local`, server secrets from `wrangler secret put` (see `.env.example`).
+  The site stays `noindex` until `NEXT_PUBLIC_ALLOW_INDEXING=true` (launch, M10).
 - `npm run images` — regenerate `public/img` and `public/banks` from `raw_contents/`
 - `npm run check:content` — list open owner items (`pending("O-…")`) still used; must be empty at launch
 - Next.js 16 differs from older versions: read `node_modules/next/dist/docs/` before using an API (see AGENTS.md).

@@ -24,4 +24,12 @@
     },
   ],
   "observability": { "enabled": true },
+  // Production domain (D-2). Custom domains get their DNS record and certificate on deploy;
+  // www is redirected to the apex by a Cloudflare Redirect Rule. No public workers.dev copy.
+  "routes": [
+    { "pattern": "extraconsultbg.com", "custom_domain": true },
+    { "pattern": "www.extraconsultbg.com", "custom_domain": true },
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
 }

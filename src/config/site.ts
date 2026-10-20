@@ -58,8 +58,14 @@ export type NavItem =
   | { kind: "menu"; label: string; menu: "loans" | "calculators"; href: string };
 
 export const site = {
-  /** Canonical origin. Domain decided later (D-2); localhost until then. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  /** Canonical origin (D-2: https://extraconsultbg.com in production); localhost otherwise. */
+  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+
+  /**
+   * Search engines may index the site only when this is "true". Off until launch (M10), so the
+   * live site with drafts and open owner items stays out of Google.
+   */
+  allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
 
   person: {
     name: "Десислава Арабаджиева",

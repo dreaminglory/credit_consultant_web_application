@@ -17,6 +17,7 @@
     "images": "node scripts/optimize-images.mjs",
     "check:content": "node scripts/check-content.mjs",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "calc:reference": "node scripts/calc-reference.mjs"
   },

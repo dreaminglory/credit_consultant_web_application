@@ -37,6 +37,8 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  // noindex on every page until launch; pages that are never indexed set their own robots.
+  robots: site.allowIndexing ? undefined : { index: false, follow: false },
   title: {
     default: `${site.person.name} — кредитен консултант | ${site.brand.name}`,
     template: `%s | ${site.person.name} · ${site.brand.name}`,

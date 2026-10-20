@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, MetadataRoute } from "next";
 import { site } from "@/config/site";
 
 /** Open Graph defaults shared by every page (TR-8); the share image is built by `npm run images`. */
@@ -8,6 +8,18 @@ export const baseOpenGraph = {
   siteName: `${site.brand.name} · ${site.person.name}`,
   images: [{ url: "/og/default.jpg", width: 1200, height: 630, alt: site.brand.tagline }],
 } satisfies Metadata["openGraph"];
+
+/**
+ * `robots.txt` rules (TR-8). Before launch everything is disallowed; afterwards everything public
+ * is crawlable except the API, thank-you and dev pages.
+ */
+export function robotsRules(allowIndexing: boolean, origin: string): MetadataRoute.Robots {
+  if (!allowIndexing) return { rules: { userAgent: "*", disallow: "/" } };
+  return {
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/blagodarim", "/dev/"] },
+    sitemap: new URL("/sitemap.xml", origin).toString(),
+  };
+}
 
 /**
  * Title, description, canonical URL and Open Graph for one page. Next merges metadata shallowly,
