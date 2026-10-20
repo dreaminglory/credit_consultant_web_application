@@ -4,6 +4,7 @@ import { BankLogos } from "@/components/blocks/BankLogos";
 import { Calculator } from "@/components/blocks/calculator/Calculator";
 import { CtaBand } from "@/components/blocks/CtaBand";
 import { Faq } from "@/components/blocks/Faq";
+import { FinancingPurposes } from "@/components/blocks/FinancingPurposes";
 import { ConsultationSection } from "@/components/blocks/lead/ConsultationSection";
 import { LoanCards } from "@/components/blocks/LoanCards";
 import { LoanDetails } from "@/components/blocks/LoanDetails";
@@ -46,6 +47,7 @@ export function LoanTemplate({ slug }: { slug: LoanSlug }) {
       </PageHero>
 
       <LoanDetails name={loan.name} copy={copy} />
+      {slug === "ipotechni" && <FinancingPurposes ctaHref={formHref} tone="white" />}
       <ProcessTimeline variant={slug} />
 
       <Section tone="white">

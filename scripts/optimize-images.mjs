@@ -16,12 +16,24 @@ const portraits = [
 ];
 const widths = [400, 640, 800];
 
+// Photos of the consultant with clients, in the order of the testimonials (O-1, FR-24).
+const clients = [
+  "208723.JPG",
+  "IMG_0137.JPG",
+  "viber_image_2026-10-20_19-38-52-974.jpg",
+  "viber_image_2026-10-20_19-38-53-069.jpg",
+  "viber_image_2026-10-20_19-38-53-079.jpg",
+  "viber_image_2026-10-20_19-38-53-095.jpg",
+  "viber_image_2026-10-20_19-38-52-990.jpg",
+  "viber_image_2026-10-20_19-38-52-963.jpg",
+];
+
 // Bank logos (BL-3). `recolor` replaces white fills for files supplied only in a white variant.
 const INK = "#0E1615";
 const banks = [
   { file: "bank-allianz.svg", id: "allianz" },
   { file: "bank-investbank.svg", id: "investbank" },
-  { file: "bank-bbr.svg", id: "bbr" },
+  { file: "bank-dcommerce.svg", id: "dcommerce" },
   { file: "dsk-commons.svg", id: "dsk" },
   { file: "bank-ubb.svg", id: "ubb" },
   { file: "bank-fibank.svg", id: "fibank" },
@@ -31,25 +43,38 @@ const banks = [
   { file: "bank-postbank.svg", id: "postbank" },
 ];
 
+/** Writes every nominal width as AVIF and WebP; never upscales the source. */
+async function emitResponsive(input, name) {
+  const meta = await sharp(input).metadata();
+  for (const w of widths) {
+    const base = sharp(input)
+      .rotate()
+      .resize({ width: Math.min(w, meta.width ?? w) });
+    await base
+      .clone()
+      .avif({ quality: 55 })
+      .toFile(out("img", `${name}-${w}.avif`));
+    await base
+      .clone()
+      .webp({ quality: 72 })
+      .toFile(out("img", `${name}-${w}.webp`));
+  }
+  return meta;
+}
+
+async function clientsTask() {
+  await mkdir(out("img"), { recursive: true });
+  for (const [index, file] of clients.entries()) {
+    const name = `client-${index + 1}`;
+    const meta = await emitResponsive(src("clinets", file), name);
+    console.log(`client ${name}: ${meta.width}×${meta.height}`);
+  }
+}
+
 async function portraitsTask() {
   await mkdir(out("img"), { recursive: true });
   for (const { file, name } of portraits) {
-    const input = src("of_myself", file);
-    const meta = await sharp(input).metadata();
-    // Sources are ~800 px wide; never upscale, but always emit every nominal width.
-    for (const w of widths) {
-      const base = sharp(input)
-        .rotate()
-        .resize({ width: Math.min(w, meta.width ?? w) });
-      await base
-        .clone()
-        .avif({ quality: 55 })
-        .toFile(out("img", `${name}-${w}.avif`));
-      await base
-        .clone()
-        .webp({ quality: 72 })
-        .toFile(out("img", `${name}-${w}.webp`));
-    }
+    const meta = await emitResponsive(src("of_myself", file), name);
     console.log(`portrait ${name}: ${meta.width}×${meta.height}`);
   }
 }
@@ -105,5 +130,6 @@ async function ogTask() {
 
 const only = process.argv[2];
 if (!only || only === "portraits") await portraitsTask();
+if (!only || only === "clients") await clientsTask();
 if (!only || only === "banks") await banksTask();
 if (!only || only === "og") await ogTask();

@@ -1,5 +1,5 @@
 import type { IconName } from "@/components/ui/Icon";
-import { pending, type MaybePending } from "@/config/pending";
+import type { MaybePending } from "@/config/pending";
 import type { LoanSlug } from "@/config/site";
 
 /**
@@ -40,9 +40,8 @@ export type ProcessVariant = {
   steps: ProcessStep[];
 };
 
-/** Step durations are drafts from CONTENT.md §2 and show as marked placeholders until O-9. */
-const draftDuration = (text: string) =>
-  pending("O-9", "Confirm the step durations (drafts from CONTENT.md §2)", text);
+/** Step durations are the consultant's estimates (CONTENT.md §2, O-9). */
+const draftDuration = (text: string): MaybePending => text;
 
 const baseSteps = {
   consultation: {
@@ -144,50 +143,74 @@ const refinancingSteps: ProcessStep[] = [
   baseSteps.followUp,
 ];
 
-/** Business and consumer loans have no property valuation (CONTENT.md §2). */
-const withoutProperty: ProcessStep[] = [
+/**
+ * Business and consumer loans have no property valuation (CONTENT.md §2) and move faster than a
+ * mortgage; the durations below are the consultant's estimates, to be confirmed with O-9.
+ */
+const noValuation = (durations: {
+  comparison: string;
+  preApproval: string;
+  documents: string;
+  finalApproval: string;
+  signing: string;
+}): ProcessStep[] => [
   consultation,
-  comparison,
-  preApproval,
-  documents,
-  finalApproval,
+  { ...comparison, duration: draftDuration(durations.comparison) },
+  { ...preApproval, duration: draftDuration(durations.preApproval) },
+  { ...documents, duration: draftDuration(durations.documents) },
+  { ...finalApproval, duration: draftDuration(durations.finalApproval) },
   {
     ...signing,
     title: "Подписване и превод на средствата",
     text: "Подписвате договора, а банката превежда средствата.",
+    duration: draftDuration(durations.signing),
     you: "Подписвате договора.",
     me: "Преглеждам договора с вас и следя за превода на средствата.",
   },
   baseSteps.followUp,
 ];
 
+/** Salaried applicant, standard documents: roughly 5–9 working days in total. */
+const consumerSteps = noValuation({
+  comparison: "1 работен ден",
+  preApproval: "1–2 работни дни",
+  documents: "1–2 работни дни",
+  finalApproval: "1–3 работни дни",
+  signing: "1 работен ден",
+});
+
+/** Collateral, financial statements and credit committee: roughly 15–34 working days. */
+const businessSteps = noValuation({
+  comparison: "1–3 работни дни",
+  preApproval: "3–7 работни дни",
+  documents: "3–7 работни дни",
+  finalApproval: "7–14 работни дни",
+  signing: "1–3 работни дни",
+});
+
 export const processVariants: ProcessVariant[] = [
   {
     id: "ipotechni",
     label: "Ипотечен кредит",
-    total: pending(
-      "O-9",
-      "Confirm the total time, first conversation to disbursement (mortgage)",
-      "3–6 седмици",
-    ),
+    total: "3–6 седмици",
     steps: [...Object.values(baseSteps)],
   },
   {
     id: "refinansirane",
     label: "Рефинансиране",
-    total: pending("O-9", "Total time, first conversation to disbursement (refinancing)"),
+    total: "3–5 седмици",
     steps: refinancingSteps,
   },
   {
     id: "biznes",
     label: "Бизнес кредит",
-    total: pending("O-9", "Total time, first conversation to disbursement (business loan)"),
-    steps: withoutProperty,
+    total: "3–7 седмици",
+    steps: businessSteps,
   },
   {
     id: "potrebitelski",
     label: "Потребителски кредит",
-    total: pending("O-9", "Total time, first conversation to disbursement (consumer loan)"),
-    steps: withoutProperty,
+    total: "1–2 седмици",
+    steps: consumerSteps,
   },
 ];

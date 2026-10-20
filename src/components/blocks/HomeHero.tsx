@@ -21,10 +21,7 @@ export function HomeHero() {
       <Mesh />
       <Container className="grid items-end gap-12 md:grid-cols-[1.25fr_0.75fr]">
         <div>
-          <Label className="enter" style={delay(0)}>
-            {hero.label}
-          </Label>
-          <h1 className="enter mt-[18px]" style={delay(80)}>
+          <h1 className="enter" style={delay(80)}>
             {hero.title}
           </h1>
           <p className="enter mt-7 max-w-[58ch] text-xl opacity-85" style={delay(180)}>

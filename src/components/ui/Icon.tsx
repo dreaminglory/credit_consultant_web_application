@@ -21,6 +21,10 @@ const paths = {
   document: "M7 3.5h7l4 4v13H7zM14 3.5v4h4M9.5 12h6M9.5 15.5h6",
   shield: "M12 3.5 5.5 6v5.5c0 4 2.7 7.2 6.5 9 3.8-1.8 6.5-5 6.5-9V6zM9 12l2.2 2.2L15.5 10",
   pen: "M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4",
+  /** Paint roller. */
+  roller: "M5 4.5h11v4H5zM16 6.5h2.5V11H11v2.5M9 13.5h3.5V20H9z",
+  /** Brick wall. */
+  bricks: "M4 6h16v4H4zM4 10h7v4H4zM11 10h9v4h-9zM4 14h16v4H4zM11 6v4M7.5 14v4M15.5 14v4",
   support: "M12 19.5s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.3c0 4.9-7 9.2-7 9.2z",
 } as const;
 

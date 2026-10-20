@@ -5,6 +5,8 @@ import type { LeadProduct, LeadVariant } from "@/lib/lead/schema";
 import { LeadForm } from "./LeadForm";
 
 type LeadCardProps = {
+  /** Anchor id, so a link can scroll straight to the form card. */
+  id?: string;
   variant: LeadVariant;
   product?: LeadProduct;
   productFromUrl?: boolean;
@@ -15,9 +17,10 @@ type LeadCardProps = {
  * The white form card (mockup v2 `.form-card`) around `LeadForm`. The phone/Viber/WhatsApp
  * fallback is rendered here on the server and handed to the form for its error state (FR-6).
  */
-export function LeadCard({ variant, product, productFromUrl, className }: LeadCardProps) {
+export function LeadCard({ id, variant, product, productFromUrl, className }: LeadCardProps) {
   return (
     <div
+      id={id}
       className={cn(
         "rounded-card bg-white p-5 text-ink shadow-[0_30px_60px_-30px_rgb(14_22_21/0.45)] sm:p-8",
         className,

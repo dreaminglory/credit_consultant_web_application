@@ -82,24 +82,20 @@ export const site = {
     eik: "207809106",
     intermediary: "CreditMall",
     bnbRegisterNo: "BCI000104",
-    /** Exact wording must be approved by CreditMall / lawyer (O-3, FT-2). */
-    disclosure: pending(
-      "O-3",
-      "Approve the exact intermediary disclosure wording",
-      "ExtraConsult · ЕИК 207809106 · кредитен посредник, вписан в регистъра на БНБ под № BCI000104 чрез CreditMall.",
-    ) as MaybePending,
-    registeredAddress: pending("O-3", "Registered address of the legal entity") as MaybePending,
     /**
-     * How long request data is kept when no contract follows (LC-1). The owner chose 12 months
-     * on 2026-10-19 as a draft; the lawyer confirms it (O-8).
+     * BCI000104 is CreditMall's own BNB entry; ExtraConsult is a consultancy firm acting through
+     * it, so the wording must never say ExtraConsult itself holds the number (FT-2).
      */
-    retention: pending(
-      "O-8",
-      "Confirm the request data retention period with the lawyer",
-      "12 месеца",
-    ) as MaybePending,
-    /** Legal pages are drafts until a lawyer has reviewed them (LC-8). */
-    review: pending("O-14", "Lawyer review of the privacy, cookie and terms pages"),
+    disclosure:
+      "ExtraConsult · ЕИК 207809106 · консултантска фирма, която работи чрез CreditMall — кредитен посредник, вписан в регистъра на БНБ под № BCI000104.",
+    /** Follows the disclosure in the FAQ and on the Terms page, so both read the same (CR-6). */
+    registryNote:
+      "Номерът е на CreditMall. Вписването може да се провери в публичния регистър на БНБ.",
+    /** Full name with legal form as in the Commercial Register (ЗЕТ чл. 4). */
+    fullName: "ExtraConsult ЕООД" as MaybePending,
+    registeredAddress: "Пловдив, ул. „Златорог“ 30" as MaybePending,
+    /** How long request data is kept when no contract follows (LC-1); confirmed by the owner. */
+    retention: "12 месеца" as MaybePending,
     /** Public authorities named on the legal pages (LC-1, LC-3). Checked 2026-10-19. */
     authorities: {
       bnb: {
@@ -158,7 +154,7 @@ export const site = {
       slug: "ipotechni",
       name: "Ипотечни кредити",
       summary:
-        "Финансиране за покупка, строителство или ремонт на жилище — с подбор на най-подходящата банка за вашия профил.",
+        "Финансиране за покупка, строителство или ремонт на жилище — със сравнение на офертите на банките за вашия профил.",
     },
     {
       slug: "refinansirane",
@@ -184,7 +180,7 @@ export const site = {
   banks: [
     { id: "allianz", name: "Алианц Банк България", logo: "/banks/allianz.svg" },
     { id: "investbank", name: "Инвестбанк", logo: "/banks/investbank.svg", tall: true },
-    { id: "bbr", name: "Българска банка за развитие", logo: "/banks/bbr.svg" },
+    { id: "dcommerce", name: "Д Комерс Банк", logo: "/banks/dcommerce.svg" },
     { id: "dsk", name: "Банка ДСК", logo: "/banks/dsk.svg", tall: true },
     {
       id: "ubb",
@@ -355,7 +351,7 @@ export const site = {
   /** Mega-menu side panel (NAV-3, CONTENT.md §1). */
   loansMenuAside: {
     title: "Не знаете кой кредит ви трябва?",
-    text: "Разкажете ми целта си и ще ви предложа най-подходящото решение.",
+    text: "Разкажете ми целта си и ще ви покажа какви варианти имате.",
   },
 
   /** Footer link columns (FT-1). Home anchors work from every page (NAV-8). */
@@ -370,8 +366,8 @@ export const site = {
 
   legalLinks: [
     { label: "Поверителност", href: "/poveritelnost" },
-    { label: "Бисквитки", href: "/biskvitki" },
     { label: "Общи условия", href: "/obshti-usloviya" },
+    { label: "Бисквитки", href: "/biskvitki" },
     { label: "Настройки на бисквитките", href: "/biskvitki", action: "consent" },
   ] satisfies FooterLink[],
 

@@ -26,7 +26,7 @@ export function ConsultationSection({ product }: { product?: LeadProduct }) {
           <p className="mt-10 text-[15px] text-haze">{leadSection.contactsLabel}</p>
           <ContactActions variant="line-light" className="mt-3" />
         </div>
-        <LeadCard variant="compact" product={product} />
+        <LeadCard id={leadSection.formAnchor} variant="compact" product={product} />
       </Container>
     </Section>
   );

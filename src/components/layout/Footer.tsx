@@ -7,7 +7,7 @@ import { Wordmark } from "@/components/ui/Wordmark";
 import { contactLinks } from "@/lib/contact";
 
 const linkClass =
-  "inline-block min-h-6 text-haze no-underline transition-colors duration-150 hover:text-white";
+  "inline-flex min-h-6 items-center text-haze no-underline transition-colors duration-150 hover:text-white";
 
 function Column({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -24,7 +24,6 @@ function Column({ title, children }: { title: string; children: React.ReactNode 
 export function Footer() {
   const links = contactLinks(site.contact);
   const year = new Date().getFullYear();
-  const disclosure = site.legal.disclosure;
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink pt-16 pb-28 text-sm text-haze md:pb-10">
@@ -133,10 +132,7 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <p className="mt-5 max-w-[80ch] text-mist">
-            <Value value={disclosure} />
-          </p>
-          <p className="mt-3">
+          <p className="mt-5">
             © {year} {site.legal.company}. Всички права запазени.
           </p>
         </div>

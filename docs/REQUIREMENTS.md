@@ -181,6 +181,7 @@ empty — every page ends with a CTA and has at least 4 blocks.
 | B-22 | Cookie consent banner | §8 |
 | B-23 | Calculator hub | Tabs switching between the 6 calculators (B-12), each with a link to its own page |
 | B-24 | Contact strip | Address, hours, phone/Viber/WhatsApp, link to `/kontakti` (no live map) |
+| B-25 | Financing purposes | What a mortgage loan can finance: renovation / finishing work and house building as featured cards, purchase and refinancing as compact ones; used on the mortgage loan page |
 
 ### 4.3 Home page (T1) — the flagship (D-5)
 Home is the best page of the site and holds most of the content. Section order:
@@ -225,7 +226,7 @@ Not on Home: live map (only on `/kontakti`), legal text.
   subtle borders like a ledger; on phones a 2-column grid or slow auto-scrolling marquee
   (paused with reduced motion / on hover).
 - **BL-2** v1 banks (from owner, 2026-10-14): **Allianz Bank Bulgaria, Investbank,
-  Bulgarian Development Bank (ББР), DSK Bank, UBB (ОББ), Fibank, ProCredit Bank, UniCredit Bulbank, Central
+  D Commerce Bank, DSK Bank, UBB (ОББ), Fibank, ProCredit Bank, UniCredit Bulbank, Central
   Cooperative Bank (ЦКБ), Postbank.**
 - **BL-3** Logos as SVG files supplied by the owner/CreditMall, with permission to use [O-4].
   Each logo has alt text with the bank's name. List lives in site config.
@@ -426,7 +427,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 |---|---|---|
 | **O-1** | **~8 photos (you + you with clients) and each client's feedback, with written consent — REQUIRED** | Open |
 | **O-2** | **Reference websites — REQUIRED** | Partly done: habito.com (style), creditmall.bg & creditcenter.bg (structure). More welcome. |
-| O-3 | Legal entity name, registered address; **confirm exact wording** of the CreditMall/BNB relationship; verify ЕИК 207809106 and BNB № BCI000104 in the official registers | Numbers received 2026-10-14 (not yet verified publicly) |
+| O-3 | Full legal name with legal form, registered address, VAT number (or "not VAT-registered"); CreditMall approves the exact relationship wording; verify ЕИК 207809106 and BNB № BCI000104 in the official registers | Numbers received 2026-10-14 (not yet verified publicly). 2026-10-20: ExtraConsult is a consultancy firm acting through CreditMall; BCI000104 is CreditMall's entry (wording says so); CreditMall will approve; controller stays ExtraConsult. |
 | O-4 | **SVG logo files** of the 10 banks + permission to use them | 10 files received 2026-10-15. Still needed: proper **ОББ** logo (file is the KBC mark only), **ЦКБ** in brand colours (only white supplied; recoloured to ink for now). Permission still open. |
 | O-5 | Phone, Viber, WhatsApp, request-receiving email | Open |
 | O-6 | Professional portrait photos | 3 photos received (teal suit ×2, phone call). Hero choice and more shots (with clients, office) open |

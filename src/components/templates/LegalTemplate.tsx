@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { isPending } from "@/config/pending";
-import { site } from "@/config/site";
 import { isLink, legalCopy, type Inline, type LegalBlock, type LegalDoc } from "@/content/legal";
 import { CtaBand } from "@/components/blocks/CtaBand";
 import { PageHero } from "@/components/blocks/PageHero";
@@ -149,14 +147,6 @@ export function LegalTemplate({ doc }: { doc: LegalDoc }) {
         <p className="enter mt-6 font-mono text-[13px] font-medium tracking-[0.05em] text-muted uppercase">
           {legalCopy.updated} <time dateTime={doc.updated}>{updated}</time>
         </p>
-        {isPending(site.legal.review) && (
-          <p
-            title={`${site.legal.review.pending}: ${site.legal.review.hint}`}
-            className="enter mt-4 max-w-[60ch] rounded-tile border-2 border-dashed border-gold bg-gold/10 px-4 py-3 text-[15px]"
-          >
-            {legalCopy.draft}
-          </p>
-        )}
       </PageHero>
 
       <Section tone="white">

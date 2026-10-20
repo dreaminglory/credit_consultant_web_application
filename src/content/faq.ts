@@ -1,4 +1,4 @@
-import { pending, isPending, type MaybePending } from "@/config/pending";
+import { isPending, type MaybePending } from "@/config/pending";
 import { site, type LoanSlug } from "@/config/site";
 
 /**
@@ -41,11 +41,7 @@ export const faqSection = {
 };
 
 /** Registration answer, built from config so it matches the footer and legal pages (CR-6). */
-const registrationAnswer = pending(
-  "O-3",
-  "Approve the exact registration wording with CreditMall (FAQ 15)",
-  `Да. Дейността ми се извършва чрез ${site.legal.intermediary} — кредитен посредник, вписан в регистъра на Българската народна банка под № ${site.legal.bnbRegisterNo}. ${site.legal.company} е с ЕИК ${site.legal.eik}. Можете да проверите регистрацията на сайта на БНБ.`,
-);
+const registrationAnswer = `Да. ${site.legal.disclosure} ${site.legal.registryNote}`;
 
 export const faqCategories: FaqCategory[] = [
   {
@@ -56,7 +52,7 @@ export const faqCategories: FaqCategory[] = [
         id: "bezplatna",
         question: "Наистина ли консултацията е безплатна?",
         answer:
-          "Да. Възнаграждението ми се плаща от банката, с която сключите кредита. Вие не плащате нищо — нито за консултацията, нито за подготовката на документите.",
+          "Да. Услугата ми е изцяло безплатна за вас: консултацията, сравнението на офертите, подготовката и подаването на документите и съдействието до подписването. Нищо не е скрито — не плащате за нито една стъпка от моята работа. Единствените разходи са таксите на самата банка (например за разглеждане или оценка), които тя ви представя преди да подпишете. Как се финансира услугата, е описано в Общите условия.",
       },
       {
         id: "zashto-konsultant",
@@ -93,11 +89,8 @@ export const faqCategories: FaqCategory[] = [
       {
         id: "kolko-vreme",
         question: "Колко време отнема получаването на ипотечен кредит?",
-        answer: pending(
-          "O-9",
-          "Confirm the typical mortgage timeline (FAQ 6)",
+        answer:
           "Обикновено от първия разговор до усвояването минават около 3–6 седмици. Срокът зависи от банката и от това колко бързо са готови документите.",
-        ),
       },
       {
         id: "dokumenti",

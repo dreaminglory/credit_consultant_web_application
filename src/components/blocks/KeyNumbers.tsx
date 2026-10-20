@@ -17,7 +17,11 @@ export function KeyNumbers() {
             <Label className="text-muted opacity-100">{item.label}</Label>
           </dt>
           <dd className="font-head text-[40px] leading-none font-extrabold tracking-[-0.04em] text-petrol">
-            {isPending(item.value) ? <Value value={item.value} /> : <CountUp value={item.value} />}
+            {isPending(item.value) ? (
+              <Value value={item.value} />
+            ) : (
+              <CountUp value={item.value} suffix={item.suffix} />
+            )}
           </dd>
         </div>
       ))}

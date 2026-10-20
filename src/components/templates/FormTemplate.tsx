@@ -1,6 +1,6 @@
 import { promises } from "@/content/home";
 import { faqCategories } from "@/content/faq";
-import { consultationPage } from "@/content/lead";
+import { consultationPage, leadSection } from "@/content/lead";
 import { ContactActions } from "@/components/blocks/ContactActions";
 import { Coverage } from "@/components/blocks/Coverage";
 import { Faq } from "@/components/blocks/Faq";
@@ -41,7 +41,7 @@ export function FormTemplate() {
             </ul>
             <ContactActions variant="line" className="mt-8" />
           </div>
-          <LeadCard variant="full" productFromUrl className="enter" />
+          <LeadCard id={leadSection.formAnchor} variant="full" productFromUrl className="enter" />
         </Container>
       </Section>
       <Coverage />

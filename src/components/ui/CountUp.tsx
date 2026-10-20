@@ -8,7 +8,7 @@ const DURATION = 1200;
  * Number that counts up once when it scrolls into view (DR-4). The server renders the final
  * value, so without scripting or with reduced motion the real number is always shown.
  */
-export function CountUp({ value }: { value: number }) {
+export function CountUp({ value, suffix }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -37,5 +37,10 @@ export function CountUp({ value }: { value: number }) {
     };
   }, [value]);
 
-  return <span ref={ref}>{value}</span>;
+  return (
+    <>
+      <span ref={ref}>{value}</span>
+      {suffix}
+    </>
+  );
 }

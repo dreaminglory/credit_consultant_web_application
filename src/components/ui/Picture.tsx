@@ -13,11 +13,22 @@ type PictureProps = {
   sizes: string;
   /** Above-the-fold images load eagerly with high priority (LCP). */
   priority?: boolean;
+  /** Fills a positioned parent and crops to it, instead of following the image's own ratio. */
+  fill?: boolean;
   className?: string;
 };
 
 /** Responsive AVIF/WebP image from the build-time pipeline (A-8, TR-7). */
-export function Picture({ name, alt, width, height, sizes, priority, className }: PictureProps) {
+export function Picture({
+  name,
+  alt,
+  width,
+  height,
+  sizes,
+  priority,
+  fill,
+  className,
+}: PictureProps) {
   const srcSet = (ext: string) => WIDTHS.map((w) => `/img/${name}-${w}.${ext} ${w}w`).join(", ");
   return (
     <picture>
@@ -32,7 +43,12 @@ export function Picture({ name, alt, width, height, sizes, priority, className }
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className={cn("h-auto w-full object-cover", className)}
+        className={cn(
+          fill
+            ? "absolute inset-0 size-full object-cover object-[50%_35%]"
+            : "h-auto w-full object-cover",
+          className,
+        )}
       />
     </picture>
   );
