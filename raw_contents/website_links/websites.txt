@@ -1,7 +1,7 @@
-Turnstile_keys:
-site_key - 0x4AAAAAAFb2y2qmR5igAryL
-secret_key - 0x4AAAAAAFb2y6JlKSKQmkdGO2o6wytNoUs
-GOOGLE SHEETS:
-sheet_secret - b71463277DREAM!
-dep_id - AKfycbwnk_d8z4UjcEUWfPN9fYbnDW96rwNVkJFR6WUu8F65hRxBZLIgGRK8dLGSka0NOmaa
-sheet_web_hook_url - https://script.google.com/macros/s/AKfycbwnk_d8z4UjcEUWfPN9fYbnDW96rwNVkJFR6WUu8F65hRxBZLIgGRK8dLGSka0NOmaa/exec
+https://www.creditmall.bg/monthly-payment
+
+https://creditcenter.bg/ipotechni-krediti/
+
+https://www.habito.com/about-us
+
+https://www.rocketmortgage.com/
