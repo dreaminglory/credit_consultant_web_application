@@ -58,7 +58,10 @@ export function LoanTemplate({ slug }: { slug: LoanSlug }) {
               title={loanPage.calculatorTitle}
               titleClassName="text-[clamp(32px,4vw,52px)]"
             />
-            <Link href="/kalkulatori" className="font-semibold underline underline-offset-4">
+            <Link
+              href="/kalkulatori"
+              className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4"
+            >
               {loanPage.calculatorAll} →
             </Link>
           </div>

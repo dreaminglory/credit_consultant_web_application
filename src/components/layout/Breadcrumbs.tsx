@@ -29,7 +29,7 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
               {crumb.href && !last ? (
                 <Link
                   href={crumb.href}
-                  className="text-muted no-underline transition-colors duration-150 hover:text-ink"
+                  className="-my-2.5 inline-block py-2.5 text-muted no-underline transition-colors duration-150 hover:text-ink"
                 >
                   {crumb.label}
                 </Link>

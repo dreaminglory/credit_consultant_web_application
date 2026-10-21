@@ -41,7 +41,12 @@ function FeaturedCard({ item, ctaHref }: { item: FinancingPurpose; ctaHref: stri
           </li>
         ))}
       </ul>
-      <ButtonLink href={ctaHref} variant="gold" className="mt-8 self-start">
+      {/* Wraps on narrow phones so the card never overflows the 360px viewport. */}
+      <ButtonLink
+        href={ctaHref}
+        variant="gold"
+        className="mt-8 self-start whitespace-normal sm:whitespace-nowrap"
+      >
         {financingPurposes.cta} <ButtonArrow />
       </ButtonLink>
     </GlassCard>
@@ -102,7 +107,7 @@ export function FinancingPurposes({
           lead={financingPurposes.lead}
           titleClassName="text-[clamp(32px,4vw,52px)]"
         />
-        <ul className="mt-12 grid gap-4 lg:grid-cols-2">
+        <ul className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
           {financingPurposes.featured.map((item, index) => (
             <li key={item.id}>
               <Reveal delay={index * 100} className="h-full">

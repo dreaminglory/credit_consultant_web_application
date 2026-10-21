@@ -47,11 +47,14 @@ export function ConsentBanner() {
             <button
               type="button"
               onClick={openSettings}
-              className="min-h-6 font-semibold underline underline-offset-4"
+              className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4"
             >
               {consentCopy.settings}
             </button>
-            <Link href="/biskvitki" className="min-h-6 text-muted underline underline-offset-4">
+            <Link
+              href="/biskvitki"
+              className="inline-flex min-h-11 items-center text-muted underline underline-offset-4"
+            >
               {consentCopy.policyLink}
             </Link>
           </div>

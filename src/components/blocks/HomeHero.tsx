@@ -56,7 +56,8 @@ export function HomeHero() {
             alt={`${site.person.name}, ${site.person.role.toLowerCase()}`}
             width={799}
             height={1201}
-            sizes="(min-width: 768px) 420px, 100vw"
+            // Card is at most 420px wide with 14px padding; on phones it spans the container.
+            sizes="(min-width: 768px) 392px, min(392px, calc(100vw - 60px))"
             priority
             className="aspect-[4/5] rounded-tile object-top"
           />

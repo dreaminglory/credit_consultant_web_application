@@ -27,13 +27,15 @@ export function BankLogos() {
                 <img
                   src={bank.logo}
                   alt={bank.name}
+                  width={bank.size[0]}
+                  height={bank.size[1]}
                   loading="lazy"
                   decoding="async"
                   className={cn(
                     "bank-logo object-contain",
                     bank.tall
                       ? "h-[72px] w-auto max-w-[min(100%,120px)]"
-                      : "max-h-11 max-w-[min(100%,150px)]",
+                      : "h-auto w-auto max-h-11 max-w-[min(100%,150px)]",
                   )}
                 />
               </li>

@@ -65,6 +65,11 @@
     scroll-behavior: smooth;
     /* Sticky header offset for anchor jumps (NAV-8). */
     scroll-padding-top: 96px;
+    /* Keeps focused elements clear of the fixed phone action bar (WCAG 2.4.11). */
+    scroll-padding-bottom: 96px;
+    @media (min-width: 768px) {
+      scroll-padding-bottom: 0;
+    }
   }
   body {
     @apply bg-paper text-ink font-body antialiased;
@@ -237,7 +242,7 @@
    * HTML (HP-1). `--enter-delay` staggers the pieces; reduced motion collapses the duration.
    */
   .enter {
-    animation: enter 700ms var(--ease-out-soft) both;
+    animation: enter 600ms var(--ease-out-soft) both;
     animation-delay: var(--enter-delay, 0ms);
   }
   @keyframes enter {

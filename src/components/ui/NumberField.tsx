@@ -87,7 +87,7 @@ export function NumberField({
           onChange={(event) => range.onChange(Number(event.target.value))}
           aria-label={range.label}
           aria-valuetext={range.valueText}
-          className="mt-3 h-6 w-full cursor-pointer accent-sea"
+          className="mt-1.5 h-11 w-full cursor-pointer accent-sea"
         />
       )}
       {error && (

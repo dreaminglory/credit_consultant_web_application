@@ -30,7 +30,8 @@ export function Wordmark({ tone = "dark", href, className }: WordmarkProps) {
       </span>
     </>
   );
-  const classes = cn("grid no-underline", className);
+  // min-h keeps the header link a 44px tap target on phones, where the subtitle is hidden.
+  const classes = cn("grid min-h-11 content-center no-underline", className);
   return href ? (
     <Link href={href} className={classes} translate="no">
       {body}

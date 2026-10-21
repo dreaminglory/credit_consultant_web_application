@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/config/site";
+import { LogoLockup, LogoMark, logoConcepts } from "@/components/brand/LogoConcepts";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Button, ButtonArrow, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -166,6 +167,33 @@ export default function KitPage() {
                 {bank.note ? (
                   <p className="mt-2 text-center font-mono text-[10px] text-muted">{bank.note}</p>
                 ) : null}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section tone="paper" id="logo">
+        <Container>
+          <Label>Лого — 3 концепции за избор (§7.1, O-13)</Label>
+          <ul className="mt-8 grid gap-6 lg:grid-cols-3">
+            {logoConcepts.map((concept) => (
+              <li key={concept.id} className="overflow-hidden rounded-card border border-line">
+                <div className="grid gap-5 bg-white p-6">
+                  <p className="font-head text-xl font-extrabold">{concept.name}</p>
+                  <p className="text-sm text-muted">{concept.idea}</p>
+                  <LogoLockup concept={concept.id} />
+                </div>
+                <div className="bg-petrol p-6 text-white">
+                  <LogoLockup concept={concept.id} tone="dark" />
+                </div>
+                <div className="flex items-end gap-5 bg-sand p-6 text-ink">
+                  <LogoMark concept={concept.id} tone="mono" className="size-12" />
+                  <LogoMark concept={concept.id} className="size-12" />
+                  <LogoMark concept={concept.id} className="size-8" />
+                  <LogoMark concept={concept.id} className="size-4" />
+                  <span className="font-mono text-[10px] text-muted">48 · 32 · 16 px</span>
+                </div>
               </li>
             ))}
           </ul>

@@ -7,7 +7,7 @@ import { Wordmark } from "@/components/ui/Wordmark";
 import { contactLinks } from "@/lib/contact";
 
 const linkClass =
-  "inline-flex min-h-6 items-center text-haze no-underline transition-colors duration-150 hover:text-white";
+  "inline-flex min-h-11 min-w-11 items-center text-haze md:min-h-6 md:min-w-0 no-underline transition-colors duration-150 hover:text-white";
 
 function Column({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -15,7 +15,7 @@ function Column({ title, children }: { title: string; children: React.ReactNode 
       <h2 className="mb-4 font-mono text-xs leading-none font-medium tracking-[0.08em] text-white uppercase">
         {title}
       </h2>
-      <ul className="grid gap-2.5">{children}</ul>
+      <ul className="grid md:gap-2.5">{children}</ul>
     </div>
   );
 }
@@ -119,7 +119,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-line-dark pt-6">
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          <ul className="flex flex-wrap gap-x-6 md:gap-y-2">
             {site.legalLinks.map((link) => (
               <li key={link.label}>
                 {link.action === "consent" ? (

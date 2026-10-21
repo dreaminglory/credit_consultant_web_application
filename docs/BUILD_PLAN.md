@@ -107,7 +107,7 @@ Consent banner + settings link, consent-gated pixels, Cloudflare Web Analytics, 
 (T6) drafted from CreditMall templates and marked for lawyer review, JSON-LD, sitemap, robots,
 security headers, rate limiting.
 
-### M9 — Polish and benchmark audit  `feat/polish`
+### M9 — Polish and benchmark audit  `feat/polish`  — audited 2026-10-21 (results and BM checklist in REQUIREMENTS §1.1; logo concepts on `/dev/kit#logo` await O-13; Home Perf 87 and the fee calculators FR-18…20 are follow-ups)
 Motion tuning on real pages, all 5 breakpoints, `web-design-guidelines` review, keyboard and
 screen-reader pass, Lighthouse ≥ 90 and above the creditmall.bg baseline on every template,
 side-by-side BM-1…12 checklist. Logo concepts (§7.1) if not done earlier.

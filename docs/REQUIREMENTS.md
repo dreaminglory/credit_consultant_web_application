@@ -51,6 +51,40 @@ Reviewed 2026-10-15. Comparison by area (full table in BUSINESS_CONTEXT §9):
   completes (no favicon until the logo, O-13; `/konsultacia` link prefetch 404 until M6).
   Performance is above the 90 target and ~20 points over creditmall.bg; re-measure per template
   in M9 against the live site on Cloudflare.
+- **M9 audit (2026-10-21, same Lighthouse setup):**
+
+  | Run | Perf / A11y / BP / SEO | LCP |
+  |---|---|---|
+  | creditmall.bg (live, 2 runs) | 66–70 / 95 / 100 / 100 | 5.2–8.1 s |
+  | Home, `next start` (3 runs) | 87 / 100 / 96 / 69 | 4.0 s |
+  | Other templates, `next start` (T2–T6, 404 excluded) | 90–92 / 100 / 96 / 66–69 | 3.4–3.6 s |
+  | Home, live extraconsultbg.com (3 runs) | 86–87 / 100 / 77 / 69 | 3.9 s |
+  | Loan, calculator, form pages, live | 83–85 / 100 / 77 / 66–69 | 4.2–4.3 s |
+
+  Open gaps, all known: **SEO** fails only `is-crawlable` (deliberate `noindex` until M10).
+  **Best Practices** live 77 = favicon 404 (O-13) + Cloudflare *Bot Fight Mode / JavaScript
+  detections* injecting `/cdn-cgi/challenge-platform/…/jsd/main.js` (deprecated APIs, extra JS);
+  turn it off in the Cloudflare dashboard (Turnstile does not need it). **Performance** on Home is
+  limited by HTML size (58 KB gzip, ~40 % RSC payload, vs 24 KB on `/krediti`); Lighthouse's
+  simulated slow 4G LCP grows with it (real LCP ≈ 0.4 s). Tried and reverted: `inlineCss`
+  (worse, CSS duplicated into the payload), not preloading the mono font (no change).
+
+- **BM checklist (M9, 2026-10-21):**
+
+  | ID | Status |
+  |---|---|
+  | BM-1 | ✅ Portrait in hero + about me; photos with clients wait for O-1 |
+  | BM-2 | ✅ 6 calculators on Home hub + own pages (3 fee calculators after O-12) |
+  | BM-3 | ✅ Compact form on Home, full form page, Viber/WhatsApp, mobile action bar |
+  | BM-4 | ⏳ Bank logos live (permission O-4); photo testimonials need O-1 |
+  | BM-5 | ✅ Self-drawing journey, durations, total time, product variants |
+  | BM-6 | ✅ 23 questions in categories, hash links, FAQPage schema |
+  | BM-7 | ✅ Coverage block: Plovdiv, all Bulgaria, abroad |
+  | BM-8 | ✅ Opt-in banner; pixels and map only after consent |
+  | BM-9 | ⏳ A11y 100 everywhere, keyboard and structure pass clean, 44 px targets; Perf ≥ 90 on all templates except Home (87) |
+  | BM-10 | ✅ FinancialService, Person, FAQPage, BreadcrumbList, per-page metadata |
+  | BM-11 | ⏳ Perf +17–20 and A11y +5 over creditmall.bg; BP/SEO behind until favicon, Cloudflare JS detections off and indexing on (M10) |
+  | BM-12 | ✅ CreditMall named only in the required intermediary disclosure |
 - **BM-12** Never name or criticise CreditMall on the site; compete through quality.
 
 ## 2. Audience

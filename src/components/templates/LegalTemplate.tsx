@@ -163,7 +163,7 @@ export function LegalTemplate({ doc }: { doc: LegalDoc }) {
                 <li key={section.id}>
                   <a
                     href={`#${section.id}`}
-                    className="-ml-px block border-l-2 border-transparent py-1.5 pl-4 text-muted no-underline transition-colors duration-150 hover:border-gold hover:text-ink"
+                    className="-ml-px flex min-h-11 items-center border-l-2 border-transparent py-1.5 pl-4 text-muted no-underline transition-colors duration-150 hover:border-gold hover:text-ink"
                   >
                     {section.title}
                   </a>

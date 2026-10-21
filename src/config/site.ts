@@ -47,6 +47,8 @@ export type Bank = {
   name: string;
   /** Path under /public. */
   logo: string;
+  /** Intrinsic width and height of the file (its viewBox), so the tile reserves space. */
+  size: [number, number];
   /** Logo quality notes for the owner (O-4); empty when the file is final. */
   note?: string;
   /** Stacked (icon above wordmark) logos are drawn taller so they match the wide ones. */
@@ -184,32 +186,41 @@ export const site = {
 
   /** Partner banks, v1 list from the owner (BL-2, 2026-10-14). Permission to use logos: O-4. */
   banks: [
-    { id: "allianz", name: "Алианц Банк България", logo: "/banks/allianz.svg" },
-    { id: "investbank", name: "Инвестбанк", logo: "/banks/investbank.svg", tall: true },
-    { id: "dcommerce", name: "Д Комерс Банк", logo: "/banks/dcommerce.svg" },
-    { id: "dsk", name: "Банка ДСК", logo: "/banks/dsk.svg", tall: true },
+    { id: "allianz", name: "Алианц Банк България", logo: "/banks/allianz.svg", size: [400, 99] },
+    {
+      id: "investbank",
+      name: "Инвестбанк",
+      logo: "/banks/investbank.svg",
+      size: [1200, 1018],
+      tall: true,
+    },
+    { id: "dcommerce", name: "Д Комерс Банк", logo: "/banks/dcommerce.svg", size: [221, 61] },
+    { id: "dsk", name: "Банка ДСК", logo: "/banks/dsk.svg", size: [288, 288], tall: true },
     {
       id: "ubb",
       name: "ОББ",
       logo: "/banks/ubb.svg",
+      size: [32, 25],
       tall: true,
       note: "Supplied file is the KBC group mark only, not the ОББ logo",
     },
-    { id: "fibank", name: "Fibank", logo: "/banks/fibank.svg" },
+    { id: "fibank", name: "Fibank", logo: "/banks/fibank.svg", size: [204, 48] },
     {
       id: "procredit",
       name: "Прокредит Банк",
       logo: "/banks/procredit.svg",
+      size: [300, 58],
       note: "Taken from the bank's own website; confirm permission",
     },
-    { id: "unicredit", name: "УниКредит Булбанк", logo: "/banks/unicredit.svg" },
+    { id: "unicredit", name: "УниКредит Булбанк", logo: "/banks/unicredit.svg", size: [226, 25] },
     {
       id: "ccb",
       name: "Централна кооперативна банка",
       logo: "/banks/ccb.svg",
+      size: [149, 58],
       note: "Only a white file was supplied; recoloured to ink — brand-colour file needed",
     },
-    { id: "postbank", name: "Пощенска банка", logo: "/banks/postbank.svg" },
+    { id: "postbank", name: "Пощенска банка", logo: "/banks/postbank.svg", size: [224, 63] },
   ] satisfies Bank[],
 
   /** Calculators in menu order (FR-12…20). Draft hints — owner to review wording. */

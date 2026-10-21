@@ -32,7 +32,7 @@ export function ContactCard() {
               href={links.open}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-block font-semibold underline underline-offset-4"
+              className="mt-4 inline-flex min-h-11 items-center gap-1 font-semibold underline underline-offset-4"
             >
               {mapCopy.open} <span aria-hidden="true">↗</span>
               <span className="sr-only"> (отваря се в нов прозорец)</span>
