@@ -99,7 +99,7 @@ export const site = {
       "Номерът е на CreditMall. Вписването може да се провери в публичния регистър на БНБ.",
     /** Full name with legal form as in the Commercial Register (ЗЕТ чл. 4). */
     fullName: "ExtraConsult ЕООД" as MaybePending,
-    registeredAddress: "Пловдив, ул. „Златорог“ 30" as MaybePending,
+    registeredAddress: "Пловдив, бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
     /** How long request data is kept when no contract follows (LC-1); confirmed by the owner. */
     retention: "12 месеца" as MaybePending,
     /** Public authorities named on the legal pages (LC-1, LC-3). Checked 2026-10-19. */

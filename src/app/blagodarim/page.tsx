@@ -34,7 +34,7 @@ export default function ThanksPage() {
         title={autoReply.title}
         intro={autoReply.text}
       >
-        <p className="enter mt-4 max-w-[60ch] text-muted">{autoReply.noPersonalDocs}</p>
+        <p className="enter mt-4 max-w-[60ch] text-muted">{autoReply.closing}</p>
       </PageHero>
 
       <Section tone="white">

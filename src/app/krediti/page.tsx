@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/config/site";
 import { CtaBand } from "@/components/blocks/CtaBand";
+import { FinancingPurposes } from "@/components/blocks/FinancingPurposes";
 import { LoanCards } from "@/components/blocks/LoanCards";
 import { PageHero } from "@/components/blocks/PageHero";
 import { ProcessTimeline } from "@/components/blocks/ProcessTimeline";
@@ -34,6 +35,7 @@ export default function LoansPage() {
         </div>
       </PageHero>
       <LoanCards label={loansPage.label} title={loansPage.cardsTitle} tone="white" />
+      <FinancingPurposes />
       <ProcessTimeline />
       <RelatedCalculators
         slugs={loansPage.calculators}

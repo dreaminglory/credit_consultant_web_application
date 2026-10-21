@@ -59,7 +59,10 @@ const { cfBeaconToken } = site.tracking;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="bg" className={`${interTight.variable} ${onest.variable} ${plexMono.variable}`}>
+    <html
+      lang="bg"
+      data-scroll-behavior="smooth"
+      className={`${interTight.variable} ${onest.variable} ${plexMono.variable}`}>
       <body>
         <ConsentProvider>
           <SkipLink />

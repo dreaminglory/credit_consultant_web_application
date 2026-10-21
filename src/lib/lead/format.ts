@@ -179,10 +179,10 @@ export function autoReplyText(lead: Lead) {
     autoReply.title,
     autoReply.text,
     "",
-    autoReply.noPersonalDocs,
+    autoReply.closing,
     "",
     site.person.name,
-    `${site.person.role} · ${site.brand.name}`,
+    site.person.role,
   ].join("\n");
 }
 
@@ -192,7 +192,7 @@ export function autoReplyHtml(lead: Lead) {
 <p style="margin:0 0 12px">Здравейте, ${escapeHtml(lead.name)}!</p>
 <h1 style="margin:0 0 12px;font-size:22px;line-height:1.25">${autoReply.title}</h1>
 <p style="margin:0 0 12px">${autoReply.text}</p>
-<p style="margin:0 0 20px;color:#4e5b59">${autoReply.noPersonalDocs}</p>
-<p style="margin:0"><strong>${escapeHtml(site.person.name)}</strong><br>${escapeHtml(site.person.role)} · ${escapeHtml(site.brand.name)}</p>
+<p style="margin:0 0 20px;color:#4e5b59">${autoReply.closing}</p>
+<p style="margin:0"><strong>${escapeHtml(site.person.name)}</strong><br>${escapeHtml(site.person.role)}</p>
 </div></body></html>`;
 }
