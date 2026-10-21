@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { site } from "@/config/site";
-import { LogoLockup, LogoMark, logoConcepts } from "@/components/brand/LogoConcepts";
+import { LogoMark } from "@/components/brand/Logo";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Button, ButtonArrow, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -12,8 +13,9 @@ import { PlaceholderBox, Value } from "@/components/ui/Placeholder";
 import { Reveal } from "@/components/ui/Reveal";
 import { RoundButton } from "@/components/ui/RoundButton";
 import { Section, type SectionTone } from "@/components/ui/Section";
+import { Wordmark } from "@/components/ui/Wordmark";
 
-// Internal review page for the design system (M1). Remove before launch (M10).
+// Internal review page for the design system (M1). Development only: production builds 404 it.
 export const metadata: Metadata = {
   title: "Design kit",
   robots: { index: false, follow: false },
@@ -33,6 +35,7 @@ const swatches = [
 const tones: SectionTone[] = ["paper", "white", "sand", "ink", "petrol"];
 
 export default function KitPage() {
+  if (process.env.NODE_ENV === "production") notFound();
   return (
     <>
       <Section className="pt-8">
@@ -175,28 +178,20 @@ export default function KitPage() {
 
       <Section tone="paper" id="logo">
         <Container>
-          <Label>Лого — 3 концепции за избор (§7.1, O-13)</Label>
-          <ul className="mt-8 grid gap-6 lg:grid-cols-3">
-            {logoConcepts.map((concept) => (
-              <li key={concept.id} className="overflow-hidden rounded-card border border-line">
-                <div className="grid gap-5 bg-white p-6">
-                  <p className="font-head text-xl font-extrabold">{concept.name}</p>
-                  <p className="text-sm text-muted">{concept.idea}</p>
-                  <LogoLockup concept={concept.id} />
-                </div>
-                <div className="bg-petrol p-6 text-white">
-                  <LogoLockup concept={concept.id} tone="dark" />
-                </div>
-                <div className="flex items-end gap-5 bg-sand p-6 text-ink">
-                  <LogoMark concept={concept.id} tone="mono" className="size-12" />
-                  <LogoMark concept={concept.id} className="size-12" />
-                  <LogoMark concept={concept.id} className="size-8" />
-                  <LogoMark concept={concept.id} className="size-4" />
-                  <span className="font-mono text-[10px] text-muted">48 · 32 · 16 px</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <Label>Лого (DR-7, O-13)</Label>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="rounded-card border border-line bg-white p-6">
+              <Wordmark />
+            </div>
+            <div className="rounded-card bg-petrol p-6 text-white">
+              <Wordmark tone="light" />
+            </div>
+          </div>
+          <div className="mt-4 flex items-end gap-5">
+            <LogoMark className="size-12" />
+            <LogoMark className="size-8" />
+            <LogoMark className="size-4" />
+          </div>
         </Container>
       </Section>
 

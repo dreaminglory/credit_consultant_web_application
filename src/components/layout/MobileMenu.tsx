@@ -88,7 +88,7 @@ export function MobileMenu({ open, onClose, links }: MobileMenuProps) {
 
   // The panel only exists below the desktop breakpoint; close it if the window grows past it.
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 1240px)");
+    const query = window.matchMedia("(min-width: 1280px)");
     const onChange = () => query.matches && onClose();
     query.addEventListener("change", onChange);
     return () => query.removeEventListener("change", onChange);

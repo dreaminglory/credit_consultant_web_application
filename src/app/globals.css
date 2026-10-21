@@ -42,7 +42,7 @@
   --container-site: 1240px;
 
   /* Header switches from burger to full navigation here (NAV-6). */
-  --breakpoint-nav: 1240px;
+  --breakpoint-nav: 1280px;
 
   --animate-drift: drift 24s ease-in-out infinite alternate;
 

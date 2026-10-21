@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/config/site";
 import { cn } from "@/lib/cn";
+import { LogoMark } from "@/components/brand/Logo";
 
 type WordmarkProps = {
   /** Light text for dark surfaces (footer). */
@@ -11,27 +12,30 @@ type WordmarkProps = {
 };
 
 /**
- * Text wordmark until a logo is chosen (O-13): firm name over her name, the D-2 lockup.
- * Swap the body of this component for the SVG logo later; callers do not change.
+ * Logo lockup (O-13, DR-7): EC seal beside the firm name over her name, the D-2 lockup.
+ * The link's accessible name is its text, so the mark stays decorative.
  */
 export function Wordmark({ tone = "dark", href, className }: WordmarkProps) {
   const body = (
     <>
-      <span className="font-head text-[22px] leading-none font-extrabold tracking-[-0.03em]">
-        Extra<span className={tone === "dark" ? "text-sea" : "text-gold"}>Consult</span>
-      </span>
-      <span
-        className={cn(
-          "mt-1 hidden font-mono whitespace-nowrap text-[11px] leading-none font-medium tracking-[0.06em] uppercase sm:block",
-          tone === "dark" ? "text-muted" : "text-haze",
-        )}
-      >
-        {site.person.name}
+      <LogoMark tone={tone === "dark" ? "light" : "dark"} className="size-10 shrink-0" />
+      <span className="grid">
+        <span className="font-head text-[22px] leading-none font-extrabold tracking-[-0.03em]">
+          Extra<span className={tone === "dark" ? "text-sea" : "text-gold"}>Consult</span>
+        </span>
+        <span
+          className={cn(
+            "mt-1 hidden font-mono whitespace-nowrap text-[11px] leading-none font-medium tracking-[0.06em] uppercase sm:block",
+            tone === "dark" ? "text-muted" : "text-haze",
+          )}
+        >
+          {site.person.name}
+        </span>
       </span>
     </>
   );
   // min-h keeps the header link a 44px tap target on phones, where the subtitle is hidden.
-  const classes = cn("grid min-h-11 content-center no-underline", className);
+  const classes = cn("flex min-h-11 items-center gap-2.5 no-underline", className);
   return href ? (
     <Link href={href} className={classes} translate="no">
       {body}
