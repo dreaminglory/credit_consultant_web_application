@@ -90,7 +90,7 @@ category pills + one-open accordion + hash links + FAQPage JSON-LD. Lazy hydrati
 ### M5 — Calculators  `feat/calculators`  — FR-12…17, FR-21…22, B-12, B-16, B-23, T3  — built 2026-10-16 (Excel reference `docs/calculators-reference.xml` matches all 89 checks; example values are O-15; BNB limits checked 2026-10-16; Lighthouse and Workers-preview check pending)
 Pure functions + Vitest against a reference spreadsheet (to the cent), embeddable
 calculator component, hub with tabs on Home, `/kalkulatori` overview and 6 T3 pages,
-disclaimer everywhere. FR-18…20 stay hidden until O-12.
+disclaimer everywhere. FR-18…20 stay hidden until O-12 (built on `feat/fee-calculators`: tariffs in `src/config/tariffs.ts`, maths in `src/lib/calc/fees.ts`, dev-only pages).
 
 ### M6 — Consultation pipeline  `feat/lead`  — FR-1…11, B-17, T5  — built 2026-10-16 (tested with Turnstile test keys + dry run under `next start`; live Resend/Sheet test and Workers-preview check pending owner accounts)
 Shared Zod schema, compact (Home, loan pages) and full (`/konsultacia`) forms, UTM/gclid/fbclid

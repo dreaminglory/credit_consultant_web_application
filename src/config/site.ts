@@ -1,4 +1,7 @@
 import { pending, type MaybePending } from "./pending";
+import { tariffs } from "./tariffs";
+
+const officeCityTaxPct = tariffs.transferTax.municipalities[0].ratePct;
 
 /**
  * Single source of truth for contacts, registration data, banks, navigation and loans (TR-11).
@@ -301,7 +304,7 @@ export const site = {
   },
 
   /**
-   * Example starting values of the calculators (FR-12…17). Rates are neutral examples shown as
+   * Example starting values of the calculators (FR-12…20). Rates are neutral examples shown as
    * „примерна“, not offers; fees default to 0 so nothing is invented. Owner confirms: O-15.
    */
   calculatorDefaultsStatus: pending(
@@ -327,6 +330,15 @@ export const site = {
       upfrontFeePct: 0,
       monthlyFee: 0,
       annualInsurance: 0,
+    },
+    // Fee calculators (FR-18…20): the tax rate starts at the office city's (tariffs.ts).
+    "taksi-pri-pokupka": { price: 150000, taxAssessment: 0, transferTaxPct: officeCityTaxPct },
+    "notarialni-taksi-ipoteka": { loanAmount: 120000 },
+    "cena-na-imota": {
+      price: 150000,
+      downPayment: 30000,
+      transferTaxPct: officeCityTaxPct,
+      taxAssessment: 0,
     },
   },
 

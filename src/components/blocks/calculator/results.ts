@@ -13,6 +13,14 @@ import {
   type MonthlyPaymentInput,
   type RefinanceInput,
 } from "@/lib/calc/calculators";
+import {
+  mortgageFees,
+  propertyCost,
+  purchaseFees,
+  type MortgageFeesInput,
+  type NotaryCost,
+  type PurchaseFeesInput,
+} from "@/lib/calc/fees";
 import { formatEur, formatPercent } from "@/lib/calc/input";
 
 export type CalculatorValues = Record<string, number>;
@@ -103,5 +111,41 @@ export function calculatorOutput(
         ],
       };
     }
+    case "taksi-pri-pokupka": {
+      const r = purchaseFees(values as PurchaseFeesInput);
+      return { headline: formatEur(r.total), rows: feeRows(r, true) };
+    }
+    case "notarialni-taksi-ipoteka": {
+      const r = mortgageFees(values as MortgageFeesInput);
+      return { headline: formatEur(r.total), rows: feeRows(r, false) };
+    }
+    case "cena-na-imota": {
+      const r = propertyCost({
+        price: values.price!,
+        downPayment: values.downPayment!,
+        taxAssessment: values.taxAssessment!,
+        transferTaxPct: values.transferTaxPct!,
+        ltvMax: site.limits.bnb.ltvMax,
+      });
+      return {
+        headline: formatEur(r.cashNeeded, false),
+        rows: [
+          row("downPayment", formatEur(r.downPayment, false)),
+          row("purchaseFees", formatEur(r.purchaseFees)),
+          row("mortgageFees", formatEur(r.mortgageFees)),
+          row("loanAmount", formatEur(r.loanAmount, false)),
+        ],
+        note: r.exceedsLtv ? labels.exceedsLtv : undefined,
+      };
+    }
+  }
+
+  function feeRows(r: NotaryCost & { transferTax?: number }, withTax: boolean) {
+    return [
+      row("notaryFee", formatEur(r.notaryFee)),
+      row("notaryVat", formatEur(r.notaryVat)),
+      row("registryFee", formatEur(r.registryFee)),
+      ...(withTax ? [row("transferTax", formatEur(r.transferTax ?? 0))] : []),
+    ];
   }
 }

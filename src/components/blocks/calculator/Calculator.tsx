@@ -2,8 +2,14 @@
 
 import { useId, useState } from "react";
 import { site } from "@/config/site";
-import { calculatorCopy, calculatorUi, type LiveCalculatorSlug } from "@/content/calculators";
+import {
+  calculatorCopy,
+  calculatorUi,
+  type FieldPresets,
+  type LiveCalculatorSlug,
+} from "@/content/calculators";
 import { ButtonArrow, ButtonLink } from "@/components/ui/Button";
+import { SelectField } from "@/components/ui/Field";
 import { Label } from "@/components/ui/Label";
 import { Mesh } from "@/components/ui/Mesh";
 import { NumberField } from "@/components/ui/NumberField";
@@ -17,6 +23,8 @@ type CalculatorProps = {
   ctaHref: string;
   className?: string;
 };
+
+const OTHER = "other";
 
 const mapValues = <T, U>(record: Record<string, T>, fn: (value: T) => U) =>
   Object.fromEntries(Object.entries(record).map(([key, value]) => [key, fn(value)]));
@@ -38,9 +46,32 @@ export function Calculator({ slug, ctaHref, className }: CalculatorProps) {
     mapValues(defaults, formatInput),
   );
 
+  // Chosen preset per field with presets (FR-18 municipality); OTHER once the visitor types.
+  const [presetIds, setPresetIds] = useState<Record<string, string>>(() =>
+    Object.fromEntries(
+      copy.fields.flatMap((field) =>
+        field.presets
+          ? [
+              [
+                field.key,
+                field.presets.options.find((o) => o.value === defaults[field.key])?.id ?? OTHER,
+              ],
+            ]
+          : [],
+      ),
+    ),
+  );
+
   const output = calculatorOutput(slug, values);
 
+  function choosePreset(key: string, id: string, presets: FieldPresets) {
+    setPresetIds((prev) => ({ ...prev, [key]: id }));
+    const option = presets.options.find((o) => o.id === id);
+    if (option) setFromSlider(key, option.value);
+  }
+
   function setText(key: string, text: string, min: number, max: number) {
+    if (key in presetIds) setPresetIds((prev) => ({ ...prev, [key]: OTHER }));
     setTexts((prev) => ({ ...prev, [key]: text }));
     const parsed = parseNumber(text);
     if (parsed !== null && parsed >= min && parsed <= max) {
@@ -78,7 +109,8 @@ export function Calculator({ slug, ctaHref, className }: CalculatorProps) {
           const parsed = parseNumber(text);
           const invalid = parsed === null || parsed < field.min || parsed > field.max;
           const value = values[field.key]!;
-          return (
+          const presets = field.presets;
+          const numberField = (
             <NumberField
               key={field.key}
               id={id}
@@ -107,6 +139,25 @@ export function Calculator({ slug, ctaHref, className }: CalculatorProps) {
                   : undefined
               }
             />
+          );
+          if (!presets) return numberField;
+          return (
+            <div key={field.key} className="grid gap-3">
+              <SelectField
+                id={`${id}-preset`}
+                label={presets.label}
+                value={presetIds[field.key]}
+                onChange={(event) => choosePreset(field.key, event.target.value, presets)}
+              >
+                {presets.options.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
+                ))}
+                <option value={OTHER}>{presets.other}</option>
+              </SelectField>
+              {numberField}
+            </div>
           );
         })}
       </form>

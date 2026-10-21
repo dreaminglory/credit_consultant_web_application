@@ -1,8 +1,11 @@
 import { site, type CalculatorSlug, type LoanSlug } from "@/config/site";
+import { tariffs } from "@/config/tariffs";
+import { toEur } from "@/lib/calc/fees";
+import { formatEur, formatInput } from "@/lib/calc/input";
 import { formatIsoDate } from "@/lib/date";
 
 /**
- * Bulgarian copy for the calculators (B-12, B-23, T3; FR-12…17). First person, feminine forms.
+ * Bulgarian copy for the calculators (B-12, B-23, T3; FR-12…20). First person, feminine forms.
  * Field ranges live here with the labels; example values come from `site.calculatorDefaults`,
  * BNB limits from `site.limits.bnb` (FR-21).
  */
@@ -20,6 +23,15 @@ export type CalculatorField<K extends string = string> = {
   step: number;
   /** Adds a range slider under the input (amounts and terms). */
   slider?: boolean;
+  /** A select above the input that fills in a known value (municipal tax rates, FR-18). */
+  presets?: FieldPresets;
+};
+
+export type FieldPresets = {
+  label: string;
+  options: { id: string; label: string; value: number }[];
+  /** Last option: the visitor types the value; also chosen when the field is edited. */
+  other: string;
 };
 
 type InputKey<S extends LiveCalculatorSlug> = keyof (typeof site.calculatorDefaults)[S] & string;
@@ -57,6 +69,44 @@ const rate = (label = "Примерна годишна лихва") =>
 
 /** Remaining terms of older loans can exceed today's 30-year limit. */
 const REMAINING_MAX = 35;
+
+// Fee calculators (FR-18…20): every amount comes from src/config/tariffs.ts.
+const { notary, registry, transferTax: transferTaxRange } = tariffs;
+const notaryMax = toEur(notary.maxBgn);
+/** "3 %", "0,1 %". */
+const pctText = (valuePct: number) => `${formatInput(valuePct)} %`;
+
+const transferTax = {
+  label: "Местен данък при придобиване",
+  unit: "%",
+  min: transferTaxRange.minPct,
+  max: transferTaxRange.maxPct,
+  step: 0.1,
+  presets: {
+    label: "Община",
+    options: transferTaxRange.municipalities.map((m) => ({
+      id: m.id,
+      label: `${m.name} — ${pctText(m.ratePct)}`,
+      value: m.ratePct,
+    })),
+    other: "Друга община — въведете ставката",
+  },
+} as const;
+const assessment = {
+  label: "Данъчна оценка, ако е по-висока от цената",
+  unit: "€",
+  min: 0,
+  max: 1_000_000,
+  step: 1000,
+} as const;
+const feeRows = {
+  notaryFee: "Нотариална такса",
+  notaryVat: `ДДС ${pct(notary.vatRate)}% върху нея`,
+  registryFee: "Такса за вписване",
+  transferTax: "Местен данък",
+};
+const feeSource = `Ориентировъчно, по публичните тарифи към ${formatIsoDate(notary.checked)} Точната сума изчислява нотариусът по документите на имота.`;
+const feeDisclaimer = `${feeSource} Не е оферта.`;
 
 const plainDisclaimer =
   "Ориентировъчно изчисление при равни месечни вноски, без такси и застраховки. Не е оферта.";
@@ -259,12 +309,99 @@ export const calculatorCopy: { [S in LiveCalculatorSlug]: CalculatorCopy<S> } = 
     related: ["mesechna-vnoska", "refinansirane", "tekushta-lihva"],
     loan: "potrebitelski",
   },
+
+  "taksi-pri-pokupka": {
+    tab: "Какви такси ще платя при покупка",
+    title: "Калкулатор за такси при покупка на имот",
+    intro:
+      "Въведете цената и общината — ще видите нотариалната такса, таксата за вписване и местния данък, които обикновено плаща купувачът.",
+    fields: [
+      { key: "price", ...amount("Цена на имота") },
+      { key: "transferTaxPct", ...transferTax },
+      { key: "taxAssessment", ...assessment },
+    ],
+    headline: "Такси и данък общо",
+    rows: feeRows,
+    cta: "Искам точна сметка",
+    disclaimer: feeDisclaimer,
+    explainer: [
+      `Нотариалната такса е по тарифата към Закона за нотариусите: с намаляващ процент според стойността, но не повече от ${formatEur(notaryMax)}. Върху нея се начислява ${pct(notary.vatRate)}% ДДС.`,
+      `Вписването в Имотния регистър струва ${pctText(registry.pct)} от стойността, но не по-малко от ${formatEur(registry.minEur)}.`,
+      `Местният данък се определя от всяка община — между ${pctText(transferTaxRange.minPct)} и ${pctText(transferTaxRange.maxPct)}. Всички такси се смятат върху по-високата сума от цената и данъчната оценка.`,
+      "Не са включени таксата за изготвяне на проект на нотариалния акт, удостоверенията, адвокатът и брокерът. Ще ви помогна да ги предвидите.",
+    ],
+    related: ["cena-na-imota", "notarialni-taksi-ipoteka", "kolko-moga-da-iztegla"],
+    loan: "ipotechni",
+  },
+
+  "notarialni-taksi-ipoteka": {
+    tab: "Колко струва нотариусът при ипотека",
+    title: "Нотариални такси при ипотечен кредит",
+    intro:
+      "Въведете размера на кредита — ще видите нотариалната такса за учредяване на ипотеката и таксата за вписването ѝ.",
+    fields: [{ key: "loanAmount", ...amount("Размер на кредита") }],
+    headline: "Нотариус и вписване на ипотеката",
+    rows: feeRows,
+    cta: "Искам точна сметка",
+    disclaimer: `${feeSource} Таксите на банката не са включени. Не е оферта.`,
+    explainer: [
+      "Ипотеката се учредява с нотариален акт. Таксата е по същата тарифа като при покупката, но се смята върху размера на кредита.",
+      `Вписването на ипотеката в Имотния регистър струва ${pctText(registry.pct)} от сумата, но не по-малко от ${formatEur(registry.minEur)}.`,
+      "При покупка с кредит обикновено се плащат два нотариални акта — за покупката и за ипотеката. Общата сума ще видите в „Колко ще ми струва имотът“.",
+      "Банките имат и свои такси — за оценка на имота, за разглеждане и за отпускане. Ще ги сравня за вас.",
+    ],
+    related: ["cena-na-imota", "taksi-pri-pokupka", "mesechna-vnoska"],
+    loan: "ipotechni",
+  },
+
+  "cena-na-imota": {
+    tab: "Колко пари ми трябват за имота",
+    title: "Колко ще ми струва имотът — самоучастие и такси",
+    intro:
+      "Въведете цената, самоучастието и общината — ще видите колко пари са ви нужни в началото, с всички такси по покупката и по ипотеката.",
+    fields: [
+      { key: "price", ...amount("Цена на имота") },
+      { key: "downPayment", ...amount("Самоучастие (собствени средства)") },
+      { key: "transferTaxPct", ...transferTax },
+      { key: "taxAssessment", ...assessment },
+    ],
+    headline: "Трябват ви в началото",
+    rows: {
+      downPayment: "Самоучастие",
+      purchaseFees: "Такси и данък при покупката",
+      mortgageFees: "Нотариус и вписване на ипотеката",
+      loanAmount: "Размер на кредита",
+      exceedsLtv: `Кредитът е над ${pct(ltvMax)}% от цената. По правилата на БНБ са нужни поне ${100 - pct(ltvMax)}% собствени средства — увеличете самоучастието.`,
+    },
+    cta: "Искам план за покупката",
+    disclaimer: `${feeSource} Без таксите на банката, оценката, адвокат и брокер. Не е оферта.`,
+    explainer: [
+      "Сумата в началото е самоучастието плюс таксите и данъка по покупката и нотариалните такси по ипотеката. Кредитът покрива само остатъка от цената.",
+      `Банката оценява имота сама. Кредитът може да е до ${pct(ltvMax)}% от стойността, затова самоучастието е поне ${100 - pct(ltvMax)}%.`,
+      "Предвидете и таксите на банката, оценката на имота и евентуално ремонт и обзавеждане. Ще направим пълния бюджет заедно.",
+    ],
+    related: ["taksi-pri-pokupka", "kolko-moga-da-iztegla", "mesechna-vnoska"],
+    loan: "ipotechni",
+  },
 };
 
+/** Every calculator that is built (has copy and defaults), released or not. */
 export const liveCalculatorSlugs = Object.keys(calculatorCopy) as LiveCalculatorSlug[];
 
 export function isLiveCalculator(slug: string): slug is LiveCalculatorSlug {
   return slug in calculatorCopy;
+}
+
+/**
+ * Built calculators that are public (`available` in config). The fee calculators stay out of
+ * the hub, menus and production build until the owner confirms the tariffs (O-12).
+ */
+export const releasedCalculatorSlugs = liveCalculatorSlugs.filter(
+  (slug) => site.calculators.find((calc) => calc.slug === slug)?.available,
+);
+
+export function isReleasedCalculator(slug: string): slug is LiveCalculatorSlug {
+  return (releasedCalculatorSlugs as string[]).includes(slug);
 }
 
 /** Shared labels of the calculator block and hub. */
@@ -276,6 +413,9 @@ export const calculatorUi = {
   months: (n: number) => `${n} ${n === 1 ? "месец" : "месеца"}`,
   never: "не се връщат",
   unknown: "—",
+  /** Dev-only banner on calculators that are built but not released (O-12). */
+  unreleased:
+    "Вътрешен преглед: тарифите очакват потвърждение от собственика или нотариус (O-12). Страницата не е публична.",
 };
 
 /** Home section (B-23, CONTENT.md §0) and the `/kalkulatori` overview (T4). */
@@ -290,7 +430,7 @@ export const calculatorHub = {
 
 export const calculatorsPage = {
   title: "Калкулатори за кредит",
-  intro: `${liveCalculatorSlugs.length} калкулатора, с които сами виждате вноската, възможностите си и реалната цена на кредита. Резултатите са ориентировъчни — точните условия ще ви покажа след безплатна консултация.`,
+  intro: `${releasedCalculatorSlugs.length} калкулатора, с които сами виждате вноската, възможностите си и реалната цена на кредита. Резултатите са ориентировъчни — точните условия ще ви покажа след безплатна консултация.`,
   allTitle: "Всички калкулатори",
   open: "Отворете",
   explainerTitle: "Как да разчетете резултата",

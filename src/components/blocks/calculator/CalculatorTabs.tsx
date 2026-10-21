@@ -7,7 +7,7 @@ import {
   calculatorCopy,
   calculatorHub,
   calculatorUi,
-  liveCalculatorSlugs,
+  releasedCalculatorSlugs,
   type LiveCalculatorSlug,
 } from "@/content/calculators";
 import { Icon } from "@/components/ui/Icon";
@@ -24,8 +24,8 @@ const panelId = (slug: string) => `${PREFIX}-panel-${slug}`;
  * `hidden`), so each calculator's example result is indexable.
  */
 export function CalculatorTabs({ ctaHref }: { ctaHref: string }) {
-  const [active, setActive] = useState<LiveCalculatorSlug>(liveCalculatorSlugs[0]!);
-  const { listRef, onKeyDown } = useRovingTabs(liveCalculatorSlugs, active, setActive, PREFIX);
+  const [active, setActive] = useState<LiveCalculatorSlug>(releasedCalculatorSlugs[0]!);
+  const { listRef, onKeyDown } = useRovingTabs(releasedCalculatorSlugs, active, setActive, PREFIX);
   const soon = site.calculators.filter((calc) => !calc.available);
 
   return (
@@ -38,7 +38,7 @@ export function CalculatorTabs({ ctaHref }: { ctaHref: string }) {
           onKeyDown={onKeyDown}
           className="-mx-5 flex gap-2 overflow-x-auto px-5 py-1 [scrollbar-width:none] lg:mx-0 lg:grid lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
         >
-          {liveCalculatorSlugs.map((slug) => {
+          {releasedCalculatorSlugs.map((slug) => {
             const selected = slug === active;
             return (
               <button
@@ -86,7 +86,7 @@ export function CalculatorTabs({ ctaHref }: { ctaHref: string }) {
       </div>
 
       <div>
-        {liveCalculatorSlugs.map((slug) => (
+        {releasedCalculatorSlugs.map((slug) => (
           <div
             key={slug}
             id={panelId(slug)}

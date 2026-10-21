@@ -326,9 +326,9 @@ All amounts in EUR, live results, disclaimer ("ориентировъчно, н�
 | FR-15 | Колко мога да изтегля според вноската | desired payment, term, rate → max loan | ✅ |
 | FR-16 | Каква лихва плащам в момента | balance, payment, remaining term → effective annual rate | ✅ |
 | FR-17 | Колко ще ми струва кредитът | amount, term, rate, fees, insurance → total cost, approx. APR | ✅ |
-| FR-18 | Такси при покупка на имот | price, municipality → notary, local tax, registry | after O-12 |
-| FR-19 | Нотариални такси при ипотека | loan amount → notary + registry | after O-12 |
-| FR-20 | Колко ще ми струва имотът | price, down payment, municipality → total cash needed | after O-12 |
+| FR-18 | Такси при покупка на имот | price, municipality → notary, local tax, registry | built, hidden until O-12 (dev only) |
+| FR-19 | Нотариални такси при ипотека | loan amount → notary + registry | built, hidden until O-12 (dev only) |
+| FR-20 | Колко ще ми струва имотът | price, down payment, municipality → total cash needed | built, hidden until O-12 (dev only) |
 - **FR-21** Math in pure, unit-tested functions; defaults/limits/tariffs in config with source + date.
 - **FR-22** Calculator UI from mockup v2 (tabs on overview; one calculator per page in T3).
 
@@ -470,7 +470,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | O-9 | **Confirm step durations** (drafts in CONTENT.md §2) and the total time | Draft ready |
 | O-10 | Working hours | Done 2026-10-17: Mon–Fri 09:00–19:00; call-back slots Всяко време · 9–12 · 12–14 · 14–19 ч. |
 | O-11 | **Plovdiv office address** | City known |
-| O-12 | Verified notary tariff, registry fees, municipal tax rates | Open |
+| O-12 | Verified notary tariff, registry fees, municipal tax rates | Values researched 2026-10-21, awaiting owner/notary confirmation — every value with source and date in `src/config/tariffs.ts`; Ruse rate (3 %) is from a press report only. Calculators FR-18…20 are built and visible only in `npm run dev`; release = set `available: true` in `site.calculators` |
 | O-13 | Choose a logo concept (§7.1) | Open |
 | O-14 | Legal texts: CreditMall templates and/or lawyer review | Drafts written 2026-10-19 (`src/content/legal.ts`, not CreditMall texts); pages show a "draft" notice until reviewed. Lawyer to check: CreditMall as recipient, remuneration wording, `ec-source` storage as necessary |
 | O-15 | Confirm the calculators' example starting values (amounts, terms, example rates; fees default to 0) — in `site.calculatorDefaults` | Draft from mockup v2 (2026-10-16) |

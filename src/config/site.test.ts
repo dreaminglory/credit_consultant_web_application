@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { isPending, pending } from "./pending";
 import { site } from "./site";
+import { tariffs } from "./tariffs";
 
 describe("pending", () => {
   it("marks values as pending with their open item", () => {
@@ -34,5 +35,33 @@ describe("site config", () => {
     const text = isPending(disclosure) ? disclosure.draft : disclosure;
     expect(text).toContain(site.legal.eik);
     expect(text).toContain(site.legal.bnbRegisterNo);
+  });
+});
+
+describe("tariffs (FR-18…21, O-12)", () => {
+  it("records a legal rate, a source and a check date for every municipality", () => {
+    const { minPct, maxPct, municipalities } = tariffs.transferTax;
+    expect(municipalities.map((m) => m.id)).toEqual([
+      "plovdiv",
+      "sofia",
+      "varna",
+      "burgas",
+      "stara-zagora",
+      "ruse",
+    ]);
+    for (const m of municipalities) {
+      expect(m.ratePct).toBeGreaterThanOrEqual(minPct);
+      expect(m.ratePct).toBeLessThanOrEqual(maxPct);
+      expect(m.source).toBeTruthy();
+      expect(m.url).toMatch(/^https:\/\//);
+      expect(m.checked).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
+  it("starts the fee calculators at the office city's rate", () => {
+    expect(site.calculatorDefaults["taksi-pri-pokupka"].transferTaxPct).toBe(
+      tariffs.transferTax.municipalities[0].ratePct,
+    );
+    expect(tariffs.transferTax.municipalities[0].name).toBe(site.office.city);
   });
 });

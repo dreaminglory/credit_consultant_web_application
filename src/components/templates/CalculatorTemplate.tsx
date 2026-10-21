@@ -8,13 +8,25 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Label } from "@/components/ui/Label";
 import { Section } from "@/components/ui/Section";
-import { calculatorCopy, calculatorsPage, type LiveCalculatorSlug } from "@/content/calculators";
+import {
+  calculatorCopy,
+  calculatorsPage,
+  calculatorUi,
+  type LiveCalculatorSlug,
+} from "@/content/calculators";
 
 /**
  * Calculator page (T3): hero → full calculator → how to read the result → related calculators
  * → the relevant loan → CTA band.
  */
-export function CalculatorTemplate({ slug }: { slug: LiveCalculatorSlug }) {
+export function CalculatorTemplate({
+  slug,
+  preview = false,
+}: {
+  slug: LiveCalculatorSlug;
+  /** Dev-only review of an unreleased calculator (O-12): shows a notice above the hero. */
+  preview?: boolean;
+}) {
   const copy = calculatorCopy[slug];
   const loan = site.loans.find((l) => l.slug === copy.loan)!;
 
@@ -29,6 +41,14 @@ export function CalculatorTemplate({ slug }: { slug: LiveCalculatorSlug }) {
 
       <Section tone="white" className="pt-10 md:pt-14">
         <Container>
+          {preview && (
+            <p
+              role="note"
+              className="mb-6 rounded-tile bg-gold px-5 py-3 text-[15px] font-semibold text-ink"
+            >
+              {calculatorUi.unreleased}
+            </p>
+          )}
           <Calculator slug={slug} ctaHref={`${site.consultation.href}?produkt=${loan.slug}`} />
         </Container>
       </Section>

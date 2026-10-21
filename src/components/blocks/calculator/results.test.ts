@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { site } from "@/config/site";
-import { calculatorCopy, liveCalculatorSlugs } from "@/content/calculators";
+import {
+  calculatorCopy,
+  isLiveCalculator,
+  liveCalculatorSlugs,
+  releasedCalculatorSlugs,
+} from "@/content/calculators";
 import { calculatorOutput } from "./results";
 
 const plain = (text: string) => text.replace(/[  ]/g, " ");
@@ -52,5 +57,43 @@ describe("calculatorOutput", () => {
     expect(
       calculatorOutput("tekushta-lihva", { balance: 100000, payment: 200, years: 30 }).note,
     ).toBeTruthy();
+  });
+});
+
+describe("fee calculators (FR-18…20)", () => {
+  it("formats the purchase fees for 150 000 € in Plovdiv", () => {
+    const output = calculatorOutput("taksi-pri-pokupka", {
+      price: 150000,
+      taxAssessment: 0,
+      transferTaxPct: 3,
+    });
+    expect(plain(output.headline)).toBe("5335,49 €");
+    expect(output.rows.map((r) => plain(r.value))).toEqual([
+      "571,24 €",
+      "114,25 €",
+      "150,00 €",
+      "4500,00 €",
+    ]);
+  });
+
+  it("formats the mortgage fees without a transfer tax row", () => {
+    const output = calculatorOutput("notarialni-taksi-ipoteka", { loanAmount: 120000 });
+    expect(plain(output.headline)).toBe("733,49 €");
+    expect(output.rows).toHaveLength(3);
+  });
+
+  it("warns when the down payment is below the BNB minimum", () => {
+    const values = { price: 150000, taxAssessment: 0, transferTaxPct: 3 };
+    expect(
+      calculatorOutput("cena-na-imota", { ...values, downPayment: 30000 }).note,
+    ).toBeUndefined();
+    expect(calculatorOutput("cena-na-imota", { ...values, downPayment: 10000 }).note).toBeTruthy();
+  });
+
+  it("stays unreleased until the tariffs are confirmed (O-12)", () => {
+    for (const slug of ["taksi-pri-pokupka", "notarialni-taksi-ipoteka", "cena-na-imota"]) {
+      expect(isLiveCalculator(slug)).toBe(true);
+      expect(releasedCalculatorSlugs).not.toContain(slug);
+    }
   });
 });
