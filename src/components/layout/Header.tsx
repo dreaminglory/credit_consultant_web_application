@@ -16,7 +16,7 @@ import { MobileMenu } from "./MobileMenu";
 import { useNavMenus, useScrollSpy, type MenuId } from "./useNavMenus";
 
 const itemClass =
-  "inline-flex min-h-11 items-center gap-1 rounded-full px-3.5 text-[15px] font-medium whitespace-nowrap no-underline transition-colors duration-150 hover:bg-ink/5";
+  "inline-flex min-h-11 items-center gap-1 rounded-full px-2.5 text-[15px] font-medium whitespace-nowrap no-underline transition-colors duration-150 hover:bg-ink/5";
 
 type HeaderProps = {
   /** Server-rendered panel content, passed in so it stays out of the client bundle. */
