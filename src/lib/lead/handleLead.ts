@@ -102,8 +102,8 @@ export async function handleLead(
     deps.ip,
     requestId,
   );
-  if (!human) {
-    log({ requestId, type: "turnstile_failed" });
+  if (!human.ok) {
+    log({ requestId, type: `turnstile_failed:${human.reason}` });
     return fail(403, "verification");
   }
 

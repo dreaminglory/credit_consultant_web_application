@@ -72,6 +72,22 @@ export async function appendSheetRow(
   if (!result?.ok) throw new DeliveryError("sheet_rejected");
 }
 
+/**
+ * Result of the Turnstile check. `reason` says why it failed — "no_token", "http_<status>",
+ * "unreachable" or Cloudflare's error codes (e.g. "invalid-input-secret"). Safe to log: it never
+ * contains the token or anything the visitor typed.
+ */
+export type TurnstileResult = { ok: true } | { ok: false; reason: string };
+
+/** Keeps only Cloudflare's documented code shape (lower-case words and dashes). */
+function errorCodes(value: unknown): string {
+  const codes = Array.isArray(value) ? value : [];
+  const safe = codes.filter(
+    (code): code is string => typeof code === "string" && /^[a-z-]{1,40}$/.test(code),
+  );
+  return safe.slice(0, 3).join(",") || "rejected";
+}
+
 /** Cloudflare Turnstile server-side check (FR-4). */
 export async function verifyTurnstile(
   fetchFn: Fetch,
@@ -79,8 +95,8 @@ export async function verifyTurnstile(
   token: string | undefined,
   ip: string | null,
   idempotencyKey: string,
-): Promise<boolean> {
-  if (!token) return false;
+): Promise<TurnstileResult> {
+  if (!token) return { ok: false, reason: "no_token" };
   const body = new FormData();
   body.append("secret", secret);
   body.append("response", token);
@@ -92,10 +108,12 @@ export async function verifyTurnstile(
       body,
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (!response.ok) return false;
-    const result = (await response.json()) as { success?: boolean };
-    return result.success === true;
+    if (!response.ok) return { ok: false, reason: `http_${response.status}` };
+    const result = (await response.json()) as { success?: boolean; "error-codes"?: unknown };
+    return result.success === true
+      ? { ok: true }
+      : { ok: false, reason: errorCodes(result["error-codes"]) };
   } catch {
-    return false;
+    return { ok: false, reason: "unreachable" };
   }
 }

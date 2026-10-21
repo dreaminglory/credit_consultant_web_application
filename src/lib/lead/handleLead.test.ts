@@ -143,6 +143,29 @@ describe("handleLead (A-10, FR-10)", () => {
     expect(calls).toHaveLength(1);
   });
 
+  it("logs why Turnstile rejected the request, without personal data", async () => {
+    const fetchFn = vi.fn(async () =>
+      Response.json({ success: false, "error-codes": ["invalid-input-secret", "<script>"] }),
+    ) as unknown as typeof fetch;
+    const { deps: d, logs } = deps({ fetch: fetchFn });
+    expect((await handleLead(body, d)).body).toMatchObject({ error: "verification" });
+    expect(logs).toContain(
+      JSON.stringify({ requestId: "req-1", type: "turnstile_failed:invalid-input-secret" }),
+    );
+    expectNoPii(logs);
+  });
+
+  it("logs a missing token and an unreachable siteverify", async () => {
+    const noToken = deps();
+    await handleLead({ ...body, turnstileToken: undefined }, noToken.deps);
+    expect(noToken.logs.join()).toContain("turnstile_failed:no_token");
+
+    const { fetchFn } = fakeFetch({ turnstile: "throw" });
+    const down = deps({ fetch: fetchFn });
+    await handleLead(body, down.deps);
+    expect(down.logs.join()).toContain("turnstile_failed:unreachable");
+  });
+
   it("refuses without a Turnstile secret", async () => {
     const { deps: d } = deps({ env: { ...env, TURNSTILE_SECRET_KEY: undefined } });
     expect((await handleLead(body, d)).body).toMatchObject({ error: "config" });
