@@ -17,10 +17,10 @@ export function AboutMe() {
       <Container className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <Reveal>
           <Picture
-            name="desislava-teal-suit-notebook"
-            alt={`${site.person.name} с бележник в офис сграда`}
-            width={799}
-            height={1201}
+            name="desislava-phone-call"
+            alt={`${site.person.name} разговаря по телефона`}
+            width={800}
+            height={1200}
             sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 100vw"
             className="mx-auto aspect-[4/5] max-w-[480px] rounded-card object-[50%_20%]"
           />
