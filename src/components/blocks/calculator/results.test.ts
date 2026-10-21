@@ -90,10 +90,10 @@ describe("fee calculators (FR-18…20)", () => {
     expect(calculatorOutput("cena-na-imota", { ...values, downPayment: 10000 }).note).toBeTruthy();
   });
 
-  it("stays unreleased until the tariffs are confirmed (O-12)", () => {
+  it("releases the fee calculators once the tariffs are confirmed (O-12)", () => {
     for (const slug of ["taksi-pri-pokupka", "notarialni-taksi-ipoteka", "cena-na-imota"]) {
       expect(isLiveCalculator(slug)).toBe(true);
-      expect(releasedCalculatorSlugs).not.toContain(slug);
+      expect(releasedCalculatorSlugs).toContain(slug);
     }
   });
 });

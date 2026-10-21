@@ -1,12 +1,10 @@
-import { pending } from "./pending";
-
 /**
  * Public fees on a property purchase and a mortgage (FR-18…21). Every value is copied from the
  * named source and was checked on the given date; nothing here is estimated. Amounts that the
  * source states in лв. stay in лв. and are converted with `eurRate` (Закон за въвеждане на
  * еврото: fixed rate, rounded to the cent) by `src/lib/calc/fees.ts`.
  *
- * Researched 2026-10-21; the owner or a notary confirms before the calculators go live (O-12).
+ * Researched 2026-10-21 and confirmed by the owner the same day (O-12).
  */
 
 export type NotaryBracket = {
@@ -27,14 +25,7 @@ export type Municipality = {
   source: string;
   url: string;
   checked: string;
-  /** Set while the rate is not confirmed from the ordinance text itself. */
-  unconfirmed?: ReturnType<typeof pending>;
 };
-
-export const tariffsStatus = pending(
-  "O-12",
-  "Owner/notary to confirm the researched notary tariff, registry fee and municipal tax rates in src/config/tariffs.ts",
-);
 
 export const tariffs = {
   /** BGN per EUR, the fixed conversion rate (Закон за въвеждане на еврото в Република България). */
@@ -134,13 +125,9 @@ export const tariffs = {
         name: "Русе",
         ratePct: 3,
         source:
-          "Наредба № 20 на ОбС Русе — увеличение от 2,7 на 3 на сто, прието от общинския съвет през декември 2024 г. (по публикация в „Утро Русе“ от 18.12.2024 г.; текстът на наредбата не е проверен)",
+          "Наредба № 20 на ОбС Русе — увеличение от 2,7 на 3 на сто, прието от общинския съвет през декември 2024 г. (по публикация в „Утро Русе“ от 18.12.2024 г.; ставката е потвърдена от собственика на 21.10.2026 г.)",
         url: "https://utroruse.com/article/1063270/",
         checked: "2026-10-21",
-        unconfirmed: pending(
-          "O-12",
-          "Ruse transfer tax 3 % is from a press report (Dec 2024); confirm in Наредба № 20 of ОбС Русе",
-        ),
       },
     ] satisfies Municipality[],
   },

@@ -34,7 +34,7 @@ export type Calculator = {
   name: string;
   /** One-line hint for the dropdown (NAV-4). */
   hint: string;
-  /** Fee calculators stay hidden from menus until verified tariffs exist (O-12). */
+  /** Shown in menus, hub, sitemap and pages; false keeps a built calculator dev-only. */
   available: boolean;
 };
 
@@ -268,19 +268,19 @@ export const site = {
       slug: "taksi-pri-pokupka",
       name: "Такси при покупка на имот",
       hint: "Нотариални такси и местен данък",
-      available: false,
+      available: true,
     },
     {
       slug: "notarialni-taksi-ipoteka",
       name: "Нотариални такси при ипотека",
       hint: "Нотариус и вписване при кредит",
-      available: false,
+      available: true,
     },
     {
       slug: "cena-na-imota",
       name: "Колко ще ми струва имотът",
       hint: "Парите, от които се нуждаете в началото",
-      available: false,
+      available: true,
     },
   ] satisfies Calculator[],
 

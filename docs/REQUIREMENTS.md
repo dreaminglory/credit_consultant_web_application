@@ -74,7 +74,7 @@ Reviewed 2026-10-15. Comparison by area (full table in BUSINESS_CONTEXT §9):
   | ID | Status |
   |---|---|
   | BM-1 | ✅ Portrait in hero + about me; photos with clients wait for O-1 |
-  | BM-2 | ✅ 6 calculators on Home hub + own pages (3 fee calculators after O-12) |
+  | BM-2 | ✅ 6 calculators on Home hub + own pages + 3 fee calculators (FR-18…20) |
   | BM-3 | ✅ Compact form on Home, full form page, Viber/WhatsApp, mobile action bar |
   | BM-4 | ⏳ Bank logos live (permission O-4); photo testimonials need O-1 |
   | BM-5 | ✅ Self-drawing journey, durations, total time, product variants |
@@ -110,9 +110,9 @@ on **phones** from ads; some on tablets and desktops. Not targeted: real estate 
 | `/kalkulatori/spored-vnoskata` | How much can I borrow (by desired payment) | T3 |
 | `/kalkulatori/tekushta-lihva` | What rate am I paying now | T3 |
 | `/kalkulatori/cena-na-kredita` | Total cost of the loan | T3 |
-| `/kalkulatori/taksi-pri-pokupka` | Notary + municipal fees on purchase — after O-12 | T3 |
-| `/kalkulatori/notarialni-taksi-ipoteka` | Notary fees for a mortgage — after O-12 | T3 |
-| `/kalkulatori/cena-na-imota` | Total cost of the property — after O-12 | T3 |
+| `/kalkulatori/taksi-pri-pokupka` | Notary + municipal fees on purchase | T3 |
+| `/kalkulatori/notarialni-taksi-ipoteka` | Notary fees for a mortgage | T3 |
+| `/kalkulatori/cena-na-imota` | Total cost of the property | T3 |
 | `/konsultacia` | Free consultation form (full variant) | T5 |
 | `/blagodarim` | Thank-you page (ad conversion target, `noindex`) | T5 |
 | `/kontakti` | Contacts + map | T4 |
@@ -326,9 +326,9 @@ All amounts in EUR, live results, disclaimer ("ориентировъчно, н�
 | FR-15 | Колко мога да изтегля според вноската | desired payment, term, rate → max loan | ✅ |
 | FR-16 | Каква лихва плащам в момента | balance, payment, remaining term → effective annual rate | ✅ |
 | FR-17 | Колко ще ми струва кредитът | amount, term, rate, fees, insurance → total cost, approx. APR | ✅ |
-| FR-18 | Такси при покупка на имот | price, municipality → notary, local tax, registry | built, hidden until O-12 (dev only) |
-| FR-19 | Нотариални такси при ипотека | loan amount → notary + registry | built, hidden until O-12 (dev only) |
-| FR-20 | Колко ще ми струва имотът | price, down payment, municipality → total cash needed | built, hidden until O-12 (dev only) |
+| FR-18 | Такси при покупка на имот | price, municipality → notary, local tax, registry | ✅ |
+| FR-19 | Нотариални такси при ипотека | loan amount → notary + registry | ✅ |
+| FR-20 | Колко ще ми струва имотът | price, down payment, municipality → total cash needed | ✅ |
 - **FR-21** Math in pure, unit-tested functions; defaults/limits/tariffs in config with source + date.
 - **FR-22** Calculator UI from mockup v2 (tabs on overview; one calculator per page in T3).
 
@@ -470,7 +470,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | O-9 | **Confirm step durations** (drafts in CONTENT.md §2) and the total time | Draft ready |
 | O-10 | Working hours | Done 2026-10-17: Mon–Fri 09:00–19:00; call-back slots Всяко време · 9–12 · 12–14 · 14–19 ч. |
 | O-11 | **Plovdiv office address** | City known |
-| O-12 | Verified notary tariff, registry fees, municipal tax rates | Values researched 2026-10-21, awaiting owner/notary confirmation — every value with source and date in `src/config/tariffs.ts`; Ruse rate (3 %) is from a press report only. Calculators FR-18…20 are built and visible only in `npm run dev`; release = set `available: true` in `site.calculators` |
+| O-12 | Verified notary tariff, registry fees, municipal tax rates | Done 2026-10-21: researched values (source + date each, `src/config/tariffs.ts`) confirmed by the owner; FR-18…20 released |
 | O-13 | Choose a logo concept (§7.1) | Open |
 | O-14 | Legal texts: CreditMall templates and/or lawyer review | Drafts written 2026-10-19 (`src/content/legal.ts`, not CreditMall texts); pages show a "draft" notice until reviewed. Lawyer to check: CreditMall as recipient, remuneration wording, `ec-source` storage as necessary |
 | O-15 | Confirm the calculators' example starting values (amounts, terms, example rates; fees default to 0) — in `site.calculatorDefaults` | Draft from mockup v2 (2026-10-16) |
@@ -483,7 +483,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 4. **Block library** — B-03 … B-24 with placeholder content.
 5. **Templates + pages** — Home (flagship) first, then loan pages, calculator pages, contact,
    form page, legal pages.
-6. **Calculators** FR-12 … FR-17 (FR-18 … FR-20 after O-12).
+6. **Calculators** FR-12 … FR-17 and FR-18 … FR-20.
 7. **Consultation pipeline** — form → email + Sheet + auto-reply, tested end-to-end.
 8. **Compliance & tracking** — legal pages, consent banner, pixels, structured data.
 9. **Motion & polish pass** — tune animations on real pages, all breakpoints.
