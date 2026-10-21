@@ -424,13 +424,21 @@ export const calculatorHub = {
   label: "Калкулатори",
   title: "Сметнете сами — после ще го направим заедно",
   tabsLabel: "Калкулатори",
+  /** Home shows a selection; the rest are one click away on /kalkulatori. */
+  homeSlugs: [
+    "mesechna-vnoska",
+    "kolko-moga-da-iztegla",
+    "refinansirane",
+    "taksi-pri-pokupka",
+  ] satisfies LiveCalculatorSlug[],
+  allLink: `Вижте всички ${releasedCalculatorSlugs.length} калкулатора`,
   soonTitle: "Скоро",
   soonNote: "След проверка на тарифите",
 };
 
 export const calculatorsPage = {
   title: "Калкулатори за кредит",
-  intro: `${releasedCalculatorSlugs.length} калкулатора, с които сами виждате вноската, възможностите си и реалната цена на кредита. Резултатите са ориентировъчни — точните условия ще ви покажа след безплатна консултация.`,
+  intro: `${releasedCalculatorSlugs.length} калкулатора, с които сами виждате вноската, възможностите си и реалната цена на кредита. Резултатите са ориентировъчни — точните условия ще ви покажа по време на консултацията.`,
   allTitle: "Всички калкулатори",
   open: "Отворете",
   explainerTitle: "Как да разчетете резултата",

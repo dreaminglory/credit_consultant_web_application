@@ -23,9 +23,16 @@ const panelId = (slug: string) => `${PREFIX}-panel-${slug}`;
  * scrolling row on phones and tablets. Every panel is in the server HTML (inactive ones are
  * `hidden`), so each calculator's example result is indexable.
  */
-export function CalculatorTabs({ ctaHref }: { ctaHref: string }) {
-  const [active, setActive] = useState<LiveCalculatorSlug>(releasedCalculatorSlugs[0]!);
-  const { listRef, onKeyDown } = useRovingTabs(releasedCalculatorSlugs, active, setActive, PREFIX);
+export function CalculatorTabs({
+  ctaHref,
+  slugs = releasedCalculatorSlugs,
+}: {
+  ctaHref: string;
+  /** Calculators to show as tabs, in order; defaults to every released one. */
+  slugs?: LiveCalculatorSlug[];
+}) {
+  const [active, setActive] = useState<LiveCalculatorSlug>(slugs[0]!);
+  const { listRef, onKeyDown } = useRovingTabs(slugs, active, setActive, PREFIX);
   const soon = site.calculators.filter((calc) => !calc.available);
 
   return (
@@ -38,7 +45,7 @@ export function CalculatorTabs({ ctaHref }: { ctaHref: string }) {
           onKeyDown={onKeyDown}
           className="-mx-5 flex gap-2 overflow-x-auto px-5 py-1 [scrollbar-width:none] lg:mx-0 lg:grid lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
         >
-          {releasedCalculatorSlugs.map((slug) => {
+          {slugs.map((slug) => {
             const selected = slug === active;
             return (
               <button
@@ -86,7 +93,7 @@ export function CalculatorTabs({ ctaHref }: { ctaHref: string }) {
       </div>
 
       <div>
-        {releasedCalculatorSlugs.map((slug) => (
+        {slugs.map((slug) => (
           <div
             key={slug}
             id={panelId(slug)}
