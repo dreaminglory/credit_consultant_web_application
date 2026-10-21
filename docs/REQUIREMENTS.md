@@ -471,7 +471,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 | O-10 | Working hours | Done 2026-10-17: Mon–Fri 09:00–19:00; call-back slots Всяко време · 9–12 · 12–14 · 14–19 ч. |
 | O-11 | **Plovdiv office address** | City known |
 | O-12 | Verified notary tariff, registry fees, municipal tax rates | Done 2026-10-21: researched values (source + date each, `src/config/tariffs.ts`) confirmed by the owner; FR-18…20 released |
-| O-13 | Choose a logo concept (§7.1) | Done 2026-10-21: **EC seal** (gold on petrol). Mark in `src/components/brand/Logo.tsx`; favicons and `public/brand/*` from `npm run images brand`. Full lockup as outlined SVG for print still to do |
+| O-13 | Choose a logo concept (§7.1) | Done 2026-10-21: **EC monogram with a rising arrow** (owner's concept, redrawn as SVG in petrol + gold; replaced the EC seal the same day). Mark in `src/components/brand/Logo.tsx`; favicons and `public/brand/*` from `npm run images brand`. Full lockup as outlined SVG for print still to do |
 | O-14 | Legal texts: CreditMall templates and/or lawyer review | Drafts written 2026-10-19 (`src/content/legal.ts`, not CreditMall texts); pages show a "draft" notice until reviewed. Lawyer to check: CreditMall as recipient, remuneration wording, `ec-source` storage as necessary |
 | O-15 | Confirm the calculators' example starting values (amounts, terms, example rates; fees default to 0) — in `site.calculatorDefaults` | Done 2026-10-21: owner accepted the mockup v2 values as final |
 | O-16 | Approve the loan page copy (what it is, who it is for, requirements) and the business/consumer FAQ answers — CONTENT.md §5–6 | Done 2026-10-19: approved as drafted; may be revised later |

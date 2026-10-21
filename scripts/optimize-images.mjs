@@ -102,17 +102,31 @@ async function banksTask() {
   }
 }
 
-// Brand mark (O-13, DR-7): the EC seal. Paths mirror `markPaths` in src/components/brand/Logo.tsx.
-// Writes the favicon set Next serves from src/app (icon.svg, favicon.ico, apple-icon.png) and
-// standalone mark files in public/brand for print, social profiles and partners.
+// Brand mark (O-13, DR-7): EC monogram with a rising arrow. Paths mirror `markPaths` in
+// src/components/brand/Logo.tsx. Writes the favicon set Next serves from src/app (icon.svg,
+// favicon.ico, apple-icon.png) and standalone mark files in public/brand for print and partners.
 const PETROL = "#0F3B3E";
 const GOLD = "#C59A3D";
-const brandSvg = ({ bg = PETROL, fg = GOLD, size = 48 } = {}) =>
+const PAPER = "#F5F3EE";
+const MARK = {
+  eTop: "M4 6H19V12H10.5V19H16V25H4Z",
+  eBottom: "M4 27H10.5V36H19V42H4Z",
+  c: "M37.75 18.8A9.5 9.5 0 1 0 41.2 31.75",
+  arrow: "M17 37 25 29 30.5 33.5 38.5 20.5",
+  head: "M43.5 12.5 42.5 23.3 34.6 18.2Z",
+};
+/** `bg` draws a rounded tile behind the mark; `main` colours the lower E and the C. */
+const brandSvg = ({ bg = null, main = PETROL, accent = GOLD, size = 48 } = {}) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="${size}" height="${size}">` +
-  (bg ? `<rect width="48" height="48" rx="13" fill="${bg}"/>` : "") +
-  `<path fill="${fg}" d="M9 12H21V16.5H13.5V21.75H20V26.25H13.5V31.5H39V36H9Z"/>` +
-  `<path fill="none" stroke="${fg}" stroke-width="4" stroke-linecap="round" d="M35.7 16.5A6.5 6.5 0 1 0 35.7 26.5"/>` +
-  `</svg>`;
+  (bg ? `<rect width="48" height="48" rx="11" fill="${bg}"/>` : "") +
+  `<mask id="k" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">` +
+  `<rect width="48" height="48" fill="#fff"/>` +
+  `<path d="${MARK.arrow}" fill="none" stroke="#000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>` +
+  `<path d="${MARK.head}" fill="#000" stroke="#000" stroke-width="4" stroke-linejoin="round"/></mask>` +
+  `<g mask="url(#k)"><path fill="${accent}" d="${MARK.eTop}"/><path fill="${main}" d="${MARK.eBottom}"/>` +
+  `<path fill="none" stroke="${main}" stroke-width="6" d="${MARK.c}"/></g>` +
+  `<path fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="${MARK.arrow}"/>` +
+  `<path fill="${accent}" d="${MARK.head}"/></svg>`;
 
 const png = (svg, size) =>
   sharp(Buffer.from(svg), { density: 72 * (size / 48) * 2 })
@@ -143,23 +157,27 @@ function ico(images) {
 async function brandTask() {
   const app = (...p) => path.join(root, "src", "app", ...p);
   await mkdir(out("brand"), { recursive: true });
-  const seal = brandSvg();
-  await writeFile(app("icon.svg"), seal);
+  // Browser tabs: the mark on a paper tile, so the petrol parts also show on dark tab bars.
+  const tile = brandSvg({ bg: PAPER });
+  await writeFile(app("icon.svg"), tile);
   await writeFile(
     app("favicon.ico"),
     ico(
-      await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await png(seal, size) }))),
+      await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await png(tile, size) }))),
     ),
   );
-  // Apple touch icons get no transparency: full-bleed petrol, iOS rounds the corners itself.
-  await sharp({ create: { width: 180, height: 180, channels: 3, background: PETROL } })
-    .composite([{ input: await png(brandSvg({ bg: null }), 140), left: 20, top: 20 }])
+  // Apple touch icons get no transparency: full-bleed paper, iOS rounds the corners itself.
+  await sharp({ create: { width: 180, height: 180, channels: 3, background: PAPER } })
+    .composite([{ input: await png(brandSvg(), 140), left: 20, top: 20 }])
     .png()
     .toFile(app("apple-icon.png"));
-  await writeFile(out("brand", "logo-mark.svg"), seal);
-  await writeFile(out("brand", "logo-mark-dark.svg"), brandSvg({ bg: "#FFFFFF1A" }));
-  await writeFile(out("brand", "logo-mark-mono.svg"), brandSvg({ bg: null, fg: "#0E1615" }));
-  await sharp(await png(seal, 512)).toFile(out("brand", "logo-mark-512.png"));
+  await writeFile(out("brand", "logo-mark.svg"), brandSvg());
+  await writeFile(out("brand", "logo-mark-dark.svg"), brandSvg({ main: "#FFFFFF" }));
+  await writeFile(
+    out("brand", "logo-mark-mono.svg"),
+    brandSvg({ main: "#0E1615", accent: "#0E1615" }),
+  );
+  await sharp(await png(tile, 512)).toFile(out("brand", "logo-mark-512.png"));
   console.log("brand: icon.svg, favicon.ico, apple-icon.png, public/brand/*");
 }
 
@@ -181,7 +199,7 @@ async function ogTask() {
   await sharp({ create: { width: W, height: H, channels: 3, background: "#0F3B3E" } })
     .composite([
       { input: Buffer.from(text), left: 0, top: 0 },
-      { input: await png(brandSvg(), 72), left: 72, top: 150 },
+      { input: await png(brandSvg({ main: "#FFFFFF" }), 72), left: 72, top: 150 },
       { input: portrait, left: W - 520, top: 0 },
     ])
     .jpeg({ quality: 82, mozjpeg: true })
