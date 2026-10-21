@@ -1,4 +1,4 @@
-import { pending, type MaybePending } from "./pending";
+import type { MaybePending } from "./pending";
 import { tariffs } from "./tariffs";
 
 const officeCityTaxPct = tariffs.transferTax.municipalities[0].ratePct;
@@ -304,13 +304,11 @@ export const site = {
   },
 
   /**
-   * Example starting values of the calculators (FR-12…20). Rates are neutral examples shown as
-   * „примерна“, not offers; fees default to 0 so nothing is invented. Owner confirms: O-15.
+   * Example starting values of the calculators (FR-12…20), final per owner 2026-10-21 (O-15).
+   * Rates are neutral examples shown as „примерна“, not offers; fees default to 0 so nothing is
+   * invented. The examples agree with each other: 90 000 € over 22 years at 523 €/month is 4.2 %,
+   * the current rate in the refinancing example.
    */
-  calculatorDefaultsStatus: pending(
-    "O-15",
-    "Confirm the calculators' example starting values (amounts, terms, example rates)",
-  ),
   calculatorDefaults: {
     "mesechna-vnoska": { amount: 120000, years: 30, ratePct: 2.9 },
     refinansirane: {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { site } from "@/config/site";
+import { site, type Calculator } from "@/config/site";
 import { sitemapPaths } from "./sitemap";
 
 describe("sitemapPaths", () => {
@@ -14,10 +14,12 @@ describe("sitemapPaths", () => {
   });
 
   it("leaves out calculators that are not released", () => {
-    const calculators = site.calculators.map((c) =>
+    const calculators: Calculator[] = site.calculators.map((c) =>
       c.slug === "cena-na-imota" ? { ...c, available: false } : c,
     );
-    expect(sitemapPaths({ ...site, calculators })).not.toContain("/kalkulatori/cena-na-imota");
+    expect(sitemapPaths({ loans: site.loans, calculators })).not.toContain(
+      "/kalkulatori/cena-na-imota",
+    );
   });
 
   it("leaves out pages that must not be indexed", () => {

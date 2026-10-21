@@ -102,6 +102,67 @@ async function banksTask() {
   }
 }
 
+// Brand mark (O-13, DR-7): the EC seal. Paths mirror `markPaths` in src/components/brand/Logo.tsx.
+// Writes the favicon set Next serves from src/app (icon.svg, favicon.ico, apple-icon.png) and
+// standalone mark files in public/brand for print, social profiles and partners.
+const PETROL = "#0F3B3E";
+const GOLD = "#C59A3D";
+const brandSvg = ({ bg = PETROL, fg = GOLD, size = 48 } = {}) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="${size}" height="${size}">` +
+  (bg ? `<rect width="48" height="48" rx="13" fill="${bg}"/>` : "") +
+  `<path fill="${fg}" d="M9 12H21V16.5H13.5V21.75H20V26.25H13.5V31.5H39V36H9Z"/>` +
+  `<path fill="none" stroke="${fg}" stroke-width="4" stroke-linecap="round" d="M35.7 16.5A6.5 6.5 0 1 0 35.7 26.5"/>` +
+  `</svg>`;
+
+const png = (svg, size) =>
+  sharp(Buffer.from(svg), { density: 72 * (size / 48) * 2 })
+    .resize(size, size)
+    .png()
+    .toBuffer();
+
+// Minimal ICO container with PNG-encoded images (supported by every current browser).
+function ico(images) {
+  const header = Buffer.alloc(6 + 16 * images.length);
+  header.writeUInt16LE(0, 0);
+  header.writeUInt16LE(1, 2);
+  header.writeUInt16LE(images.length, 4);
+  let offset = header.length;
+  images.forEach(({ size, data }, i) => {
+    const e = 6 + 16 * i;
+    header.writeUInt8(size >= 256 ? 0 : size, e);
+    header.writeUInt8(size >= 256 ? 0 : size, e + 1);
+    header.writeUInt16LE(1, e + 4);
+    header.writeUInt16LE(32, e + 6);
+    header.writeUInt32LE(data.length, e + 8);
+    header.writeUInt32LE(offset, e + 12);
+    offset += data.length;
+  });
+  return Buffer.concat([header, ...images.map((i) => i.data)]);
+}
+
+async function brandTask() {
+  const app = (...p) => path.join(root, "src", "app", ...p);
+  await mkdir(out("brand"), { recursive: true });
+  const seal = brandSvg();
+  await writeFile(app("icon.svg"), seal);
+  await writeFile(
+    app("favicon.ico"),
+    ico(
+      await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await png(seal, size) }))),
+    ),
+  );
+  // Apple touch icons get no transparency: full-bleed petrol, iOS rounds the corners itself.
+  await sharp({ create: { width: 180, height: 180, channels: 3, background: PETROL } })
+    .composite([{ input: await png(brandSvg({ bg: null }), 140), left: 20, top: 20 }])
+    .png()
+    .toFile(app("apple-icon.png"));
+  await writeFile(out("brand", "logo-mark.svg"), seal);
+  await writeFile(out("brand", "logo-mark-dark.svg"), brandSvg({ bg: "#FFFFFF1A" }));
+  await writeFile(out("brand", "logo-mark-mono.svg"), brandSvg({ bg: null, fg: "#0E1615" }));
+  await sharp(await png(seal, 512)).toFile(out("brand", "logo-mark-512.png"));
+  console.log("brand: icon.svg, favicon.ico, apple-icon.png, public/brand/*");
+}
+
 // Default social share image (TR-8): 1200×630 JPEG, petrol panel with the name beside the hero
 // portrait. Text is drawn by librsvg with a system font, so check the output after regenerating.
 async function ogTask() {
@@ -113,7 +174,6 @@ async function ogTask() {
     .toBuffer();
   const text = `<svg xmlns="http://www.w3.org/2000/svg" width="${W - 520}" height="${H}">
     <rect width="100%" height="100%" fill="#0F3B3E"/>
-    <rect x="72" y="200" width="64" height="6" fill="#C59A3D"/>
     <text x="72" y="300" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="60" fill="#FFFFFF" letter-spacing="-1.5">Десислава</text>
     <text x="72" y="368" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="60" fill="#FFFFFF" letter-spacing="-1.5">Арабаджиева</text>
     <text x="72" y="430" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#CFDAD7">Кредитен консултант · ExtraConsult</text>
@@ -121,6 +181,7 @@ async function ogTask() {
   await sharp({ create: { width: W, height: H, channels: 3, background: "#0F3B3E" } })
     .composite([
       { input: Buffer.from(text), left: 0, top: 0 },
+      { input: await png(brandSvg(), 72), left: 72, top: 150 },
       { input: portrait, left: W - 520, top: 0 },
     ])
     .jpeg({ quality: 82, mozjpeg: true })
@@ -132,4 +193,5 @@ const only = process.argv[2];
 if (!only || only === "portraits") await portraitsTask();
 if (!only || only === "clients") await clientsTask();
 if (!only || only === "banks") await banksTask();
+if (!only || only === "brand") await brandTask();
 if (!only || only === "og") await ogTask();

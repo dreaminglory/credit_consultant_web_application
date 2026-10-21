@@ -112,7 +112,7 @@ Motion tuning on real pages, all 5 breakpoints, `web-design-guidelines` review, 
 screen-reader pass, Lighthouse ≥ 90 and above the creditmall.bg baseline on every template,
 side-by-side BM-1…12 checklist. Logo concepts (§7.1) if not done earlier.
 
-### M10 — Content fill and launch
+### M10 — Content fill and launch  `feat/launch`  — deployed and indexable 2026-10-21, version 00f1871d (live Home Lighthouse 86–87 / 100 / 81 / 100; BP 100 once Cloudflare Bot Fight Mode / JS detections is off; logo + favicons, dev kit 404 in production, nav breakpoint 1280 px; legal pages launch with the draft notice, O-14; ad tracking IDs later)
 Replace placeholders (`check:content` must be empty), domain + DNS on Cloudflare,
 SPF/DKIM/DMARC for Resend, production env vars, test requests, go live.
 
