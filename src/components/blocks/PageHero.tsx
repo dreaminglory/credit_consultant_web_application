@@ -22,7 +22,7 @@ type PageHeroProps = {
  */
 export function PageHero({ breadcrumbs, label, title, intro, facts, children }: PageHeroProps) {
   return (
-    <Section className="-mt-[88px] overflow-hidden pt-[128px] pb-14 md:pt-[148px] md:pb-20">
+    <Section className="-mt-[96px] overflow-hidden pt-[136px] pb-14 md:pt-[156px] md:pb-20">
       <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-50">
         <Mesh />
       </div>

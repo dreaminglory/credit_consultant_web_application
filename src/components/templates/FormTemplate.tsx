@@ -21,7 +21,7 @@ const miniFaq = faqCategories.filter((c) => c.id === "usluga" || c.id === "regis
 export function FormTemplate() {
   return (
     <>
-      <Section className="-mt-[88px] overflow-hidden pt-[128px] md:pt-[148px]">
+      <Section className="-mt-[96px] overflow-hidden pt-[136px] md:pt-[156px]">
         <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-50">
           <Mesh />
         </div>

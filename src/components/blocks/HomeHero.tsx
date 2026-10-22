@@ -17,7 +17,7 @@ const delay = (ms: number) => ({ "--enter-delay": `${ms}ms` }) as React.CSSPrope
  */
 export function HomeHero() {
   return (
-    <Section className="-mt-[88px] pt-[148px] pb-24 md:pb-28">
+    <Section className="-mt-[96px] pt-[156px] pb-24 md:pb-28">
       <Mesh />
       <Container className="grid items-end gap-12 md:grid-cols-[1.25fr_0.75fr]">
         <div>
