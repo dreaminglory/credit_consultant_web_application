@@ -1,8 +1,8 @@
-# Requirements — ExtraConsult Website (v1)
+# Requirements — Desislava Arabadzhieva Website (v1)
 
 > Status: **Draft v4 for owner review** — 2026-10-15 (owner named; creditmall.bg benchmark;
 > home-first structure)
-> Consultant: **Desislava Arabadzhieva (Десислава Арабаджиева)**, firm ExtraConsult
+> Consultant: **Desislava Arabadzhieva (Десислава Арабаджиева)**, credit consultant at CreditMall (no own firm since 2026-11-26)
 > Business background: [BUSINESS_CONTEXT.md](BUSINESS_CONTEXT.md)
 > Draft Bulgarian copy (menus, process, FAQ, coverage): [CONTENT.md](CONTENT.md)
 > Visual direction: [design/mockup-home.html](../design/mockup-home.html) (v2)
@@ -169,10 +169,10 @@ Home**, not separate pages. Anchors: `/#za-men`, `/#proces`, `/#otzivi`, `/#kalk
     Home anchors; Безплатна консултация, Контакти → pages)
   - Legal links: Поверителност · Бисквитки · Общи условия · "Настройки на бисквитките"
   - **Intermediary disclosure line** (FT-2)
-  - **© {year} ExtraConsult. Всички права запазени.**
+  - **© {year} Десислава Арабаджиева. Всички права запазени.**
 - **FT-2** Disclosure (wording to be confirmed with CreditMall/lawyer, O-3):
-  "ExtraConsult · ЕИК 207809106 · кредитен посредник, вписан в регистъра на БНБ под
-  № BCI000104 чрез CreditMall."
+  "Десислава Арабаджиева · кредитен консултант към CreditMall — кредитен посредник, вписан в
+  регистъра на БНБ под № BCI000104." (no ЕИК: she has no firm of her own since 2026-11-26)
 
 ## 4. Page templates and block library
 Pages are **compositions of reusable blocks**. No page is designed from scratch; no page looks
@@ -279,7 +279,7 @@ Not on Home: live map (only on `/kontakti`), legal text.
 - **FAQ-1** Compact layout: **category pills/tabs** at the top; selecting a category shows only
   its questions as an accordion; **one question open at a time**. Takes far less space.
 - **FAQ-2** Categories and questions in CONTENT.md §4 (5 categories, ≥ 15 questions), including
-  the **registration question** (BNB register BCI000104 via CreditMall, ЕИК 207809106).
+  the **registration question** (BNB register BCI000104 via CreditMall).
 - **FAQ-3** URL hash per category/question (`/#vaprosi-refinansirane`) so ads and pages can link
   to an answer. Loan pages embed only their category.
 - **FAQ-4** `FAQPage` structured data on Home (all questions) and on loan pages (their category).
@@ -382,7 +382,9 @@ All amounts in EUR, live results, disclaimer ("ориентировъчно, н�
 - **DR-8 No 3D in v1** (moved to "later").
 
 ### 7.1 Logo brief (O-13)
-- Name: **ExtraConsult**. Personality: trustworthy, personal, modern, calm confidence — premium
+- Name: **Десислава Арабаджиева** (changed from ExtraConsult on 2026-11-26). Mark ("Стъпала",
+  chosen 2026-11-26): gold steps rising to an arched front door — the 5-step process ending at
+  the new home; the name is stacked on two lines beside it at every width. Personality: trustworthy, personal, modern, calm confidence — premium
   but approachable; not a bank, not a startup toy.
 - Deliverables: full logo (mark + wordmark), mark alone, light and dark versions, monochrome,
   favicon (SVG + 32/180/512 px), social/OG image. All as SVG.
@@ -401,12 +403,12 @@ All amounts in EUR, live results, disclaimer ("ориентировъчно, н�
 |---|---|---|
 | **Privacy policy** (`/poveritelnost`) | **Mandatory** | We collect personal data (name, phone, email) → GDPR Art. 13 information duty |
 | **Cookie policy + consent banner** (`/biskvitki`) | **Mandatory** once we use Meta Pixel, Google Ads or the live Google Map | ePrivacy rules: non-essential cookies need prior opt-in |
-| **Terms of use + legal information** (`/obshti-usloviya`) | **Strongly recommended** | Bulgarian e-commerce law requires provider identification on the website (name, address, ЕИК, contacts, registration, supervisor); as a credit intermediary the site must also state the registration and that the service is free for the client. Putting it on one page keeps it tidy. |
+| **Terms of use + legal information** (`/obshti-usloviya`) | **Strongly recommended** | Bulgarian e-commerce law requires provider identification on the website (name, address, contacts, registration, supervisor); as a credit intermediary the site must also state the registration and that the service is free for the client. Putting it on one page keeps it tidy. |
 - **LC-1** Privacy policy: controller, purpose, legal basis, recipients (email provider, Google
   Sheets, Cloudflare, Google Maps, Meta/Google ads), retention [O-8], rights, КЗЛД complaint.
 - **LC-2** Cookie banner: opt-in, "Приеми всички" / "Откажи" equally prominent, settings link
   in the footer.
-- **LC-3** Intermediary disclosures: legal entity, ЕИК 207809106, address, BNB register
+- **LC-3** Intermediary disclosures: her name, address, BNB register
   BCI000104 via CreditMall, independence/remuneration statement (paid by banks).
 - **LC-4** Rates in ads/site → legally required representative example (ГПР).
 - **LC-5** Written consent for client photos and testimonials.
@@ -446,7 +448,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 - **D-1 Hosting: Cloudflare** — decided 2026-10-13.
 - **D-2 Domain** — recommended 2026-10-15: primary **`extraconsult.bg`** (firm name: one
   spelling, matches the legal entity and email; "Арабаджиева" has several Latin spellings).
-  Her name leads the logo lockup ("ExtraConsult · Десислава Арабаджиева") and the hero.
+  Her name is the logo lockup (arch mark + "Десислава Арабаджиева", 2026-11-26) and leads the hero.
   Optionally register a name domain and 301-redirect it. Availability still to check.
 - **D-3 Multi-page site with reusable templates/blocks** — decided 2026-10-14.
 - **D-4 No 3D in v1** — decided 2026-10-14.
@@ -461,7 +463,7 @@ live rate feeds, insurance, English version, chatbot, newsletter.
 |---|---|---|
 | **O-1** | **~8 photos (you + you with clients) and each client's feedback, with written consent — REQUIRED** | Open |
 | **O-2** | **Reference websites — REQUIRED** | Partly done: habito.com (style), creditmall.bg & creditcenter.bg (structure). More welcome. |
-| O-3 | Full legal name with legal form, registered address, VAT number (or "not VAT-registered"); CreditMall approves the exact relationship wording; verify ЕИК 207809106 and BNB № BCI000104 in the official registers | Numbers received 2026-10-14 (not yet verified publicly). 2026-10-20: ExtraConsult is a consultancy firm acting through CreditMall; BCI000104 is CreditMall's entry (wording says so); CreditMall will approve; controller stays ExtraConsult. |
+| O-3 | CreditMall approves the exact relationship wording; verify BNB № BCI000104 in the official register | Numbers received 2026-10-14 (not yet verified publicly). 2026-10-20: ExtraConsult is a consultancy firm acting through CreditMall; BCI000104 is CreditMall's entry (wording says so); CreditMall will approve; controller stays ExtraConsult. 2026-11-26: no own firm any more — she is "кредитен консултант към CreditMall" and the data controller as a natural person; ЕИК removed; address kept. |
 | O-4 | **SVG logo files** of the 10 banks + permission to use them | 10 files received 2026-10-15. Still needed: proper **ОББ** logo (file is the KBC mark only), **ЦКБ** in brand colours (only white supplied; recoloured to ink for now). Permission still open. |
 | O-5 | Phone, Viber, WhatsApp, request-receiving email | Open |
 | O-6 | Professional portrait photos | 3 photos received (teal suit ×2, phone call). Hero choice and more shots (with clients, office) open |

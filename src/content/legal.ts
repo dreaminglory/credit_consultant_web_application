@@ -64,10 +64,9 @@ const authority = (a: { name: string; address: string; web: string }) =>
 const controllerFacts: LegalBlock = {
   kind: "facts",
   rows: [
-    { term: "Наименование", value: t`${legal.fullName}` },
-    { term: "ЕИК", value: t`${legal.eik}` },
-    { term: "Седалище и адрес", value: t`${legal.registeredAddress}` },
-    { term: "Представлява се от", value: t`${person.name}` },
+    { term: "Име", value: t`${person.name}` },
+    { term: "Дейност", value: t`${person.role} към ${legal.intermediary}` },
+    { term: "Адрес", value: t`${legal.address}` },
     { term: "Имейл", value: t`${contact.email}` },
     { term: "Телефон", value: t`${contact.phone}` },
   ],
@@ -79,14 +78,14 @@ export const privacyPolicy: LegalDoc = {
   title: "Политика за поверителност",
   description:
     "Какви лични данни събирам чрез сайта, защо, на кого ги предавам, колко дълго ги пазя и какви права имате.",
-  updated: "2026-10-19",
+  updated: "2026-11-26",
   sections: [
     {
       id: "administrator",
       title: "Кой обработва данните ви",
       blocks: [
         p(
-          t`Администратор на личните данни, които оставяте на този сайт, е ${legal.company}. По-долу „аз“ означава администратора. За всички въпроси за данните ви ми пишете на ${contact.email} или се обадете на ${contact.phone}.`,
+          t`Администратор на личните данни, които оставяте на този сайт, съм аз — ${person.name}, ${person.role.toLowerCase()} към ${legal.intermediary}, като физическо лице. За всички въпроси за данните ви ми пишете на ${contact.email} или се обадете на ${contact.phone}.`,
         ),
         controllerFacts,
       ],
@@ -331,7 +330,7 @@ export const termsPage: LegalDoc = {
   title: "Общи условия и правна информация",
   description:
     "Кой стои зад сайта, регистрацията ми като кредитен посредник, какво включва безплатната консултация и правилата за ползване на сайта.",
-  updated: "2026-10-19",
+  updated: "2026-11-26",
   sections: [
     {
       id: "dostavchik",

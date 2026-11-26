@@ -102,31 +102,24 @@ async function banksTask() {
   }
 }
 
-// Brand mark (O-13, DR-7): EC monogram with a rising arrow. Paths mirror `markPaths` in
-// src/components/brand/Logo.tsx. Writes the favicon set Next serves from src/app (icon.svg,
-// favicon.ico, apple-icon.png) and standalone mark files in public/brand for print and partners.
+// Brand mark "Стъпала" (O-13, DR-7): gold steps rising to an arched front door. Shapes mirror
+// `markPaths` in src/components/brand/Logo.tsx. Writes the favicon set Next serves from src/app
+// (icon.svg, favicon.ico, apple-icon.png) and standalone mark files in public/brand.
 const PETROL = "#0F3B3E";
 const GOLD = "#C59A3D";
 const PAPER = "#F5F3EE";
 const MARK = {
-  eTop: "M4 6H19V12H10.5V19H16V25H4Z",
-  eBottom: "M4 27H10.5V36H19V42H4Z",
-  c: "M37.75 18.8A9.5 9.5 0 1 0 41.2 31.75",
-  arrow: "M17 37 25 29 30.5 33.5 38.5 20.5",
-  head: "M43.5 12.5 42.5 23.3 34.6 18.2Z",
+  steps: "M3 43V37H10V31H17V25H24V43Z",
+  door: "M28 43V18A8 8 0 0 1 44 18V43",
+  knob: { cx: 39.5, cy: 30, r: 1.9 },
 };
-/** `bg` draws a rounded tile behind the mark; `main` colours the lower E and the C. */
+/** `bg` draws a rounded tile behind the mark; `main` colours the door. */
 const brandSvg = ({ bg = null, main = PETROL, accent = GOLD, size = 48 } = {}) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="${size}" height="${size}">` +
   (bg ? `<rect width="48" height="48" rx="11" fill="${bg}"/>` : "") +
-  `<mask id="k" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">` +
-  `<rect width="48" height="48" fill="#fff"/>` +
-  `<path d="${MARK.arrow}" fill="none" stroke="#000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>` +
-  `<path d="${MARK.head}" fill="#000" stroke="#000" stroke-width="4" stroke-linejoin="round"/></mask>` +
-  `<g mask="url(#k)"><path fill="${accent}" d="${MARK.eTop}"/><path fill="${main}" d="${MARK.eBottom}"/>` +
-  `<path fill="none" stroke="${main}" stroke-width="6" d="${MARK.c}"/></g>` +
-  `<path fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="${MARK.arrow}"/>` +
-  `<path fill="${accent}" d="${MARK.head}"/></svg>`;
+  `<path fill="${accent}" d="${MARK.steps}"/>` +
+  `<path fill="none" stroke="${main}" stroke-width="4.5" stroke-linecap="round" d="${MARK.door}"/>` +
+  `<circle fill="${main}" cx="${MARK.knob.cx}" cy="${MARK.knob.cy}" r="${MARK.knob.r}"/></svg>`;
 
 const png = (svg, size) =>
   sharp(Buffer.from(svg), { density: 72 * (size / 48) * 2 })
@@ -194,7 +187,7 @@ async function ogTask() {
     <rect width="100%" height="100%" fill="#0F3B3E"/>
     <text x="72" y="300" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="60" fill="#FFFFFF" letter-spacing="-1.5">Десислава</text>
     <text x="72" y="368" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="60" fill="#FFFFFF" letter-spacing="-1.5">Арабаджиева</text>
-    <text x="72" y="430" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#CFDAD7">Кредитен консултант · ExtraConsult</text>
+    <text x="72" y="430" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#CFDAD7">Кредитен консултант · Пловдив</text>
   </svg>`;
   await sharp({ create: { width: W, height: H, channels: 3, background: "#0F3B3E" } })
     .composite([

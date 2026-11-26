@@ -1,4 +1,4 @@
-# Build Plan — ExtraConsult Website (v1)
+# Build Plan — Desislava Arabadzhieva Website (v1)
 
 > Status: **Draft for approval** — 2026-10-15
 > Inputs: [REQUIREMENTS.md](REQUIREMENTS.md) (v4), [BUSINESS_CONTEXT.md](BUSINESS_CONTEXT.md),

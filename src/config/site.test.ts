@@ -29,12 +29,13 @@ describe("site config", () => {
   });
 
   it("keeps registration data identical wherever it is shown (CR-6)", () => {
-    expect(site.legal.eik).toBe("207809106");
     expect(site.legal.bnbRegisterNo).toBe("BCI000104");
     const disclosure = site.legal.disclosure;
     const text = isPending(disclosure) ? disclosure.draft : disclosure;
-    expect(text).toContain(site.legal.eik);
+    expect(text).toContain(site.person.name);
+    expect(text).toContain(site.legal.intermediary);
     expect(text).toContain(site.legal.bnbRegisterNo);
+    expect(text).not.toContain("ЕИК");
   });
 });
 

@@ -1,9 +1,10 @@
-# ExtraConsult Website
+# Desislava Arabadzhieva Website
 
 Bulgarian-language website for **Desislava Arabadzhieva (Десислава Арабаджиева)**, an
-independent **credit consultant** in Bulgaria (her firm: ExtraConsult; she works through
-CreditMall as the registered intermediary). The site is centred on her as a person, not on a
-company or team. Products: mortgages, refinancing, business and consumer loans (including car
+independent **credit consultant** in Bulgaria. She has no firm of her own: she works as a
+credit consultant at CreditMall (the registered intermediary, BNB № BCI000104) and is the site's
+provider and data controller as a natural person. The site is centred on her as a person: the
+brand and logo are her name. Products: mortgages, refinancing, business and consumer loans (including car
 purchases). Goal: turn ad, search and referral visitors into **free-consultation requests**.
 
 **Benchmark:** the site must beat https://www.creditmall.bg/ in every way — content depth, real
