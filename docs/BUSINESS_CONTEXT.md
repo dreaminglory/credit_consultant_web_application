@@ -1,15 +1,16 @@
-# Business Context — Desislava Arabadzhieva, Credit Consultant (ExtraConsult)
+# Business Context — Desislava Arabadzhieva, Credit Consultant
 
 > Source of truth for who the consultant is, how the business works and why the website exists.
 > Updated 2026-10-13: re-centered on the consultant as a person, not the company.
 > Updated 2026-10-15: owner named; creditmall.bg set as the benchmark to beat (§9).
+> Updated 2026-11-26: no own firm any more — she works only as a credit consultant at CreditMall.
 > Placeholders in [brackets] are open items in REQUIREMENTS.md §13.
 
 ## 1. Who I am
-I am **Desislava Arabadzhieva (Десислава Арабаджиева)**, an independent **credit consultant in Bulgaria**. I work under my company
-**ExtraConsult** (ЕИК 207809106). My activity is carried out through **CreditMall**, the parent
-company and a credit intermediary entered in the **BNB register under № BCI000104** (exact
-legal wording to confirm: O-3).
+I am **Desislava Arabadzhieva (Десислава Арабаджиева)**, an independent **credit consultant in Bulgaria**. I have no company
+of my own: I work as a **credit consultant at CreditMall**, a credit intermediary entered in the
+**BNB register under № BCI000104** (exact legal wording to confirm with CreditMall: O-3). For the
+website I am the provider and data controller as a natural person (no ЕИК).
 
 My office is in **Plovdiv**, but I work with clients **across all of Bulgaria and with Bulgarians
 abroad** — most steps happen by phone, Viber, WhatsApp, video call and electronic documents.

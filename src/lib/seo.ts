@@ -5,8 +5,15 @@ import { site } from "@/config/site";
 export const baseOpenGraph = {
   type: "website",
   locale: "bg_BG",
-  siteName: `${site.brand.name} · ${site.person.name}`,
-  images: [{ url: "/og/default.jpg", width: 1200, height: 630, alt: site.brand.tagline }],
+  siteName: site.brand.name,
+  images: [
+    {
+      url: "/og/default.jpg",
+      width: 1200,
+      height: 630,
+      alt: `${site.person.name} — ${site.person.role.toLowerCase()}`,
+    },
+  ],
 } satisfies Metadata["openGraph"];
 
 /**

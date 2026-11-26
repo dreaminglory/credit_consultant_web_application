@@ -77,7 +77,6 @@ export function businessJsonLd(site: SeoSite, image: string) {
         priceRange: "Безплатна консултация",
         founder: { "@id": id.person },
         employee: { "@id": id.person },
-        identifier: { "@type": "PropertyValue", propertyID: "ЕИК", value: site.legal.eik },
       },
       {
         "@type": "Person",

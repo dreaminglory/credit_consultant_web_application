@@ -1,4 +1,4 @@
-# Content Drafts — ExtraConsult Website
+# Content Drafts — Desislava Arabadzhieva Website
 
 > Draft Bulgarian copy for menus, process, coverage and FAQ. Owner to review wording.
 > Items marked **[потвърди]** must be confirmed by the owner; **[провери]** must be checked
@@ -93,8 +93,8 @@ Shown in full on Home (`#vaprosi`); loan pages show only their category.
 15. **Регистрирана ли сте като кредитен посредник?**
     Draft answer [потвърди точната формулировка с CreditMall]: „Да. Дейността ми се извършва
     чрез CreditMall — кредитен посредник, вписан в регистъра на Българската народна банка под
-    № BCI000104. ExtraConsult е с ЕИК 207809106. Можете да проверите регистрацията на сайта на
-    БНБ."
+    № BCI000104. Работя като кредитен консултант към CreditMall. Можете да проверите
+    регистрацията на сайта на БНБ."
 16. Какво се случва с личните ми данни?
 17. Плащам ли нещо, ако кредитът не бъде одобрен? — „Не. Услугата ми е безплатна за вас
     при всички случаи."

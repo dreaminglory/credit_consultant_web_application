@@ -133,7 +133,7 @@ export function Footer() {
             ))}
           </ul>
           <p className="mt-5">
-            © {year} {site.legal.company}. Всички права запазени.
+            © {year} {site.brand.name}. Всички права запазени.
           </p>
         </div>
       </Container>

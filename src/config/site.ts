@@ -81,30 +81,31 @@ export const site = {
   },
 
   brand: {
-    name: "ExtraConsult",
-    tagline: "Десислава Арабаджиева · кредитен консултант",
+    /** The site is branded with her name (2026-11-26). */
+    name: "Десислава Арабаджиева",
+    tagline: "Кредитен консултант · ипотечни, бизнес и потребителски кредити, рефинансиране",
     description:
       "Безплатна консултация за ипотечни, потребителски и бизнес кредити и рефинансиране. Сравнявам офертите на банките и водя целия процес вместо вас — в Пловдив, в цяла България и за българи в чужбина.",
   },
 
+  /**
+   * Since 2026-11-26 she has no firm of her own: she works only as a credit consultant at
+   * CreditMall and is the data controller for the site as a natural person (no ЕИК).
+   */
   legal: {
-    company: "ExtraConsult",
-    /** Verify in the Commercial Register before launch (O-3). */
-    eik: "207809106",
     intermediary: "CreditMall",
     bnbRegisterNo: "BCI000104",
     /**
-     * BCI000104 is CreditMall's own BNB entry; ExtraConsult is a consultancy firm acting through
-     * it, so the wording must never say ExtraConsult itself holds the number (FT-2).
+     * BCI000104 is CreditMall's own BNB entry, so the wording must never say she holds the
+     * number herself (FT-2). CreditMall approves the exact wording before launch (O-3).
      */
     disclosure:
-      "ExtraConsult · ЕИК 207809106 · консултантска фирма, която работи чрез CreditMall — кредитен посредник, вписан в регистъра на БНБ под № BCI000104.",
+      "Десислава Арабаджиева · кредитен консултант към CreditMall — кредитен посредник, вписан в регистъра на БНБ под № BCI000104.",
     /** Follows the disclosure in the FAQ and on the Terms page, so both read the same (CR-6). */
     registryNote:
       "Номерът е на CreditMall. Вписването може да се провери в публичния регистър на БНБ.",
-    /** Full name with legal form as in the Commercial Register (ЗЕТ чл. 4). */
-    fullName: "ExtraConsult ЕООД" as MaybePending,
-    registeredAddress: "Пловдив, бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
+    /** Her address as provider and data controller (ЗЕТ чл. 4, GDPR чл. 13). */
+    address: "Пловдив, бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
     /** How long request data is kept when no contract follows (LC-1); confirmed by the owner. */
     retention: "12 месеца" as MaybePending,
     /** Public authorities named on the legal pages (LC-1, LC-3). Checked 2026-10-19. */

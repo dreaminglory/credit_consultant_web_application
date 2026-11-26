@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   // noindex on every page until launch; pages that are never indexed set their own robots.
   robots: site.allowIndexing ? undefined : { index: false, follow: false },
   title: {
-    default: `${site.person.name} — кредитен консултант | ${site.brand.name}`,
-    template: `%s | ${site.person.name} · ${site.brand.name}`,
+    default: `${site.brand.name} — кредитен консултант`,
+    template: `%s | ${site.brand.name}`,
   },
   description: site.brand.description,
   // Pages set their own title, description, canonical and Open Graph via pageMetadata (TR-8).
