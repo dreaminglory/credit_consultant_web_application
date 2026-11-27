@@ -83,6 +83,22 @@ export function Footer() {
                 </Link>
               </p>
             </address>
+            {/* CreditMall's logo, linking to its site; the full disclosure lives in the FAQ and Terms. */}
+            <a
+              href={site.legal.intermediaryLogo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex min-h-11 items-center opacity-90 transition-opacity duration-150 hover:opacity-100"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- static SVG, no optimisation needed */}
+              <img
+                src={site.legal.intermediaryLogo.src}
+                width={site.legal.intermediaryLogo.width}
+                height={site.legal.intermediaryLogo.height}
+                alt={`${site.legal.intermediary} (отваря се в нов прозорец)`}
+                className="h-6 w-auto"
+              />
+            </a>
           </div>
 
           <Column title="Кредити">

@@ -13,9 +13,9 @@ describe("pending", () => {
 });
 
 describe("site config", () => {
-  it("lists the ten v1 partner banks with unique ids and logo paths (BL-2)", () => {
-    expect(site.banks).toHaveLength(10);
-    expect(new Set(site.banks.map((b) => b.id)).size).toBe(10);
+  it("lists the eight partner banks with unique ids and logo paths (BL-2)", () => {
+    expect(site.banks).toHaveLength(8);
+    expect(new Set(site.banks.map((b) => b.id)).size).toBe(8);
     for (const bank of site.banks) expect(bank.logo).toBe(`/banks/${bank.id}.svg`);
   });
 
