@@ -16,7 +16,7 @@ export function BankLogos() {
       <Container>
         <SectionHeader label={banksSection.label} title={banksSection.title} />
         <Reveal>
-          <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-5">
+          <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-4">
             {site.banks.map((bank) => (
               <li
                 key={bank.id}

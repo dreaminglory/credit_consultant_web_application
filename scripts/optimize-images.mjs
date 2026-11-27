@@ -32,12 +32,10 @@ const clients = [
 const INK = "#0E1615";
 const banks = [
   { file: "bank-allianz.svg", id: "allianz" },
-  { file: "bank-investbank.svg", id: "investbank" },
   { file: "bank-dcommerce.svg", id: "dcommerce" },
   { file: "dsk-commons.svg", id: "dsk" },
   { file: "bank-ubb.svg", id: "ubb" },
   { file: "bank-fibank.svg", id: "fibank" },
-  { file: "bank-procredit.svg", id: "procredit" },
   { file: "bank-unicredit-bulbank.svg", id: "unicredit" },
   { file: "bank-ccb-white.svg", id: "ccb", recolor: true },
   { file: "bank-postbank.svg", id: "postbank" },

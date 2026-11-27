@@ -94,6 +94,16 @@ export const site = {
    */
   legal: {
     intermediary: "CreditMall",
+    /**
+     * CreditMall's logo for the footer (owner supplied 2026-11-27): wordmark recoloured white
+     * for the dark footer, gold symbol kept. Confirm CreditMall is happy with this use (O-4).
+     */
+    intermediaryLogo: {
+      src: "/partners/creditmall-light.svg",
+      width: 152,
+      height: 30,
+      href: "https://www.creditmall.bg/",
+    },
     bnbRegisterNo: "BCI000104",
     /**
      * BCI000104 is CreditMall's own BNB entry, so the wording must never say she holds the
@@ -103,7 +113,7 @@ export const site = {
       "Десислава Арабаджиева · кредитен консултант към CreditMall — кредитен посредник, вписан в регистъра на БНБ под № BCI000104.",
     /** Follows the disclosure in the FAQ and on the Terms page, so both read the same (CR-6). */
     registryNote:
-      "Номерът е на CreditMall. Вписването може да се провери в публичния регистър на БНБ.",
+      "Вписването може да се провери в публичния регистър на БНБ.",
     /** Her address as provider and data controller (ЗЕТ чл. 4, GDPR чл. 13). */
     address: "Пловдив, бул. „Христо Ботев“ 92, Център, 4000" as MaybePending,
     /** How long request data is kept when no contract follows (LC-1); confirmed by the owner. */
@@ -188,16 +198,12 @@ export const site = {
     },
   ] satisfies Loan[],
 
-  /** Partner banks, v1 list from the owner (BL-2, 2026-10-14). Permission to use logos: O-4. */
+  /**
+   * Partner banks, list from the owner (BL-2, 2026-10-14; Investbank and ProCredit removed
+   * 2026-11-27). Permission to use logos: O-4.
+   */
   banks: [
     { id: "allianz", name: "Алианц Банк България", logo: "/banks/allianz.svg", size: [400, 99] },
-    {
-      id: "investbank",
-      name: "Инвестбанк",
-      logo: "/banks/investbank.svg",
-      size: [1200, 1018],
-      tall: true,
-    },
     { id: "dcommerce", name: "Д Комерс Банк", logo: "/banks/dcommerce.svg", size: [221, 61] },
     { id: "dsk", name: "Банка ДСК", logo: "/banks/dsk.svg", size: [288, 288], tall: true },
     {
@@ -209,13 +215,6 @@ export const site = {
       note: "Supplied file is the KBC group mark only, not the ОББ logo",
     },
     { id: "fibank", name: "Fibank", logo: "/banks/fibank.svg", size: [204, 48] },
-    {
-      id: "procredit",
-      name: "Прокредит Банк",
-      logo: "/banks/procredit.svg",
-      size: [300, 58],
-      note: "Taken from the bank's own website; confirm permission",
-    },
     { id: "unicredit", name: "УниКредит Булбанк", logo: "/banks/unicredit.svg", size: [226, 25] },
     {
       id: "ccb",
